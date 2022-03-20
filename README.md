@@ -1,5 +1,5 @@
 # ot-harjoitustyo
-Harjoitusrepositorio ohjelmistotekniikkakurssille
+Harjoitusrepositorio kurssille ohjelmistotekniikka
 
 ## Tehtävät
 ### Viikko 1
