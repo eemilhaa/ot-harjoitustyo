@@ -1,0 +1,2 @@
+# ot-harjoitustyo
+Harjoitusrepositorio ohjelmistotekniikkakurssille

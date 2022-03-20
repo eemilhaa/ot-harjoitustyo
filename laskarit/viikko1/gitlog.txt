@@ -1,0 +1,124 @@
+commit ee69d395540d8f59c51bed444563366ebc18f091
+Author: eemilhaa <eemil.haapanen@gmail.com>
+Date:   Wed Mar 16 16:00:32 2022 +0200
+
+    poista ja uudelleennimeä
+
+ tiedostoja/file2             | 0
+ tiedostoja/{file1 => file22} | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 181d5688413f264fc5aac3a741acdfa3da2a0ef9
+Author: eemilhaa <eemil.haapanen@gmail.com>
+Date:   Wed Mar 16 15:50:26 2022 +0200
+
+    siirrä tiedostot oikeaan paikkaan
+
+ file1 => tiedostoja/file1 | 0
+ file2 => tiedostoja/file2 | 0
+ file3 => tiedostoja/file3 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit d45276848286a38219453475be270e0e3ed9b759
+Author: eemilhaa <eemil.haapanen@gmail.com>
+Date:   Wed Mar 16 15:46:41 2022 +0200
+
+    lisää tiedostot
+
+ file1 | 0
+ file2 | 0
+ file3 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 45668b01d94c4b962e5c7974dcc7c38aa44fe6da
+Author: eemilhaa <eemil.haapanen@gmail.com>
+Date:   Wed Mar 16 15:33:39 2022 +0200
+
+    muutoksia ja add -p
+
+ eka.txt    | 12 +++++-------
+ kolmas.txt |  7 ++++++-
+ 2 files changed, 11 insertions(+), 8 deletions(-)
+
+commit b2ff9fc8d9618a85c2e985e03daf94cb080d353a
+Author: eemilhaa <eemil.haapanen@gmail.com>
+Date:   Wed Mar 16 15:30:03 2022 +0200
+
+    tiedosto.txt -> eka.txt
+
+ tiedosto.txt => eka.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 6b3fcd46ec239c2d22b748b5c649c0fcb5511775
+Author: eemilhaa <eemil.haapanen@gmail.com>
+Date:   Wed Mar 16 15:28:28 2022 +0200
+
+    poista toinen.txt
+
+ toinen.txt | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit 3d84449d4e96d9bf5099e12a6c017b535d0ea429
+Author: eemilhaa <eemil.haapanen@gmail.com>
+Date:   Wed Mar 16 15:23:27 2022 +0200
+
+    pannukakkuohje on pilalla
+
+ tiedosto.txt | 9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
+
+commit 4f5e74f38a0761dd35513fe0fd470e6460da0ac3
+Author: eemilhaa <eemil.haapanen@gmail.com>
+Date:   Wed Mar 16 15:20:40 2022 +0200
+
+    lisää pannukakkuohje
+
+ tiedosto.txt | 13 ++++++++++++-
+ 1 file changed, 12 insertions(+), 1 deletion(-)
+
+commit aa5dde4b2ed41d9b45585ccce5db9b8b81290e01
+Author: eemilhaa <eemil.haapanen@gmail.com>
+Date:   Wed Mar 16 15:15:34 2022 +0200
+
+    lisää stuff/jokintiedosto
+
+ stuff/jokintiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 067f59be5efb26965681060182e211870eb0c7a0
+Author: eemilhaa <eemil.haapanen@gmail.com>
+Date:   Wed Mar 16 15:14:29 2022 +0200
+
+    muuta toinen ja kolmas
+
+ kolmas.txt | 1 +
+ toinen.txt | 1 +
+ 2 files changed, 2 insertions(+)
+
+commit f5229f6370eb6f5a061bb306a1cfe7fadbb2089d
+Author: eemilhaa <eemil.haapanen@gmail.com>
+Date:   Wed Mar 16 15:13:10 2022 +0200
+
+    lisää kolmas
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 51ffa749854320e7656a7c9c684fa959cbd6853b
+Author: eemilhaa <eemil.haapanen@gmail.com>
+Date:   Wed Mar 16 15:10:10 2022 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit f47b76aaf6979344dd369af0260f2c4aef798806
+Author: eemilhaa <eemil.haapanen@gmail.com>
+Date:   Wed Mar 16 15:06:56 2022 +0200
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)anguage
