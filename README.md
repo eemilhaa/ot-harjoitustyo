@@ -8,5 +8,5 @@ Harjoitusrepositorio kurssille ohjelmistotekniikka
 
 ### Viikko 2
 - [maksukorttitestit](./laskarit/viikko2/maksukortti/src/tests/)
-- [unicafetestit.py](./laskarit/viikko2/unicafe/src/tests/)
+- [unicafetestit](./laskarit/viikko2/unicafe/src/tests/)
 - [coverage.html (screenshot)](./laskarit/viikko2/coverage.png)
