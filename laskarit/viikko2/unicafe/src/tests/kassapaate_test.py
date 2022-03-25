@@ -15,10 +15,12 @@ class TestKassapaate(unittest.TestCase):
         self.assertEqual(self.kassapaate.kassassa_rahaa, 100000)
 
     def test_myydyt_edulliset_alussa(self):
-        self.assertEqual(self.kassapaate.edulliset, 0)
+        #self.assertEqual(self.kassapaate.edulliset, 0) # test for non-refactored code
+        self.assertEqual(self.kassapaate.tuotteet["maukas"]["ostettu"], 0)
 
     def test_myydyt_maukkaat_alussa(self):
-        self.assertEqual(self.kassapaate.maukkaat, 0)
+        #self.assertEqual(self.kassapaate.maukkaat, 0) # test for non-refactored code
+        self.assertEqual(self.kassapaate.tuotteet["maukas"]["ostettu"], 0)
 
     # Test cash transactions
     def test_edullinen_kateismaksu_kasvattaa_rahamaaraa(self):
@@ -42,12 +44,14 @@ class TestKassapaate(unittest.TestCase):
     def test_edullinen_kateismaksu_lounaiden_maara_kasvaa(self):
         for _ in range(3):
             self.kassapaate.syo_edullisesti_kateisella(maksu=self.edullinen)
-        self.assertEqual(self.kassapaate.edulliset, 3)
+        #self.assertEqual(self.kassapaate.edulliset, 3) # test for non-refactored code
+        self.assertEqual(self.kassapaate.tuotteet["edullinen"]["ostettu"], 3)
 
     def test_maukas_kateismaksu_lounaiden_maara_kasvaa(self):
         for _ in range(10):
             self.kassapaate.syo_maukkaasti_kateisella(maksu=self.maukas)
-        self.assertEqual(self.kassapaate.maukkaat, 10)
+        #self.assertEqual(self.kassapaate.maukkaat, 10) # test for non-refactored code
+        self.assertEqual(self.kassapaate.tuotteet["maukas"]["ostettu"], 10)
 
     def test_liian_pieni_edullinen_kateismaksu_ei_kasvata_rahamaaraa(self):
         self.kassapaate.syo_edullisesti_kateisella(maksu=200)
@@ -69,11 +73,13 @@ class TestKassapaate(unittest.TestCase):
 
     def test_liian_pieni_edullinen_kateismaksu_ei_lisaa_myytyja(self):
         self.kassapaate.syo_edullisesti_kateisella(maksu=200)
-        self.assertEqual(self.kassapaate.edulliset, 0)
+        #self.assertEqual(self.kassapaate.edulliset, 0) # test for non-refactored code
+        self.assertEqual(self.kassapaate.tuotteet["edullinen"]["ostettu"], 0)
 
     def test_liian_pieni_maukas_kateismaksu_ei_lisaa_myytyja(self):
         self.kassapaate.syo_maukkaasti_kateisella(maksu=300)
-        self.assertEqual(self.kassapaate.maukkaat, 0)
+        #self.assertEqual(self.kassapaate.maukkaat, 0) # test for non-refactored code
+        self.assertEqual(self.kassapaate.tuotteet["maukas"]["ostettu"], 0)
 
     # Test card transactions
     def test_edullinen_korttimaksu_vahentaa_saldoa(self):
@@ -100,11 +106,13 @@ class TestKassapaate(unittest.TestCase):
 
     def test_edullinen_korttimaksu_lisaa_myytyja(self):
         self.kassapaate.syo_edullisesti_kortilla(kortti=self.maksukortti_10e)
-        self.assertEqual(self.kassapaate.edulliset, 1)
+        #self.assertEqual(self.kassapaate.edulliset, 1) # test for non-refactored code
+        self.assertEqual(self.kassapaate.tuotteet["edullinen"]["ostettu"], 1)
 
     def test_maukas_korttimaksu_lisaa_myytyja(self):
         self.kassapaate.syo_maukkaasti_kortilla(kortti=self.maksukortti_10e)
-        self.assertEqual(self.kassapaate.maukkaat, 1)
+        #self.assertEqual(self.kassapaate.maukkaat, 1) # test for non-refactored code
+        self.assertEqual(self.kassapaate.tuotteet["maukas"]["ostettu"], 1)
 
     def test_liian_pieni_edullinen_korttimaksu_ei_vahenna_saldoa(self):
         self.kassapaate.syo_edullisesti_kortilla(self.maksukortti_2e)
@@ -128,11 +136,13 @@ class TestKassapaate(unittest.TestCase):
 
     def test_liian_pieni_edullinen_korttimaksu_ei_lisaa_myytyja(self):
         self.kassapaate.syo_edullisesti_kortilla(kortti=self.maksukortti_2e)
-        self.assertEqual(self.kassapaate.edulliset, 0)
+        #self.assertEqual(self.kassapaate.edulliset, 0) # test for non-refactored code
+        self.assertEqual(self.kassapaate.tuotteet["edullinen"]["ostettu"], 0)
 
     def test_liian_pieni_maukas_korttimaksu_ei_lisaa_myytyja(self):
         self.kassapaate.syo_maukkaasti_kortilla(kortti=self.maksukortti_2e)
-        self.assertEqual(self.kassapaate.maukkaat, 0)
+        #self.assertEqual(self.kassapaate.maukkaat, 0) # test for non-refactored code
+        self.assertEqual(self.kassapaate.tuotteet["maukas"]["ostettu"], 0)
 
     def test_korttimaksu_ei_lisaa_kassan_rahaa(self):
         alku = self.kassapaate.kassassa_rahaa
