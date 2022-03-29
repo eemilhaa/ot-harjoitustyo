@@ -1,6 +1,8 @@
 # Requiremets specification
 ## Purpose of the application
-The app I'll be developing on the course is  a simple platformer game. The idea is for the game to be composed of small levels that the player has to pass in order to progress to next levels. In addition to the game itself, the app will also include some menu windows to have a basic UI.
+The app I'll be developing on the course is a simple platformer game. I will develop the game in python with the pygame library.
+
+The idea is for the game to be composed of small levels that the player has to pass in order to progress to next levels. In addition to the game itself, the app will also include some menu windows to have a basic UI.
 
 
 ## UI draft

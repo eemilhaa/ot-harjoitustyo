@@ -11,3 +11,8 @@ Harjoitusrepositorio kurssille ohjelmistotekniikka
 - [unicafetestit](./laskarit/viikko2/unicafe/src/tests/)
 - [coverage.html](./laskarit/viikko2/coverage.png):
 ![coverage.html (screenshot)](./laskarit/viikko2/coverage.png)
+
+## The course project
+### Week 2
+[Requirements specification](./documentation/requirements-specification.md)
+[Timesheet](./documentation/timesheet.md)
