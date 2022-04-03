@@ -15,7 +15,7 @@ classDiagram
     sijainti: Ruutu
   }
   class MonopoliPeli{
-    noppa: Noppa
+    nopat: list
     pelilauta: Pelilauta
     pelaajat: list
   }
