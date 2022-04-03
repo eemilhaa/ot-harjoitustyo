@@ -26,8 +26,10 @@ sequenceDiagram
   tank-->>engine: fuel_contents = 35
   deactivate tank
   engine-->>machine: True
+  deactivate engine
   
   machine->>engine: use_energy()
+  activate engine
   engine->>tank: consume(10)
   activate tank
   deactivate tank
