@@ -3,16 +3,18 @@
 classDiagram
   class Noppa
   class Pelaaja{
-    pelinappula
+    pelinappula: Pelinappula
   }
   class Pelilauta {
-    ruudut
+    ruudut: list
   }
   class Ruutu{
-    edellinen
-    seuraava
+    seuraava: Ruutu
   }
   class Pelinappula {
-    sijainti
+    sijainti: Ruutu
   }
+  Pelaaja "1"--"1" Pelinappula
+  Ruutu .. Pelinappula
+  Pelilauta "1"--"40" Ruutu
 ```
