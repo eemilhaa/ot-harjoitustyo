@@ -14,7 +14,15 @@ classDiagram
   class Pelinappula {
     sijainti: Ruutu
   }
+  class MonopoliPeli{
+    noppa: Noppa
+    pelilauta: Pelilauta
+    pelaajat: list
+  }
   Pelaaja "1"--"1" Pelinappula
-  Ruutu .. Pelinappula
+  Ruutu "1"--"0..8" Pelinappula
   Pelilauta "1"--"40" Ruutu
+  MonopoliPeli "1"--"2" Noppa
+  MonopoliPeli "1"--"2..8" Pelaaja
+  MonopoliPeli "1"--"1" Pelilauta
 ```
