@@ -144,6 +144,10 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 
+# Apple stuff
 .DS_Store
 .AppleDouble
 .LSOverride/
+
+# temp pngs
+.png~
