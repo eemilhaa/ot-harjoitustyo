@@ -23,7 +23,6 @@ class Level:
         for row in self.game_map:
             x = 0
             for tile in row:
-                # Add a collideable rect for every 1
                 if tile == 1:
                     self.ground.add(
                         GroundTop(
@@ -53,6 +52,6 @@ class Level:
 #            sprite
 
     def update(self):
-        self.player.move(
+        self.player.update_position(
             self.ground
         )

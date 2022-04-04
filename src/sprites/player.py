@@ -39,15 +39,11 @@ class Player(pygame.sprite.Sprite):
             if event.key == pygame.K_RIGHT:
                 self.right = False
 
-    def move(self, collide_rects):
+    def update_position(self, collide_rects):
         if self.left:
-            self.rect.x -= self.speed
-            for tile in self.get_collisions(collide_rects):
-                self.rect.left = tile.rect.right
+            self.move_left(collide_rects)
         if self.right:
-            self.rect.x += self.speed
-            for tile in self.get_collisions(collide_rects):
-                self.rect.right = tile.rect.left
+            self.move_right(collide_rects)
         if self.y_momentum > 0:
             self.rect.y += self.y_momentum
             for tile in self.get_collisions(collide_rects):
@@ -66,6 +62,23 @@ class Player(pygame.sprite.Sprite):
 
         if self.y_momentum < 3:
             self.y_momentum += 0.25
+
+    def move_left(self, collide_rects):
+        self.rect.x -= self.speed
+        for tile in self.get_collisions(collide_rects):
+            self.rect.left = tile.rect.right
+
+    def move_right(self, collide_rects):
+        self.rect.x += self.speed
+        for tile in self.get_collisions(collide_rects):
+            self.rect.right = tile.rect.left
+
+    # TODO
+    def fall(self):
+        pass
+    # TODO
+    def jump(self):
+        pass
 
     def get_collisions(self, tiles):
         collision_list = []
