@@ -7,6 +7,7 @@
 | 4.4.    | 1    | Migrate experimentation results into this repo    |
 | 4.4.    | 2    | Refactor code structure    |
 | 4.4.    | 1    | Add pytest and write tests    |
-| 5.4.    | 1    | Add coverage, write tests    |
-| 5.4.    | 1    | Add invoke, write tasks   |
+| 5.4.    | 1    | Add coverage and write tests    |
+| 5.4.    | 1    | Add invoke and write tasks   |
+| 5.4.    | 1    | Test on university computer, remake readme   |
 
