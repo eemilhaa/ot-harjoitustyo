@@ -19,7 +19,6 @@ class Player(pygame.sprite.Sprite):
         self.left = False
         self.right = False
         self.can_jump = False
-        self.jump = False
 
     def draw(self, surface):
         surface.blit(self.image, (self.rect.x, self.rect.y))
@@ -31,7 +30,7 @@ class Player(pygame.sprite.Sprite):
             if event.key == pygame.K_RIGHT:
                 self.right = True
             if event.key == pygame.K_SPACE and self.can_jump:
-                self.jump = True
+                self.jump()
 
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT:
@@ -40,26 +39,20 @@ class Player(pygame.sprite.Sprite):
                 self.right = False
 
     def update_position(self, collide_rects):
+        # Update x axis
         if self.left:
             self.move_left(collide_rects)
         if self.right:
             self.move_right(collide_rects)
-        if self.y_momentum > 0:
-            self.rect.y += self.y_momentum
-            for tile in self.get_collisions(collide_rects):
-                self.rect.bottom = tile.rect.top
-                self.y_momentum = 0
-                self.can_jump = True
-        if self.y_momentum < 0:
-            self.rect.y += self.y_momentum
-            for tile in self.get_collisions(collide_rects):
-                self.rect.top = tile.rect.bottom
-                self.y_momentum = 0.25
-        if self.jump:
-            self.y_momentum = self.jump_speed
-            self.jump = False
-            self.can_jump = False
 
+        # Update y axis
+        self.rect.y += self.y_momentum
+        if self.y_momentum > 0:
+            self.move_down(collide_rects)
+        if self.y_momentum < 0:
+            self.move_up(collide_rects)
+
+        # Limit falling speed
         if self.y_momentum < 3:
             self.y_momentum += 0.25
 
@@ -73,12 +66,20 @@ class Player(pygame.sprite.Sprite):
         for tile in self.get_collisions(collide_rects):
             self.rect.right = tile.rect.left
 
-    # TODO
-    def fall(self):
-        pass
-    # TODO
+    def move_down(self, collide_rects):
+        for tile in self.get_collisions(collide_rects):
+            self.rect.bottom = tile.rect.top
+            self.y_momentum = 0
+            self.can_jump = True
+
+    def move_up(self, collide_rects):
+        for tile in self.get_collisions(collide_rects):
+            self.rect.top = tile.rect.bottom
+            self.y_momentum = 0.25
+
     def jump(self):
-        pass
+        self.y_momentum = self.jump_speed
+        self.can_jump = False
 
     def get_collisions(self, tiles):
         collision_list = []
