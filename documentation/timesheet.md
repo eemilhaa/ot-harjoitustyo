@@ -10,4 +10,5 @@
 | 5.4.    | 1    | Add coverage and write tests    |
 | 5.4.    | 1    | Add invoke and write tasks   |
 | 5.4.    | 1    | Test on university computer, remake readme   |
+| 7.4.    | 1    | Refactor player movement   |
 
