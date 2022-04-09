@@ -3,14 +3,14 @@ from image_loader import load_image
 
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self, x=50, y=40):
+    def __init__(self, x_location=50, y_location=40):
         super().__init__()
 
         self.image = load_image("player.png")
         self.rect = self.image.get_rect()
 
-        self.rect.x = x
-        self.rect.y = y
+        self.rect.x = x_location
+        self.rect.y = y_location
 
         self.speed = 1
         self.jump_speed = -4

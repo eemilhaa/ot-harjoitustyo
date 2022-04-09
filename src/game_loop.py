@@ -1,3 +1,4 @@
+import sys
 import pygame
 
 
@@ -21,30 +22,19 @@ class GameLoop:
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                exit()
+                sys.exit()
             self.level.player.controls(event)
 
-    # TODO Make into own class?
+    # Make into own class?
     def render(self):
         self.level.update()
 
-        # self.display_surface.fill(color=(9, 9, 9))
         self.level.all_sprites.draw(self.display_surface)
 
-        # Use towo surfaces to scale up pixels
+        # Use two surfaces to scale up pixels
         scaling_surface = pygame.transform.scale(
             self.display_surface,
             self.display_size,
         )
         self.display.blit(scaling_surface, (0, 0))
         pygame.display.update()
-
-    # TODO moved to player
-    def test_collisions(self, sprite, tiles):
-        """return colliding rects"""
-
-        collision_list = []
-        for tile in tiles:
-            if sprite.rect.colliderect(tile):
-                collision_list.append(tile)
-        return collision_list

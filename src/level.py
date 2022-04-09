@@ -19,26 +19,26 @@ class Level:
         self._group_sprites()
 
     def _build_map(self):
-        y = 0
+        row_number = 0
         for row in self.game_map:
-            x = 0
+            column_number = 0
             for tile in row:
                 if tile == 1:
                     self.ground.add(
                         GroundTop(
-                            x*self.tilesize,
-                            y*self.tilesize,
+                            column_number*self.tilesize,
+                            row_number*self.tilesize,
                         )
                     )
                 if tile == 2:
                     self.ground.add(
                         Ground(
-                            x*self.tilesize,
-                            y*self.tilesize,
+                            column_number*self.tilesize,
+                            row_number*self.tilesize,
                         )
                     )
-                x += 1
-            y += 1
+                column_number += 1
+            row_number += 1
 
     def _group_sprites(self):
         self.all_sprites.add(
@@ -46,10 +46,6 @@ class Level:
             self.ground,
             self.player,
         )
-
-#    def _create_sprite(self, tile):
-#        if tile == 1:
-#            sprite
 
     def update(self):
         self.player.update_position(

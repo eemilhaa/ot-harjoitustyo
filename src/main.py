@@ -2,8 +2,8 @@ import pygame
 from game_loop import GameLoop
 from level import Level
 from sprites.player import Player
-from maps import map_1
 from sprites.background import BackGround1
+from maps import map_1
 
 
 level_1 = Level(
