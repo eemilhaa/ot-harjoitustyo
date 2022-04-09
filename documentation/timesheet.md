@@ -11,4 +11,5 @@
 | 5.4.    | 1    | Add invoke and write tasks   |
 | 5.4.    | 1    | Test on university computer, remake readme   |
 | 7.4.    | 1    | Refactor player movement   |
+| 9.4.    | 1    | Clean up code with pylint and autopep8, add tasks   |
 
