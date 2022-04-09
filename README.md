@@ -28,3 +28,15 @@ A report of test coverage can be generated with:
 poetry run invoke coverage-report
 ```
 The report can be found in the *htmlcov* directory.
+
+### Linting
+Code linting with pylint can be done with:
+```console
+poetry run invoke lint
+```
+
+### Formatting
+You can format the code using autopep8 with:
+```console
+poetry run invoke format
+```
