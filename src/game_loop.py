@@ -15,13 +15,15 @@ class GameLoop:
 
     def run(self):
         while True:
-            self.handle_events()
+            self._handle_events()
+
+            self.level.update()
 
             self.renderer.render()
 
             self.clock.tick(60)
 
-    def handle_events(self):
+    def _handle_events(self):
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:

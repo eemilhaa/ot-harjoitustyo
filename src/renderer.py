@@ -29,7 +29,6 @@ class Renderer:
 
     def render(self):
         """Renders everything in the game."""
-        self.content.update()
 
         self.content.all_sprites.draw(self.drawing_surface)
 
