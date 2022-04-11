@@ -2,11 +2,13 @@ import pygame
 from game_loop import GameLoop
 from level import Level
 from sprites.player import Player
+from sprites.ground import GroundTop
 from sprites.background import BackGround1
 from maps import map_1
 from renderer import Renderer
 
 from ui.menu import Menu
+from ui.button import Button
 from ui.menu_loop import MenuLoop
 
 
@@ -36,8 +38,12 @@ game_loop = GameLoop(
     renderer=game_renderer,
 )
 
+start_menu = Menu(
+    background=BackGround1(),
+    button=Button(sprite=GroundTop, x_location=10, y_location=10, target_loop=game_loop),
+)
 menu_renderer = Renderer(
-    content=Menu(background=BackGround1()),
+    content=start_menu,
     display=display,
     display_size=display_size,
     drawing_surface=drawing_surface,
@@ -45,21 +51,17 @@ menu_renderer = Renderer(
 )
 
 menu_loop = MenuLoop(
-    level=Menu(background=BackGround1()),
+    menu=start_menu,
     clock=clock,
     renderer=menu_renderer,
 )
 
 pygame.init()
-# menu_loop.run()
-game_loop.run()
+menu_loop.run()
+# game_loop.run()
 
 
 # TODO make all this into a main loop?
 class MainLoop:
-    def __init__(self, start_menu, game_loop,):
-        self.start_menu = start_menu,
-        self.game_loop = game_loop
-
-    def run(self):
+    def __init__(self, start_menu, game_loop, game_renderer, menu_renderer):
         pass

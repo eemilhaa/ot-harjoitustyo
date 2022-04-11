@@ -5,11 +5,11 @@ import pygame
 class MenuLoop:
     def __init__(
         self,
-        level,
+        menu,
         clock,
         renderer,
     ):
-        self.level = level
+        self.menu = menu
         self.clock = clock
         self.renderer = renderer
 
@@ -17,7 +17,7 @@ class MenuLoop:
         while True:
             self._handle_events()
 
-            self.level.update()
+            self.menu.update()
 
             self.renderer.render()
 
@@ -28,7 +28,8 @@ class MenuLoop:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
-
-    # TODO
-    def _advance(next):
-        pass
+            # TODO detect click on button
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_0:
+                    self.menu.button.click()
+                    break

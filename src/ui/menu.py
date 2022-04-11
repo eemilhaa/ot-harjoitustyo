@@ -3,10 +3,10 @@ import pygame
 
 
 class Menu:
-    def __init__(self, background):
+    def __init__(self, background, button):
 
         self.background = background
-        self.buttons = pygame.sprite.Group()
+        self.button = button
         self.all_sprites = pygame.sprite.Group()
 
         # build and group automatically
@@ -15,7 +15,7 @@ class Menu:
     def _group_sprites(self):
         self.all_sprites.add(
             self.background,
-            self.buttons,
+            self.button.sprite,
         )
 
     def update(self):

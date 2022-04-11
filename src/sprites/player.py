@@ -81,6 +81,7 @@ class Player(pygame.sprite.Sprite):
         self.y_momentum = self.jump_speed
         self.can_jump = False
 
+    # TODO make into global function?
     def get_collisions(self, tiles):
         collision_list = []
         for tile in tiles:
