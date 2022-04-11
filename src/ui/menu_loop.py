@@ -2,7 +2,7 @@ import sys
 import pygame
 
 
-class GameLoop:
+class MenuLoop:
     def __init__(
         self,
         level,
@@ -28,4 +28,7 @@ class GameLoop:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
-            self.level.player.controls(event)
+
+    # TODO
+    def _advance(next):
+        pass

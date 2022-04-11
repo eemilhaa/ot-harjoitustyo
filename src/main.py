@@ -6,6 +6,9 @@ from sprites.background import BackGround1
 from maps import map_1
 from renderer import Renderer
 
+from ui.menu import Menu
+from ui.menu_loop import MenuLoop
+
 
 display_size = (1200, 900)
 
@@ -19,7 +22,7 @@ display = pygame.display.set_mode(display_size)
 drawing_surface = pygame.Surface((240, 180))
 scaled_surface = pygame.Surface(display_size)
 
-renderer = Renderer(
+game_renderer = Renderer(
     content=level_1,
     display=display,
     display_size=display_size,
@@ -27,9 +30,36 @@ renderer = Renderer(
     scaled_surface=scaled_surface,
 )
 
-pygame.init()
-GameLoop(
+game_loop = GameLoop(
     level=level_1,
     clock=clock,
-    renderer=renderer,
-).run()
+    renderer=game_renderer,
+)
+
+menu_renderer = Renderer(
+    content=Menu(background=BackGround1()),
+    display=display,
+    display_size=display_size,
+    drawing_surface=drawing_surface,
+    scaled_surface=scaled_surface,
+)
+
+menu_loop = MenuLoop(
+    level=Menu(background=BackGround1()),
+    clock=clock,
+    renderer=menu_renderer,
+)
+
+pygame.init()
+# menu_loop.run()
+game_loop.run()
+
+
+# TODO make all this into a main loop?
+class MainLoop:
+    def __init__(self, start_menu, game_loop,):
+        self.start_menu = start_menu,
+        self.game_loop = game_loop
+
+    def run(self):
+        pass
