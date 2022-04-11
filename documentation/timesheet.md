@@ -26,6 +26,7 @@
 | 7.4.    | 1    | Refactor player movement   |
 | 9.4.    | 1    | Clean up code with pylint and autopep8, add tasks   |
 | 11.4.    | 2    | Refactor game rendering into a separate class   |
+| 11.4.    | 5    | Write some classes for implementing UI   |
 
 **Weekly total: _**
 
