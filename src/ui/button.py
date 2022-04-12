@@ -1,27 +1,18 @@
-import sys
-import pygame
-
-
 # TODO add support for any type of on-click functions
 class Button:
     """A class for implementing buttons.
 
-    A button consists of a sprite and a target loop. When the
-    user presses the button the target loop gets executed.
+    A button consists of a sprite and a reference to a function. When the
+    user presses the button the function.
     """
 
-    def __init__(self, sprite, x_location, y_location, target_loop=None):
+    def __init__(self, sprite, x_location, y_location, on_click):
         """The constructor"""
 
         self.sprite = sprite(x_location, y_location)
-        self.target_loop = target_loop
+        self.on_click = on_click
 
     def on_click(self):
-        """what happens when the button is pressed.
+        """what happens when the button is pressed."""
 
-        Leaving target loop empty results in a quit button
-        """
-
-        if not self.target_loop:
-            sys.exit()
-        self.target_loop.run()
+        self.on_click()

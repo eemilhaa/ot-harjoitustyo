@@ -1,3 +1,4 @@
+import sys
 import pygame
 from game_loop import GameLoop
 from level import Level
@@ -40,9 +41,21 @@ game_loop = GameLoop(
     renderer=game_renderer,
 )
 
+start_button = Button(
+    sprite=GroundTop,
+    x_location=10,
+    y_location=10,
+    on_click=game_loop.run
+)
+quit_button = Button(
+    sprite=GroundTop,
+    x_location=100,
+    y_location=100,
+    on_click=sys.exit
+)
 start_menu = Menu(
     background=BackGround1(),
-    buttons=[Button(sprite=GroundTop, x_location=10, y_location=10, target_loop=game_loop)],
+    buttons=[start_button, quit_button],
 )
 menu_renderer = Renderer(
     content=start_menu,
