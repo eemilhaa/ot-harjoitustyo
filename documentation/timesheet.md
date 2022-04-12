@@ -26,7 +26,9 @@
 | 7.4.    | 1    | Refactor player movement   |
 | 9.4.    | 1    | Clean up code with pylint and autopep8, add tasks   |
 | 11.4.    | 2    | Refactor game rendering into a separate class   |
-| 11.4.    | 5    | Write some classes for implementing UI   |
+| 11.4.    | 5    | Experiment with ways to implement UI   |
+| 12.4.    | 4    | Write a functioning button class   |
+| 12.4.    | 2    | Write a very sketchy but functioning start menu   |
 
 **Weekly total: _**
 
