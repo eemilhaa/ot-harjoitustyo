@@ -15,6 +15,7 @@ class Menu:
     def _group_sprites(self):
         for button in self.buttons:
             self.all_sprites.add(
+                self.background,
                 button.sprite,
             )
 

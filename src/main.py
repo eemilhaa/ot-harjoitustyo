@@ -50,7 +50,7 @@ start_button = Button(
 quit_button = Button(
     sprite=GroundTop,
     x_location=100,
-    y_location=100,
+    y_location=10,
     on_click=sys.exit
 )
 start_menu = Menu(
