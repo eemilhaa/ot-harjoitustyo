@@ -14,16 +14,17 @@ from ui.menu_loop import MenuLoop
 
 
 display_size = (1200, 900)
+drawing_surface_size = (240, 180)
+drawing_surface = pygame.Surface(drawing_surface_size)
+clock = pygame.time.Clock()
+display = pygame.display.set_mode(display_size)
+scaled_surface = pygame.Surface(display_size)
 
 level_1 = Level(
     player=Player(5, 160),
     game_map=map_1,
     background=BackGround1()
 )
-clock = pygame.time.Clock()
-display = pygame.display.set_mode(display_size)
-drawing_surface = pygame.Surface((240, 180))
-scaled_surface = pygame.Surface(display_size)
 
 game_renderer = Renderer(
     content=level_1,

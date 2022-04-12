@@ -34,9 +34,14 @@ class MenuLoop:
 #                    self.menu.buttons[0].on_click()
 #                    break
             if event.type == pygame.MOUSEBUTTONDOWN:
+                click_location = self.transform_click_location(event.pos)
                 for button in self.menu.buttons:
                     print(type(button.sprite.rect))
                     print(button.sprite.rect.x)
-                    print(event.pos)
-                    if button.sprite.rect.collidepoint(event.pos):
+                    print(click_location)
+                    print(type(click_location))
+                    if button.sprite.rect.collidepoint(click_location):
                         button.on_click()
+
+    def transform_click_location(self, click_location: tuple):
+        return tuple(i/5 for i in click_location)
