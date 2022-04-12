@@ -22,9 +22,9 @@ After either dying / finishing the game, the player sees the post-game window. T
 ## The base functionality of the application
 ### The UI
 - The most important features from the UI draft above
-  - The player can start the game with a new game button in the Start window
+  - [x] The player can start the game with a new game button in the Start window
   - The post-game window pops up when the player dies or wins
-    - A choice to retry or quit (the game doesn't just close when the main game loop finishes)
+    - [x] A choice to retry or quit (the game doesn't just close when the main game loop finishes)
     - The highscore is displayed
 
 ### The Game
@@ -32,9 +32,9 @@ After either dying / finishing the game, the player sees the post-game window. T
   - The game should have at least 2 levels
   - The levels can be passed
   - Once a level is passed, the player advances to the next level
-- Player physics and movement
-  - Player can move in the game and collide with the game map
-  - Player can jump and fall
+- [x] Player physics and movement
+  - [x] Player can move in the game and collide with the game map
+  - [x] Player can jump and fall
 - A system for scoring game runs
   - For example based on collectibles or playthrough time
 
