@@ -14,6 +14,9 @@ class Level:
         self.ground = pygame.sprite.Group()
         self.all_sprites = pygame.sprite.Group()
 
+        self.won = False
+        self.lost = False
+
         # build and group automatically
         self._build_map()
         self._group_sprites()
@@ -51,3 +54,5 @@ class Level:
         self.player.update_position(
             self.ground
         )
+        if self.player.rect.y > 180:
+            self.lost = True

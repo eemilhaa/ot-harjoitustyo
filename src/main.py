@@ -1,3 +1,4 @@
+# This file is a mess currently
 import sys
 import pygame
 from game_loop import GameLoop
@@ -25,29 +26,33 @@ scaled_surface = pygame.Surface(display_size)
 display = pygame.display.set_mode(display_size)
 clock = pygame.time.Clock()
 
-level_1 = Level(
-    player=Player(5, 160),
-    game_map=map_1,
-    background=BackGround1()
-)
-game_renderer = Renderer(
-    content=level_1,
-    display=display,
-    display_size=display_size,
-    drawing_surface=drawing_surface,
-    scaled_surface=scaled_surface,
-)
-game_loop = GameLoop(
-    level=level_1,
-    clock=clock,
-    renderer=game_renderer,
-)
+
+def reset_game():
+    level_1 = Level(
+        player=Player(5, 160),
+        game_map=map_1,
+        background=BackGround1()
+    )
+    game_renderer = Renderer(
+        content=level_1,
+        display=display,
+        display_size=display_size,
+        drawing_surface=drawing_surface,
+        scaled_surface=scaled_surface,
+    )
+    game_loop = GameLoop(
+        level=level_1,
+        clock=clock,
+        renderer=game_renderer,
+    )
+    game_loop.run()
+
 
 start_button = Button(
     sprite=ButtonBackGround,
     x_location=140,
     y_location=120,
-    on_click=game_loop.run,
+    on_click=reset_game,
     text="START",
 )
 quit_button = Button(
@@ -62,7 +67,6 @@ start_menu = Menu(
     buttons=[start_button, quit_button],
     text="START MENU",
 )
-
 menu_renderer = Renderer(
     content=start_menu,
     display=display,
@@ -76,11 +80,14 @@ menu_loop = MenuLoop(
     renderer=menu_renderer,
 )
 
-menu_loop.run()
-# game_loop.run()
-
 
 # TODO make all this into a main loop?
 class MainLoop:
     def __init__(self, start_menu, game_loop, game_renderer, menu_renderer):
         pass
+
+
+# Start from menu_loop
+if __name__ == "__main__":
+    menu_loop.run()
+    

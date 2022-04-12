@@ -21,6 +21,12 @@ class GameLoop:
 
             self.renderer.render()
 
+            if self.level.lost:
+                break
+
+            if self.level.won:
+                break
+
             self.clock.tick(60)
 
     def _handle_events(self):

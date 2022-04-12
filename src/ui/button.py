@@ -6,7 +6,7 @@ class Button:
     """A class for implementing buttons.
 
     A button consists of a sprite backround, text and a reference to a
-    function. When the user presses the button the function gets executed.
+    function. When the user clicks the button the function gets executed.
     """
 
     def __init__(self, sprite, x_location, y_location, on_click, text=None):
@@ -19,8 +19,6 @@ class Button:
             self.write_text(image=image, text=text)
 
     def click(self):
-        """what happens when the button is pressed."""
-
         self.on_click()
 
     # TODO make into a global function
@@ -28,7 +26,8 @@ class Button:
         """write text on the button"""
 
         color = (255, 255, 255)
-        textsurface = pygame.font.SysFont("Arial", 12).render(text, True, color)
+        textsurface = pygame.font.SysFont(
+            "Arial", 12).render(text, True, color)
         textrect = textsurface.get_rect(center=image.get_rect().center)
         image.blit(textsurface, textrect)
         self.sprite.image = image

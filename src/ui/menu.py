@@ -1,5 +1,4 @@
 import pygame
-# from sprites.ground import Ground, GroundTop
 
 
 class Menu:
@@ -30,7 +29,8 @@ class Menu:
         """write text on the menu"""
 
         color = (255, 255, 255)
-        textsurface = pygame.font.SysFont("Arial", 12).render(text, True, color)
+        textsurface = pygame.font.SysFont(
+            "Arial", 12).render(text, True, color)
         textrect = textsurface.get_rect(center=image.get_rect().center)
         image.blit(textsurface, textrect)
         self.background.image = image

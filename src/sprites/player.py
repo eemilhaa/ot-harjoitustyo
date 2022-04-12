@@ -54,7 +54,7 @@ class Player(pygame.sprite.Sprite):
 
         # Limit falling speed
         if self.y_momentum < 3:
-            self.y_momentum += 0.25
+            self.y_momentum += 0.30
 
     def move_left(self, collide_rects):
         self.rect.x -= self.speed
