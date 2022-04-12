@@ -83,11 +83,10 @@ menu_loop = MenuLoop(
 
 # TODO make all this into a main loop?
 class MainLoop:
-    def __init__(self, start_menu, game_loop, game_renderer, menu_renderer):
+    def __init__(self):
         pass
 
 
 # Start from menu_loop
 if __name__ == "__main__":
     menu_loop.run()
-    
