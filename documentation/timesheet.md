@@ -29,6 +29,7 @@
 | 11.4.    | 5    | Experiment with ways to implement UI   |
 | 12.4.    | 4    | Write a functioning button class   |
 | 12.4.    | 2    | Write a very sketchy but functioning start menu   |
+| 12.4.    | 1    | Write more tests   |
 
 **Weekly total: _**
 
