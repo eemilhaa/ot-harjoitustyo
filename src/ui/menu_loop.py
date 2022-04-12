@@ -29,7 +29,14 @@ class MenuLoop:
             if event.type == pygame.QUIT:
                 sys.exit()
             # TODO detect click on button
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_0:
-                    self.menu.button.click()
-                    break
+#            if event.type == pygame.KEYDOWN:
+#                if event.key == pygame.K_0:
+#                    self.menu.buttons[0].on_click()
+#                    break
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                for button in self.menu.buttons:
+                    print(type(button.sprite.rect))
+                    print(button.sprite.rect.x)
+                    print(event.pos)
+                    if button.sprite.rect.collidepoint(event.pos):
+                        button.on_click()

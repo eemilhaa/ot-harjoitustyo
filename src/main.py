@@ -8,6 +8,7 @@ from maps import map_1
 from renderer import Renderer
 
 from ui.menu import Menu
+# TODO
 from ui.button import Button
 from ui.menu_loop import MenuLoop
 
@@ -40,7 +41,7 @@ game_loop = GameLoop(
 
 start_menu = Menu(
     background=BackGround1(),
-    button=Button(sprite=GroundTop, x_location=10, y_location=10, target_loop=game_loop),
+    buttons=[Button(sprite=GroundTop, x_location=10, y_location=10, target_loop=game_loop)],
 )
 menu_renderer = Renderer(
     content=start_menu,

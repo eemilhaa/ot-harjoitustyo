@@ -3,20 +3,20 @@ import pygame
 
 
 class Menu:
-    def __init__(self, background, button):
+    def __init__(self, background, buttons: list):
 
         self.background = background
-        self.button = button
+        self.buttons = buttons
         self.all_sprites = pygame.sprite.Group()
 
         # build and group automatically
         self._group_sprites()
 
     def _group_sprites(self):
-        self.all_sprites.add(
-            self.background,
-            self.button.sprite,
-        )
+        for button in self.buttons:
+            self.all_sprites.add(
+                button.sprite,
+            )
 
     def update(self):
         pass
