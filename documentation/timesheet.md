@@ -30,8 +30,10 @@
 | 12.4.    | 4    | Write a functioning button class   |
 | 12.4.    | 2    | Write a very sketchy but functioning start menu   |
 | 12.4.    | 1    | Write more tests   |
+| 12.4.    | 2    | Write documentation   |
+| 12.4.    | 1    | misc tweaks and testing on university computer   |
 
-**Weekly total: _**
+**Weekly total: 19**
 
-## Total hours: _
+## Total hours: 36
 
