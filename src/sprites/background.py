@@ -10,3 +10,13 @@ class BackGround1(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = x_location
         self.rect.y = y_location
+
+
+class MenuBackGround(pygame.sprite.Sprite):
+    def __init__(self, x_location=0, y_location=0):
+        super().__init__()
+        self.image = load_image("menu_background.png")
+
+        self.rect = self.image.get_rect()
+        self.rect.x = x_location
+        self.rect.y = y_location

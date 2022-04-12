@@ -28,20 +28,13 @@ class MenuLoop:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
-            # TODO detect click on button
-#            if event.type == pygame.KEYDOWN:
-#                if event.key == pygame.K_0:
-#                    self.menu.buttons[0].on_click()
-#                    break
             if event.type == pygame.MOUSEBUTTONDOWN:
                 click_location = self.transform_click_location(event.pos)
                 for button in self.menu.buttons:
-                    print(type(button.sprite.rect))
-                    print(button.sprite.rect.x)
-                    print(click_location)
-                    print(type(click_location))
                     if button.sprite.rect.collidepoint(click_location):
                         button.on_click()
 
+    # TODO maybe switch to using native resolution for menus?
     def transform_click_location(self, click_location: tuple):
+        # TODO remove hardcoding if this stays
         return tuple(i/5 for i in click_location)
