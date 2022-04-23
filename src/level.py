@@ -56,5 +56,5 @@ class Level:
         )
         if self.player.rect.y > 180:
             self.lost = True
-        if self.player.rect.y < 0:
+        if self.player.rect.y < -20:
             self.won = True

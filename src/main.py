@@ -7,7 +7,7 @@ from sprites.player import Player
 from sprites.background import BackGround1
 from sprites.background import MenuBackGround
 from sprites.button import ButtonBackGround
-from maps import map_1
+from maps import map_1, map_2, map_3
 from renderer import Renderer
 
 from ui.menu import Menu
@@ -34,19 +34,27 @@ def reset_game():
         background=BackGround1()
     )
     level_2 = Level(
-        player=Player(5, 100),
-        game_map=map_1,
+        player=Player(230, 130),
+        game_map=map_2,
+        background=BackGround1()
+    )
+    level_3 = Level(
+        player=Player(2, 130),
+        game_map=map_3,
         background=BackGround1()
     )
     game_renderer = Renderer(
-        #content=level_1,
         display=display,
         display_size=display_size,
         drawing_surface=drawing_surface,
         scaled_surface=scaled_surface,
     )
     game_loop = GameLoop(
-        levels=[level_1, level_2],
+        levels=[
+            level_1,
+            level_2,
+            level_3,
+        ],
         clock=clock,
         renderer=game_renderer,
     )
