@@ -5,33 +5,38 @@ import pygame
 class GameLoop:
     def __init__(
         self,
-        level,
+        levels,
         clock,
         renderer,
     ):
-        self.level = level
+        self.levels = levels
         self.clock = clock
         self.renderer = renderer
 
     def run(self):
-        while True:
-            self._handle_events()
+        for level in self.levels:
+            self.renderer.content = level
+            while True:
+                self._handle_events(level)
 
-            self.level.update()
+                level.update()
 
-            self.renderer.render()
+                if level.lost:
+                    break
 
-            if self.level.lost:
+                if level.won:
+                    break
+
+                self.renderer.render()
+
+                self.clock.tick(60)
+            if level.lost:
                 break
+        # Continue to next level if won (no break)
 
-            if self.level.won:
-                break
-
-            self.clock.tick(60)
-
-    def _handle_events(self):
+    def _handle_events(self, level):
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
-            self.level.player.controls(event)
+            level.player.controls(event)

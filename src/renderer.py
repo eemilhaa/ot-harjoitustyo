@@ -6,11 +6,11 @@ class Renderer:
 
     def __init__(
         self,
-        content,
         display,
         display_size,
         drawing_surface,
         scaled_surface,
+        content=None,
     ):
         # TODO
         """The constructor.

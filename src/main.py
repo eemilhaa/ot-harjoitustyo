@@ -33,15 +33,20 @@ def reset_game():
         game_map=map_1,
         background=BackGround1()
     )
+    level_2 = Level(
+        player=Player(5, 100),
+        game_map=map_1,
+        background=BackGround1()
+    )
     game_renderer = Renderer(
-        content=level_1,
+        #content=level_1,
         display=display,
         display_size=display_size,
         drawing_surface=drawing_surface,
         scaled_surface=scaled_surface,
     )
     game_loop = GameLoop(
-        level=level_1,
+        levels=[level_1, level_2],
         clock=clock,
         renderer=game_renderer,
     )
