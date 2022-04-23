@@ -35,5 +35,10 @@
 
 **Weekly total: 19**
 
-## Total hours: 36
+## Week 5
+| Date    | Hours    | What I did    |
+|---------------- | --------------- | :-------------- |
+| 23.4.    | 4    | Implement a way to transition from level to level, add 2 more levels   |
+
+## Total hours: __
 
