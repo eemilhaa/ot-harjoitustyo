@@ -1,4 +1,5 @@
 import pygame
+from font_loader import load_font
 
 
 class Menu:
@@ -29,7 +30,7 @@ class Menu:
         """write text on the menu"""
 
         color = (255, 255, 255)
-        font = pygame.font.SysFont("Arial", 12)
+        font = load_font("regular.ttf", 12)
         textsurface = font.render(text, True, color)
         textrect = textsurface.get_rect(center=image.get_rect().center)
         image.blit(textsurface, textrect)

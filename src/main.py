@@ -27,6 +27,12 @@ display = pygame.display.set_mode(display_size)
 clock = pygame.time.Clock()
 
 
+game_renderer = Renderer(
+    display=display,
+    display_size=display_size,
+    drawing_surface=drawing_surface,
+    scaled_surface=scaled_surface,
+)
 def reset_game():
     level_1 = Level(
         player=Player(5, 160),
@@ -42,12 +48,6 @@ def reset_game():
         player=Player(2, 130),
         game_map=map_3,
         background=BackGround1()
-    )
-    game_renderer = Renderer(
-        display=display,
-        display_size=display_size,
-        drawing_surface=drawing_surface,
-        scaled_surface=scaled_surface,
     )
     game_loop = GameLoop(
         levels=[
@@ -90,7 +90,7 @@ menu_renderer = Renderer(
 menu_loop = MenuLoop(
     menu=start_menu,
     clock=clock,
-    renderer=menu_renderer,
+    # renderer=menu_renderer,
 )
 
 

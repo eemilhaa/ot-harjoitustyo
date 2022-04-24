@@ -7,8 +7,12 @@ class MenuLoop:
         self,
         menu,
         clock,
-        renderer,
+        renderer=None
     ):
+
+        self.display_size = (1200, 900)
+        self.display = pygame.display.set_mode(self.display_size)
+
         self.menu = menu
         self.clock = clock
         self.renderer = renderer
@@ -19,7 +23,11 @@ class MenuLoop:
 
             self.menu.update()
 
-            self.renderer.render()
+            # self.renderer.render()
+            self.menu.all_sprites.draw(self.display)
+
+            self.display.blit(self.display, (0, 0))
+            pygame.display.update()
 
             self.clock.tick(60)
 
@@ -28,10 +36,10 @@ class MenuLoop:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                click_location = self.transform_click_location(event.pos)
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                # click_location = self.transform_click_location(event.pos)
                 for button in self.menu.buttons:
-                    if button.sprite.rect.collidepoint(click_location):
+                    if button.sprite.rect.collidepoint(event.pos):
                         button.on_click()
 
     # TODO maybe switch to using native resolution for menus?

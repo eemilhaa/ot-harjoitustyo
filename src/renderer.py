@@ -10,6 +10,7 @@ class Renderer:
         display_size,
         drawing_surface,
         scaled_surface,
+        # None so renderer can be called in a loop with changing content
         content=None,
     ):
         # TODO
