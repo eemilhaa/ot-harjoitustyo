@@ -10,17 +10,17 @@ class Menu:
         self.all_sprites = pygame.sprite.Group()
 
         if text:
-            image = self.background.image.copy()
-            self.write(image=image, text=text)
+            pass
+            # self.write(image=image, text=text)
         # build and group automatically
         self._group_sprites()
 
     def _group_sprites(self):
-        for button in self.buttons:
-            self.all_sprites.add(
-                self.background,
-                button.sprite,
-            )
+        pass
+#        for button in self.buttons:
+#            self.all_sprites.add(
+#                button.sprite,
+#            )
 
     def update(self):
         pass

@@ -5,13 +5,13 @@ from game_loop import GameLoop
 from level import Level
 from sprites.player import Player
 from sprites.background import BackGround1
-from sprites.background import MenuBackGround
 from sprites.button import ButtonBackGround
 from maps import map_1, map_2, map_3
 from renderer import Renderer
 
 from ui.menu import Menu
 from ui.button import Button
+from ui.rectbutton import RButton
 from ui.menu_loop import MenuLoop
 
 
@@ -33,6 +33,8 @@ game_renderer = Renderer(
     drawing_surface=drawing_surface,
     scaled_surface=scaled_surface,
 )
+
+
 def reset_game():
     level_1 = Level(
         player=Player(5, 160),
@@ -61,32 +63,50 @@ def reset_game():
     game_loop.run()
 
 
-start_button = Button(
-    sprite=ButtonBackGround,
-    x_location=140,
-    y_location=120,
-    on_click=reset_game,
+# start_button = Button(
+#     sprite=ButtonBackGround,
+#     x_location=140,
+#     y_location=120,
+#     on_click=reset_game,
+#     text="START",
+# )
+# quit_button = Button(
+#     sprite=ButtonBackGround,
+#     x_location=40,
+#     y_location=120,
+#     on_click=sys.exit,
+#     text="QUIT",
+# )
+start_button = RButton(
+    x_location=500,
+    y_location=500,
+    color=(0, 0, 0),
     text="START",
+    on_click=reset_game,
 )
-quit_button = Button(
-    sprite=ButtonBackGround,
-    x_location=40,
-    y_location=120,
-    on_click=sys.exit,
+quit_button = RButton(
+    x_location=100,
+    y_location=500,
+    color=(255, 0, 0),
     text="QUIT",
+    width=100,
+    on_click=sys.exit,
 )
 start_menu = Menu(
-    background=MenuBackGround(),
-    buttons=[start_button, quit_button],
+    background=(54, 54, 70),
+    buttons=[
+        start_button,
+        quit_button,
+    ],
     text="START MENU",
 )
-menu_renderer = Renderer(
-    content=start_menu,
-    display=display,
-    display_size=display_size,
-    drawing_surface=drawing_surface,
-    scaled_surface=scaled_surface,
-)
+# menu_renderer = Renderer(
+#     content=start_menu,
+#     display=display,
+#     display_size=display_size,
+#     drawing_surface=drawing_surface,
+#     scaled_surface=scaled_surface,
+# )
 menu_loop = MenuLoop(
     menu=start_menu,
     clock=clock,

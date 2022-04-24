@@ -1,4 +1,4 @@
-import pygame
+from font_loader import load_font
 
 
 # TODO add support for any type of on-click functions
@@ -26,8 +26,9 @@ class Button:
         """write text on the button"""
 
         color = (255, 255, 255)
-        textsurface = pygame.font.SysFont(
-            "Arial", 12).render(text, True, color)
+
+        font = load_font("regular.ttf", 12)
+        textsurface = font.render(text, True, color)
         textrect = textsurface.get_rect(center=image.get_rect().center)
         image.blit(textsurface, textrect)
         self.sprite.image = image

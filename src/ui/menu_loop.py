@@ -1,5 +1,6 @@
 import sys
 import pygame
+from writer import write
 
 
 class MenuLoop:
@@ -24,7 +25,27 @@ class MenuLoop:
             self.menu.update()
 
             # self.renderer.render()
-            self.menu.all_sprites.draw(self.display)
+            self.display.fill(self.menu.background)
+            self.menu.all_sprites.draw(self.display)    # TODO
+            
+            # Draw buttons TODO make into separate method
+            for button in self.menu.buttons:
+                # https://www.pygame.org/docs/ref/draw.html#pygame.draw.rect
+                pygame.draw.rect(
+                    surface=self.display,
+                    color=button.color,
+                    rect=button.rect
+                )
+                write(
+                    surface=self.display,
+                    string=button.text,
+                    position=(button.x_location, button.y_location),
+                    color=(255, 255, 255),              # TODO
+                    font="regular.ttf",
+                    size=40,                            # TODO
+                )
+
+            # menu.text.draw
 
             self.display.blit(self.display, (0, 0))
             pygame.display.update()
@@ -39,7 +60,7 @@ class MenuLoop:
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 # click_location = self.transform_click_location(event.pos)
                 for button in self.menu.buttons:
-                    if button.sprite.rect.collidepoint(event.pos):
+                    if button.rect.collidepoint(event.pos):
                         button.on_click()
 
     # TODO maybe switch to using native resolution for menus?
