@@ -14,7 +14,7 @@ from ui.menu_loop import MenuLoop
 
 
 pygame.init()
-display_width = 1200    # This can change
+display_width = 600    # This can change
 display_height = display_width * 0.75   # keep 4:3 aspect ratio
 display_size = (display_width, display_height)
 drawing_surface_size = (240, 180)   # This is constant
@@ -108,7 +108,7 @@ controls_button = Button(
 back_button = Button(
     x_location=button_width-button_width*0.5,
     y_location=display_height-button_height*1.5*2,
-    color=(255, 200, 100),
+    color=(255, 150, 100),
     text="BACK",
     width=button_width,
     on_click=to_start_menu,
@@ -161,10 +161,6 @@ menus = {
 }
 
 menu_loop = MenuLoop(
-    # menus=[
-    #     start_menu,
-    #     controls_menu,
-    # ],
     menus=menus,
     clock=clock,
     display=display,
