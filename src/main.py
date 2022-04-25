@@ -14,7 +14,7 @@ from ui.menu_loop import MenuLoop
 
 
 pygame.init()
-display_width = 1000    # This can change
+display_width = 1200    # This can change
 display_height = display_width * 0.75   # keep 4:3 aspect ratio
 display_size = (display_width, display_height)
 drawing_surface_size = (240, 180)   # This is constant
@@ -65,6 +65,14 @@ def reset_game():
     game_loop.run()
 
 
+def to_start_menu():
+    return "start"
+
+
+def to_controls_menu():
+    return "controls"
+
+
 start_button = Button(
     x_location=display_width-button_width*1.5,
     y_location=display_height-button_height*1.5,
@@ -81,21 +89,21 @@ quit_button = Button(
     width=button_width,
     on_click=sys.exit,
 )
-# controls_button = Button(
-#     x_location=display_width-button_width*1.5,
-#     y_location=display_height-button_height*1.5*2,
-#     color=(255, 150, 100),
-#     text="CONTROLS",
-#     width=button_width,
-#     on_click=controls_menu_loop.run,
-# )
+controls_button = Button(
+    x_location=display_width-button_width*1.5,
+    y_location=display_height-button_height*1.5*2,
+    color=(255, 150, 100),
+    text="CONTROLS",
+    width=button_width,
+    on_click=to_controls_menu,
+)
 back_button = Button(
     x_location=display_width-button_width*1.5,
     y_location=display_height-button_height*1.5,
     color=(255, 100, 100),
     text="BACK",
     width=button_width,
-    on_click=sys.exit,
+    on_click=to_start_menu,
 )
 
 
@@ -104,31 +112,39 @@ start_menu = Menu(
     buttons=[
         start_button,
         quit_button,
-        # controls_button,
+        controls_button,
     ],
-    text=["START MENU", "click the buttons to advance"],
+    text=[
+        "START MENU",
+        "",
+        "click the buttons to advance"
+    ],
 )
 controls_menu = Menu(
-    background=(70, 54, 54),
+    background=(70, 54, 70),
     buttons=[
         back_button
     ],
     text=[
         "CONTROLS:",
+        "",
         "LEFT ARROW --- LEFT",
         "RIGHT ARROW -- RIGHT",
         "SPACE -------- JUMP",
     ]
 )
 
+menus = {
+    "start": start_menu,
+    "controls": controls_menu,
+}
 
-start_menu_loop = MenuLoop(
-    menu=start_menu,
-    clock=clock,
-    display=display,
-)
-controls_menu_loop = MenuLoop(
-    menu=controls_menu,
+menu_loop = MenuLoop(
+    # menus=[
+    #     start_menu,
+    #     controls_menu,
+    # ],
+    menus=menus,
     clock=clock,
     display=display,
 )
@@ -142,4 +158,4 @@ class MainLoop:
 
 # Start from menu_loop
 if __name__ == "__main__":
-    start_menu_loop.run()
+    menu_loop.run()

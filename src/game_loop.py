@@ -14,7 +14,7 @@ class GameLoop:
         self.renderer = renderer
 
     def run(self):
-        for level in self.levels:
+        for count, level in enumerate(self.levels):
             self.renderer.content = level
             while True:
                 self._handle_events(level)
@@ -32,6 +32,8 @@ class GameLoop:
                 self.clock.tick(60)
             if level.lost:
                 break
+        print(count)
+        return count
         # Continue to next level if won (no break)
 
     def _handle_events(self, level):
