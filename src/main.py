@@ -5,18 +5,16 @@ from game_loop import GameLoop
 from level import Level
 from sprites.player import Player
 from sprites.background import BackGround1
-from sprites.button import ButtonBackGround
 from maps import map_1, map_2, map_3
 from renderer import Renderer
 
 from ui.menu import Menu
 from ui.button import Button
-from ui.rectbutton import RButton
 from ui.menu_loop import MenuLoop
 
 
 pygame.init()
-display_width = 1200    # This can change
+display_width = 1000    # This can change
 display_height = display_width * 0.75   # keep 4:3 aspect ratio
 display_size = (display_width, display_height)
 drawing_surface_size = (240, 180)   # This is constant
@@ -67,55 +65,72 @@ def reset_game():
     game_loop.run()
 
 
-# start_button = Button(
-#     sprite=ButtonBackGround,
-#     x_location=140,
-#     y_location=120,
-#     on_click=reset_game,
-#     text="START",
-# )
-# quit_button = Button(
-#     sprite=ButtonBackGround,
-#     x_location=40,
-#     y_location=120,
-#     on_click=sys.exit,
-#     text="QUIT",
-# )
-start_button = RButton(
-    x_location=display_width-button_width*2,
-    y_location=display_height-button_height*2,
-    color=(0, 0, 0),
+start_button = Button(
+    x_location=display_width-button_width*1.5,
+    y_location=display_height-button_height*1.5,
+    color=(100, 255, 100),
     text="START",
     width=button_width,
     on_click=reset_game,
 )
-quit_button = RButton(
-    x_location=100,
-    y_location=500,
-    color=(255, 0, 0),
+quit_button = Button(
+    x_location=button_width-button_width*0.5,
+    y_location=display_height-button_height*1.5,
+    color=(255, 100, 100),
     text="QUIT",
     width=button_width,
     on_click=sys.exit,
 )
+# controls_button = Button(
+#     x_location=display_width-button_width*1.5,
+#     y_location=display_height-button_height*1.5*2,
+#     color=(255, 150, 100),
+#     text="CONTROLS",
+#     width=button_width,
+#     on_click=controls_menu_loop.run,
+# )
+back_button = Button(
+    x_location=display_width-button_width*1.5,
+    y_location=display_height-button_height*1.5,
+    color=(255, 100, 100),
+    text="BACK",
+    width=button_width,
+    on_click=sys.exit,
+)
+
+
 start_menu = Menu(
     background=(54, 54, 70),
     buttons=[
         start_button,
         quit_button,
+        # controls_button,
     ],
-    text="START MENU",
+    text=["START MENU", "click the buttons to advance"],
 )
-# menu_renderer = Renderer(
-#     content=start_menu,
-#     display=display,
-#     display_size=display_size,
-#     drawing_surface=drawing_surface,
-#     scaled_surface=scaled_surface,
-# )
-menu_loop = MenuLoop(
+controls_menu = Menu(
+    background=(70, 54, 54),
+    buttons=[
+        back_button
+    ],
+    text=[
+        "CONTROLS:",
+        "LEFT ARROW --- LEFT",
+        "RIGHT ARROW -- RIGHT",
+        "SPACE -------- JUMP",
+    ]
+)
+
+
+start_menu_loop = MenuLoop(
     menu=start_menu,
     clock=clock,
-    display_size=display_size
+    display=display,
+)
+controls_menu_loop = MenuLoop(
+    menu=controls_menu,
+    clock=clock,
+    display=display,
 )
 
 
@@ -127,4 +142,4 @@ class MainLoop:
 
 # Start from menu_loop
 if __name__ == "__main__":
-    menu_loop.run()
+    start_menu_loop.run()

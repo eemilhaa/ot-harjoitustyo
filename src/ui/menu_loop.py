@@ -6,18 +6,18 @@ from writer import write
 class MenuLoop:
     def __init__(
         self,
-        display_size,
+        display,
         menu,
         clock,
         renderer=None
     ):
 
-        self.display_size = display_size
-        self.display = pygame.display.set_mode(self.display_size)
+        self.display = display
 
         self.menu = menu
         self.clock = clock
         self.renderer = renderer
+        self.fontsize = int(display.get_width() * 0.05)
 
     def run(self):
         while True:
@@ -26,7 +26,7 @@ class MenuLoop:
             self.display.fill(self.menu.background)
             
             self.draw_buttons()
-            # menu.text.draw
+            self.draw_text()
 
             self.display.blit(self.display, (0, 0))
             pygame.display.update()
@@ -57,9 +57,23 @@ class MenuLoop:
                 string=button.text,
                 position=(button.x_location, button.y_location),
                 color=(255, 255, 255),              # TODO
-                font="regular.ttf",
-                fontsize=40,                            # TODO
+                font="bold.ttf",
+                fontsize=self.fontsize,             # TODO
             )
+
+    def draw_text(self):
+        y_location = 0
+        for line in self.menu.text:
+            write(
+                surface=self.display,
+                string=line,
+                position=(0, y_location),
+                color=(200, 200, 205),
+                font="regular.ttf",
+                fontsize=self.fontsize
+            )
+            y_location += self.fontsize
+
     # TODO maybe switch to using native resolution for menus?
     def transform_click_location(self, click_location: tuple):
         # TODO remove hardcoding if this stays

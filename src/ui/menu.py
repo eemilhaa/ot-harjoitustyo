@@ -1,5 +1,4 @@
 import pygame
-from font_loader import load_font
 
 
 class Menu:

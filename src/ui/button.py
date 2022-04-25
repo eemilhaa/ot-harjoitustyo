@@ -1,4 +1,4 @@
-from font_loader import load_font
+import pygame
 
 
 # TODO add support for any type of on-click functions
@@ -9,26 +9,20 @@ class Button:
     function. When the user clicks the button the function gets executed.
     """
 
-    def __init__(self, sprite, x_location, y_location, on_click, text=None):
+    def __init__(
+        self,
+        x_location,
+        y_location,
+        color,
+        on_click,
+        width,
+        text=None,
+    ):
         """The constructor"""
 
-        self.sprite = sprite(x_location, y_location)
+        self.x_location = x_location
+        self.y_location = y_location
+        self.rect = pygame.Rect(x_location, y_location, width, width/2)
         self.on_click = on_click
-        if text:
-            image = self.sprite.image.copy()
-            self.write_text(image=image, text=text)
-
-    def click(self):
-        self.on_click()
-
-    # TODO make into a global function
-    def write_text(self, image, text):
-        """write text on the button"""
-
-        color = (255, 255, 255)
-
-        font = load_font("regular.ttf", 12)
-        textsurface = font.render(text, True, color)
-        textrect = textsurface.get_rect(center=image.get_rect().center)
-        image.blit(textsurface, textrect)
-        self.sprite.image = image
+        self.text = text
+        self.color = color
