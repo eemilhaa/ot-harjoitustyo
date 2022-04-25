@@ -15,7 +15,7 @@ class RButton:
         y_location,
         color,
         on_click,
-        width=200,
+        width,
         text=None,
     ):
         """The constructor"""

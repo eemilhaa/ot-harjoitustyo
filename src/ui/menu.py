@@ -8,7 +8,7 @@ class Menu:
         self.background = background
         self.buttons = buttons
         self.all_sprites = pygame.sprite.Group()
-
+        self.text = text
         if text:
             pass
             # self.write(image=image, text=text)
@@ -26,12 +26,12 @@ class Menu:
         pass
 
     # TODO make into a global function
-    def write(self, image, text):
-        """write text on the menu"""
-
-        color = (255, 255, 255)
-        font = load_font("regular.ttf", 12)
-        textsurface = font.render(text, True, color)
-        textrect = textsurface.get_rect(center=image.get_rect().center)
-        image.blit(textsurface, textrect)
-        self.background.image = image
+#    def write(self, image, text):
+#        """write text on the menu"""
+#
+#        color = (255, 255, 255)
+#        font = load_font("regular.ttf", 12)
+#        textsurface = font.render(text, True, color)
+#        textrect = textsurface.get_rect(center=image.get_rect().center)
+#        image.blit(textsurface, textrect)
+#        self.background.image = image

@@ -16,9 +16,13 @@ from ui.menu_loop import MenuLoop
 
 
 pygame.init()
+display_width = 1200    # This can change
+display_height = display_width * 0.75   # keep 4:3 aspect ratio
+display_size = (display_width, display_height)
+drawing_surface_size = (240, 180)   # This is constant
 
-display_size = (1200, 900)
-drawing_surface_size = (240, 180)
+button_width = display_width * 0.25
+button_height = button_width * 0.5
 
 drawing_surface = pygame.Surface(drawing_surface_size)
 scaled_surface = pygame.Surface(display_size)
@@ -78,10 +82,11 @@ def reset_game():
 #     text="QUIT",
 # )
 start_button = RButton(
-    x_location=500,
-    y_location=500,
+    x_location=display_width-button_width*2,
+    y_location=display_height-button_height*2,
     color=(0, 0, 0),
     text="START",
+    width=button_width,
     on_click=reset_game,
 )
 quit_button = RButton(
@@ -89,7 +94,7 @@ quit_button = RButton(
     y_location=500,
     color=(255, 0, 0),
     text="QUIT",
-    width=100,
+    width=button_width,
     on_click=sys.exit,
 )
 start_menu = Menu(
@@ -110,7 +115,7 @@ start_menu = Menu(
 menu_loop = MenuLoop(
     menu=start_menu,
     clock=clock,
-    # renderer=menu_renderer,
+    display_size=display_size
 )
 
 
