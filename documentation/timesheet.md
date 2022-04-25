@@ -40,6 +40,9 @@
 |---------------- | --------------- | :-------------- |
 | 23.4.    | 4    | Implement a way to transition from level to level, add 2 more levels   |
 | 24.4.    | 6    | Refactor buttons and menus from scaled sprites to native resolution rects and text   |
+| 25.4.    | 1    | Get rid of most hardcoded values, make everything scale to any display size   |
+| 25.4.    | 4    | Improve menus: support multiline text, make moving between menus possible   |
+| 25.4.    | 2    | Make game result decide what menu player gets sent to, make a dynamic endgame menu   |
 
 ## Total hours: __
 
