@@ -39,6 +39,7 @@
 | Date    | Hours    | What I did    |
 |---------------- | --------------- | :-------------- |
 | 23.4.    | 4    | Implement a way to transition from level to level, add 2 more levels   |
+| 24.4.    | 6    | Refactor buttons and menus from scaled sprites to native resolution rects and text   |
 
 ## Total hours: __
 
