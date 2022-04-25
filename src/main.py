@@ -62,7 +62,7 @@ def reset_game():
         clock=clock,
         renderer=game_renderer,
     )
-    game_loop.run()
+    return game_loop.run()
 
 
 def to_start_menu():
@@ -76,7 +76,7 @@ def to_controls_menu():
 start_button = Button(
     x_location=display_width-button_width*1.5,
     y_location=display_height-button_height*1.5,
-    color=(100, 255, 100),
+    color=(100, 200, 100),
     text="START",
     width=button_width,
     on_click=reset_game,
@@ -92,7 +92,7 @@ quit_button = Button(
 controls_button = Button(
     x_location=display_width-button_width*1.5,
     y_location=display_height-button_height*1.5*2,
-    color=(255, 150, 100),
+    color=(250, 150, 100),
     text="CONTROLS",
     width=button_width,
     on_click=to_controls_menu,

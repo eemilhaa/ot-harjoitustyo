@@ -32,7 +32,6 @@ class GameLoop:
                 self.clock.tick(60)
             if level.lost:
                 break
-        print(count)
         return count
         # Continue to next level if won (no break)
 
