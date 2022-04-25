@@ -43,10 +43,15 @@ class MenuLoop:
                     if button.rect.collidepoint(event.pos):
                         click_result = button.on_click()
                         print(click_result)
-                        if click_result == 0:
-                            self.menu = self.menus["controls"]
                         if type(click_result) == str:
                             self.menu = self.menus[click_result]
+                        elif type(click_result) == int:
+                            self.menu = self.menus["game_over"]
+                            self.menu.text = [
+                                "GAME OVER",
+                                "",
+                                f"You got to level {click_result + 1}"
+                            ]
 
     def draw_buttons(self):
         for button in self.menu.buttons:

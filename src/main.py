@@ -81,6 +81,14 @@ start_button = Button(
     width=button_width,
     on_click=reset_game,
 )
+retry_button = Button(
+    x_location=display_width-button_width*1.5,
+    y_location=display_height-button_height*1.5,
+    color=(100, 200, 100),
+    text="RETRY",
+    width=button_width,
+    on_click=reset_game,
+)
 quit_button = Button(
     x_location=button_width-button_width*0.5,
     y_location=display_height-button_height*1.5,
@@ -92,15 +100,15 @@ quit_button = Button(
 controls_button = Button(
     x_location=display_width-button_width*1.5,
     y_location=display_height-button_height*1.5*2,
-    color=(250, 150, 100),
+    color=(255, 150, 100),
     text="CONTROLS",
     width=button_width,
     on_click=to_controls_menu,
 )
 back_button = Button(
-    x_location=display_width-button_width*1.5,
-    y_location=display_height-button_height*1.5,
-    color=(255, 100, 100),
+    x_location=button_width-button_width*0.5,
+    y_location=display_height-button_height*1.5*2,
+    color=(255, 200, 100),
     text="BACK",
     width=button_width,
     on_click=to_start_menu,
@@ -134,9 +142,22 @@ controls_menu = Menu(
     ]
 )
 
+game_over_menu = Menu(
+    background=(100, 50, 50),
+    buttons=[
+        retry_button,
+        quit_button,
+        back_button,
+    ],
+    text=[
+        "GAME OVER"
+    ]
+)
+
 menus = {
     "start": start_menu,
     "controls": controls_menu,
+    "game_over": game_over_menu,
 }
 
 menu_loop = MenuLoop(
