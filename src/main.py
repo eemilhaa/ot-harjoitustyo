@@ -1,3 +1,4 @@
+# TODO split this file
 import sys
 import pygame
 from game_loop import GameLoop
@@ -11,9 +12,11 @@ from ui.menu import Menu
 from ui.button import Button
 from ui.menu_loop import MenuLoop
 
+import config
+
 
 # TODO read this from conf file?
-display_height = 900    # This can change
+display_height = config.display_height    # This can change
 
 
 def main():
