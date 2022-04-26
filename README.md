@@ -42,4 +42,4 @@ You can format the code using autopep8 with:
 poetry run invoke format
 ```
 ## Configuration
-Currently the only configuration a user can do is setting the display height variable found in config.py
+Currently the only configuration a user can do is setting the display height variable found in `src/config.py`
