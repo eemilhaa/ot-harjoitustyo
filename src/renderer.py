@@ -7,10 +7,10 @@ class Renderer:
     def __init__(
         self,
         display,
-        display_size,
         drawing_surface,
         scaled_surface,
-        # None so renderer can be called in a loop with changing content
+        # Default to None so renderer can be called in a loop with dynamic
+        # content
         content=None,
     ):
         # TODO
@@ -24,7 +24,7 @@ class Renderer:
         """
         self.content = content
         self.display = display
-        self.display_size = display_size
+        self.display_size = display.get_size()
         self.drawing_surface = drawing_surface
         self.scaled_surface = scaled_surface
 
