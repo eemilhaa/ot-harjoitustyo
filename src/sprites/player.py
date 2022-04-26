@@ -22,9 +22,6 @@ class Player(pygame.sprite.Sprite):
 
         self.won = False
 
-    def draw(self, surface):
-        surface.blit(self.image, (self.rect.x, self.rect.y))
-
     def controls(self, event: pygame.event):
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
@@ -87,7 +84,7 @@ class Player(pygame.sprite.Sprite):
         self.y_momentum = self.jump_speed
         self.can_jump = False
 
-    # TODO make into global function?
+    # TODO make into global function and check for level wins in level.update
     def get_collisions(self, tiles):
         collision_list = []
         for tile in tiles:

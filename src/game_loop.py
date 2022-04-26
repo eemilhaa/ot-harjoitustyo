@@ -16,6 +16,7 @@ class GameLoop:
         self.database = database
 
     def run(self):
+        count = None
         for count, level in enumerate(self.levels):
             self.renderer.content = level
             while True:

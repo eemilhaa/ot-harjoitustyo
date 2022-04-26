@@ -9,7 +9,6 @@ class Level:
         self.player = player
 
         self.game_map = game_map
-        self.tilesize = 10
 
         self.background = background
 
@@ -32,22 +31,22 @@ class Level:
                 if tile == 1:
                     self.ground.add(
                         GroundTop(
-                            column_number*self.tilesize,
-                            row_number*self.tilesize,
+                            column_number*10,
+                            row_number*10,
                         )
                     )
                 if tile == 2:
                     self.ground.add(
                         Ground(
-                            column_number*self.tilesize,
-                            row_number*self.tilesize,
+                            column_number*10,
+                            row_number*10,
                         )
                     )
                 if tile == 3:
                     self.target.add(
                         Target(
-                            column_number*self.tilesize,
-                            row_number*self.tilesize,
+                            column_number*10,
+                            row_number*10,
                         )
                     )
                 column_number += 1

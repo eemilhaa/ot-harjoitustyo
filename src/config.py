@@ -1,9 +1,7 @@
 import os
-import sqlite3
 
-dirname = os.path.dirname(__file__)
+DIRNAME = os.path.dirname(__file__)
 
-display_height = 900
+DISPLAY_HEIGHT = 900
 
-
-database_file_path = os.path.join(dirname, '..', "data", "database.db")
+DATABASE_FILE_PATH = os.path.join(DIRNAME, '..', "data", "database.db")

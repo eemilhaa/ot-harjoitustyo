@@ -18,14 +18,14 @@ import config
 
 
 # TODO read this from conf file?
-display_height = config.display_height    # This can change
+DISPLAY_HEIGHT = config.DISPLAY_HEIGHT    # This can change
 
 
 def main():
 
     # Define some constants based on display size
-    display_width = display_height / 0.75   # keep 4:3 aspect ratio
-    display_size = (display_width, display_height)
+    display_width = DISPLAY_HEIGHT / 0.75   # keep 4:3 aspect ratio
+    display_size = (display_width, DISPLAY_HEIGHT)
     button_width = display_width / 4        # dynamic button size
     button_height = button_width / 2
 
@@ -100,7 +100,7 @@ def main():
     start_button = Button(
         # TODO location setting could be cleaner
         x_location=display_width-button_width*1.5,
-        y_location=display_height-button_height*1.5,
+        y_location=DISPLAY_HEIGHT-button_height*1.5,
         color=(100, 200, 100),
         text="START",
         width=button_width,
@@ -108,7 +108,7 @@ def main():
     )
     retry_button = Button(
         x_location=display_width-button_width*1.5,
-        y_location=display_height-button_height*1.5,
+        y_location=DISPLAY_HEIGHT-button_height*1.5,
         color=(100, 200, 100),
         text="RETRY",
         width=button_width,
@@ -116,7 +116,7 @@ def main():
     )
     quit_button = Button(
         x_location=button_width-button_width*0.5,
-        y_location=display_height-button_height*1.5,
+        y_location=DISPLAY_HEIGHT-button_height*1.5,
         color=(255, 100, 100),
         text="QUIT",
         width=button_width,
@@ -124,7 +124,7 @@ def main():
     )
     controls_button = Button(
         x_location=display_width-button_width*1.5,
-        y_location=display_height-button_height*1.5*2,
+        y_location=DISPLAY_HEIGHT-button_height*1.5*2,
         color=(255, 150, 100),
         text="CONTROLS",
         width=button_width,
@@ -132,7 +132,7 @@ def main():
     )
     back_button = Button(
         x_location=button_width-button_width*0.5,
-        y_location=display_height-button_height*1.5*2,
+        y_location=DISPLAY_HEIGHT-button_height*1.5*2,
         color=(255, 150, 100),
         text="BACK",
         width=button_width,
@@ -140,7 +140,7 @@ def main():
     )
     stats_button = Button(
         x_location=button_width-button_width*0.5,
-        y_location=display_height-button_height*1.5*2,
+        y_location=DISPLAY_HEIGHT-button_height*1.5*2,
         color=(255, 150, 100),
         text="STATS",
         width=button_width,

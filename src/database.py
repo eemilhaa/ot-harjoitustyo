@@ -1,5 +1,5 @@
 import sqlite3
-from config import database_file_path
+from config import DATABASE_FILE_PATH
 
 
 class DataBase:
@@ -35,12 +35,12 @@ class DataBase:
         ).fetchone()[0]
 
     def create_database(self):
-        connection = sqlite3.connect(database_file_path)
+        connection = sqlite3.connect(DATABASE_FILE_PATH)
         connection.isolation_level = None
         return connection
 
     def create_table(self):
-        
+
         self.connection.execute(
             """
             CREATE TABLE GameRuns (
