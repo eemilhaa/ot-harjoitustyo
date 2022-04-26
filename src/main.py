@@ -8,6 +8,8 @@ from sprites.background import BackGround1
 from maps import map_1, map_2, map_3
 from renderer import Renderer
 
+from database import DataBase
+
 from ui.menu import Menu
 from ui.button import Button
 from ui.menu_loop import MenuLoop
@@ -41,6 +43,8 @@ def main():
         scaled_surface=scaled_surface,
     )
 
+    database = DataBase()
+
     # Define on_click functions for menu buttons
     def start_game():
         """A function for constructing the levels and starting the game
@@ -73,6 +77,7 @@ def main():
             ],
             clock=clock,
             renderer=game_renderer,
+            database=database,
         )
         return game_loop.run()
 
@@ -85,6 +90,11 @@ def main():
         """Returns the dict key of the controls menu"""
 
         return "controls"
+
+    def to_stats_menu():
+        """Returns the dict key of the stats menu"""
+
+        return "stats"
 
     # Create the buttons
     start_button = Button(
@@ -128,6 +138,14 @@ def main():
         width=button_width,
         on_click=to_start_menu,
     )
+    stats_button = Button(
+        x_location=button_width-button_width*0.5,
+        y_location=display_height-button_height*1.5*2,
+        color=(255, 150, 100),
+        text="STATS",
+        width=button_width,
+        on_click=to_stats_menu,
+    )
 
     # Create menus
     start_menu = Menu(
@@ -136,6 +154,7 @@ def main():
             start_button,
             quit_button,
             controls_button,
+            stats_button,
         ],
         text=[
             "START MENU",
@@ -149,7 +168,7 @@ def main():
             back_button
         ],
         text=[
-            "CONTROLS:",
+            "CONTROLS",
             "",
             "LEFT ARROW --- LEFT",
             "RIGHT ARROW -- RIGHT",
@@ -165,6 +184,13 @@ def main():
         ],
         text=[]     # This is set in the menu loop based on game outcome
     )
+    stats_menu = Menu(
+        background=(70, 70, 70),
+        buttons=[
+            back_button,
+        ],
+        text=[]
+    )
 
     # All menus are stored in a dict so that navigation between them in the
     # menu loop can be done with dict keys rather than list indices
@@ -172,6 +198,7 @@ def main():
         "start": start_menu,
         "controls": controls_menu,
         "game_over": game_over_menu,
+        "stats": stats_menu,
     }
 
     # The menu loop
@@ -179,6 +206,7 @@ def main():
         menus=menus,
         clock=clock,
         display=display,
+        database=database,
     )
 
     # Start from the menu

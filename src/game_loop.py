@@ -8,10 +8,12 @@ class GameLoop:
         levels,
         clock,
         renderer,
+        database,
     ):
         self.levels = levels
         self.clock = clock
         self.renderer = renderer
+        self.database = database
 
     def run(self):
         for count, level in enumerate(self.levels):
@@ -22,9 +24,11 @@ class GameLoop:
                 level.update()
 
                 if level.lost:
+                    result_level = count
                     break
 
                 if level.won:
+                    result_level = count + 1
                     break
 
                 self.renderer.render()
@@ -32,6 +36,8 @@ class GameLoop:
                 self.clock.tick(60)
             if level.lost:
                 break
+
+        self.database.store_result(result_level)
         return count
         # Continue to next level if won (no break)
 
