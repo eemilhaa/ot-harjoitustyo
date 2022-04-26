@@ -151,3 +151,7 @@ cython_debug/
 
 # temp pngs
 .png~
+
+# ignore everything in data except gitkeep
+data/*
+!data/.gitkeep
