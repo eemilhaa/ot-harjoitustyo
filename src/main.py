@@ -1,4 +1,4 @@
-# TODO split this file
+# TODO split and refactor this file
 import sys
 import pygame
 from game_loop import GameLoop
@@ -19,122 +19,126 @@ import config
 
 DISPLAY_HEIGHT = config.DISPLAY_HEIGHT    # This can change
 
+# Define some constants based on display size
+DISPLAY_WIDTH = DISPLAY_HEIGHT / 0.75   # keep 4:3 aspect ratio
+DISPLAY_SIZE = (DISPLAY_WIDTH, DISPLAY_HEIGHT)
+BUTTON_WIDTH = DISPLAY_WIDTH / 4        # dynamic button size
+BUTTON_HEIGHT = BUTTON_WIDTH / 2
+
+DISPLAY = pygame.display.set_mode(DISPLAY_SIZE)
+CLOCK = pygame.time.Clock()
+DATABASE = DataBase()
+
+
+# Define on_click functions for menu buttons
+def start_game():
+    """A function for constructing the levels and starting the game
+
+    Returns whatever the game loop returns. This makes it possible for a
+    client using a button with this function to know how the game loop
+    ended (i.e. did the player win or lose)
+    """
+
+    game_renderer = Renderer(
+        display=DISPLAY
+    )
+
+    level_1 = Level(
+        player=Player(5, 160),
+        game_map=map_1,
+        background=BackGround1()
+    )
+    level_2 = Level(
+        player=Player(230, 160),
+        game_map=map_2,
+        background=BackGround1()
+    )
+    level_3 = Level(
+        player=Player(2, 160),
+        game_map=map_3,
+        background=BackGround1()
+    )
+    game_loop = GameLoop(
+        levels=[
+            level_1,
+            level_2,
+            level_3,
+        ],
+        clock=CLOCK,
+        renderer=game_renderer,
+        database=DATABASE,
+    )
+    return game_loop.run()
+
+
+def to_start_menu():
+    """Returns the dict key of the start menu"""
+
+    return "start"
+
+
+def to_controls_menu():
+    """Returns the dict key of the controls menu"""
+
+    return "controls"
+
+
+def to_stats_menu():
+    """Returns the dict key of the stats menu"""
+
+    return "stats"
+
 
 def main():
 
-    # Define some constants based on display size
-    display_width = DISPLAY_HEIGHT / 0.75   # keep 4:3 aspect ratio
-    display_size = (display_width, DISPLAY_HEIGHT)
-    button_width = display_width / 4        # dynamic button size
-    button_height = button_width / 2
-
-    display = pygame.display.set_mode(display_size)
-    clock = pygame.time.Clock()
-    database = DataBase()
-
-    # Define on_click functions for menu buttons
-    def start_game():
-        """A function for constructing the levels and starting the game
-
-        Returns whatever the game loop returns. This makes it possible for a
-        client using a button with this function to know how the game loop
-        ended (i.e. did the player win or lose)
-        """
-
-        game_renderer = Renderer(
-            display=display
-        )
-
-        level_1 = Level(
-            player=Player(5, 160),
-            game_map=map_1,
-            background=BackGround1()
-        )
-        level_2 = Level(
-            player=Player(230, 160),
-            game_map=map_2,
-            background=BackGround1()
-        )
-        level_3 = Level(
-            player=Player(2, 160),
-            game_map=map_3,
-            background=BackGround1()
-        )
-        game_loop = GameLoop(
-            levels=[
-                level_1,
-                level_2,
-                level_3,
-            ],
-            clock=clock,
-            renderer=game_renderer,
-            database=database,
-        )
-        return game_loop.run()
-
-    def to_start_menu():
-        """Returns the dict key of the start menu"""
-
-        return "start"
-
-    def to_controls_menu():
-        """Returns the dict key of the controls menu"""
-
-        return "controls"
-
-    def to_stats_menu():
-        """Returns the dict key of the stats menu"""
-
-        return "stats"
-
-    # Create the buttons
+    # Create buttons
     start_button = Button(
         # TODO location setting could be cleaner
-        x_location=display_width-button_width*1.5,
-        y_location=DISPLAY_HEIGHT-button_height*1.5,
+        x_location=DISPLAY_WIDTH-BUTTON_WIDTH*1.5,
+        y_location=DISPLAY_HEIGHT-BUTTON_HEIGHT*1.5,
         color=(100, 200, 100),
         text="START",
-        width=button_width,
+        width=BUTTON_WIDTH,
         on_click=start_game,
     )
     retry_button = Button(
-        x_location=display_width-button_width*1.5,
-        y_location=DISPLAY_HEIGHT-button_height*1.5,
+        x_location=DISPLAY_WIDTH-BUTTON_WIDTH*1.5,
+        y_location=DISPLAY_HEIGHT-BUTTON_HEIGHT*1.5,
         color=(100, 200, 100),
         text="RETRY",
-        width=button_width,
+        width=BUTTON_WIDTH,
         on_click=start_game,
     )
     quit_button = Button(
-        x_location=button_width-button_width*0.5,
-        y_location=DISPLAY_HEIGHT-button_height*1.5,
+        x_location=BUTTON_WIDTH-BUTTON_WIDTH*0.5,
+        y_location=DISPLAY_HEIGHT-BUTTON_HEIGHT*1.5,
         color=(255, 100, 100),
         text="QUIT",
-        width=button_width,
+        width=BUTTON_WIDTH,
         on_click=sys.exit,
     )
     controls_button = Button(
-        x_location=display_width-button_width*1.5,
-        y_location=DISPLAY_HEIGHT-button_height*1.5*2,
+        x_location=DISPLAY_WIDTH-BUTTON_WIDTH*1.5,
+        y_location=DISPLAY_HEIGHT-BUTTON_HEIGHT*1.5*2,
         color=(255, 150, 100),
         text="CONTROLS",
-        width=button_width,
+        width=BUTTON_WIDTH,
         on_click=to_controls_menu,
     )
     back_button = Button(
-        x_location=button_width-button_width*0.5,
-        y_location=DISPLAY_HEIGHT-button_height*1.5*2,
+        x_location=BUTTON_WIDTH-BUTTON_WIDTH*0.5,
+        y_location=DISPLAY_HEIGHT-BUTTON_HEIGHT*1.5*2,
         color=(255, 150, 100),
         text="BACK",
-        width=button_width,
+        width=BUTTON_WIDTH,
         on_click=to_start_menu,
     )
     stats_button = Button(
-        x_location=button_width-button_width*0.5,
-        y_location=DISPLAY_HEIGHT-button_height*1.5*2,
+        x_location=BUTTON_WIDTH-BUTTON_WIDTH*0.5,
+        y_location=DISPLAY_HEIGHT-BUTTON_HEIGHT*1.5*2,
         color=(255, 150, 100),
         text="STATS",
-        width=button_width,
+        width=BUTTON_WIDTH,
         on_click=to_stats_menu,
     )
 
@@ -195,9 +199,9 @@ def main():
     # The menu loop
     menu_loop = MenuLoop(
         menus=menus,
-        clock=clock,
-        display=display,
-        database=database,
+        clock=CLOCK,
+        display=DISPLAY,
+        database=DATABASE,
     )
 
     # Start from the menu
