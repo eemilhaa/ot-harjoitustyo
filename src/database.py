@@ -3,7 +3,8 @@ from config import DATABASE_FILE_PATH
 
 
 class DataBase:
-    def __init__(self):
+    def __init__(self, custom_filepath=None):
+        self.custom_filepath = custom_filepath
         self.connection = self.create_database()
         try:
             self.create_table()
@@ -35,7 +36,10 @@ class DataBase:
         ).fetchone()[0]
 
     def create_database(self):
-        connection = sqlite3.connect(DATABASE_FILE_PATH)
+        if not self.custom_filepath:
+            connection = sqlite3.connect(DATABASE_FILE_PATH)
+        else:
+            connection = sqlite3.connect(self.custom_filepath)
         connection.isolation_level = None
         return connection
 
@@ -49,12 +53,3 @@ class DataBase:
             );
             """
         )
-
-
-if __name__ == "__main__":
-    db = DataBase()
-    db.store_result(4)
-    db.store_result(3)
-    db.store_result(1)
-    print(db.query_highscore())
-    print(db.query_number_of_runs())
