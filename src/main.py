@@ -17,7 +17,6 @@ from ui.menu_loop import MenuLoop
 import config
 
 
-# TODO read this from conf file?
 DISPLAY_HEIGHT = config.DISPLAY_HEIGHT    # This can change
 
 
@@ -29,20 +28,8 @@ def main():
     button_width = display_width / 4        # dynamic button size
     button_height = button_width / 2
 
-    # Use two surfaces for displaying the game to scale up the pixels
-    drawing_surface_size = (240, 180)       # This is always the same
-    drawing_surface = pygame.Surface(drawing_surface_size)
-    scaled_surface = pygame.Surface(display_size)
-
     display = pygame.display.set_mode(display_size)
     clock = pygame.time.Clock()
-
-    game_renderer = Renderer(
-        display=display,
-        drawing_surface=drawing_surface,
-        scaled_surface=scaled_surface,
-    )
-
     database = DataBase()
 
     # Define on_click functions for menu buttons
@@ -53,6 +40,10 @@ def main():
         client using a button with this function to know how the game loop
         ended (i.e. did the player win or lose)
         """
+
+        game_renderer = Renderer(
+            display=display
+        )
 
         level_1 = Level(
             player=Player(5, 160),

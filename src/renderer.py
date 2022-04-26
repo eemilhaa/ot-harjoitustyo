@@ -7,8 +7,6 @@ class Renderer:
     def __init__(
         self,
         display,
-        drawing_surface,
-        scaled_surface,
         # Default to None so renderer can be called in a loop with dynamic
         # content
         content=None,
@@ -25,8 +23,8 @@ class Renderer:
         self.content = content
         self.display = display
         self.display_size = display.get_size()
-        self.drawing_surface = drawing_surface
-        self.scaled_surface = scaled_surface
+        self.drawing_surface = pygame.Surface((240, 180))
+        self.scaled_surface = pygame.Surface(self.display_size)
 
     def render(self):
         """Renders everything in the game."""
