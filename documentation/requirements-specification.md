@@ -23,24 +23,25 @@ After either dying / finishing the game, the player sees the post-game window. T
 ### The UI
 - The most important features from the UI draft above
   - [x] The player can start the game with a new game button in the Start window
-  - The post-game window pops up when the player dies or wins
+  - [x] The post-game window pops up when the player dies or wins
     - [x] A choice to retry or quit (the game doesn't just close when the main game loop finishes)
-    - The highscore is displayed
+    - [x] The highscore is displayed
 
 ### The Game
 - Game levels
-  - The game should have at least 2 levels
-  - The levels can be passed
-  - Once a level is passed, the player advances to the next level
+  - [x] The game should have at least 2 levels
+  - [x] The levels can be passed
+  - [x] Once a level is passed, the player advances to the next level
 - [x] Player physics and movement
   - [x] Player can move in the game and collide with the game map
   - [x] Player can jump and fall
 - A system for scoring game runs
+  - [x] highscore based on number of levels passed
   - For example based on collectibles or playthrough time
 
 ### Storing data
-- Game results are stored in a database
-  - The highscore is conserved even if the game is quit
+- [x] Game results are stored in a database
+  - [x] The highscore is conserved even if the game is quit
 
 ## Additional ideas for features
 ### The UI
