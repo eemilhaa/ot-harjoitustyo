@@ -53,12 +53,12 @@ def main():
             background=BackGround1()
         )
         level_2 = Level(
-            player=Player(230, 130),
+            player=Player(230, 160),
             game_map=map_2,
             background=BackGround1()
         )
         level_3 = Level(
-            player=Player(2, 130),
+            player=Player(2, 160),
             game_map=map_3,
             background=BackGround1()
         )

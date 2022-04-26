@@ -20,6 +20,8 @@ class Player(pygame.sprite.Sprite):
         self.right = False
         self.can_jump = False
 
+        self.won = False
+
     def draw(self, surface):
         surface.blit(self.image, (self.rect.x, self.rect.y))
 
@@ -38,7 +40,7 @@ class Player(pygame.sprite.Sprite):
             if event.key == pygame.K_RIGHT:
                 self.right = False
 
-    def update_position(self, collide_rects):
+    def update_position(self, collide_rects, target_rects):
         # Update x axis
         if self.left:
             self.move_left(collide_rects)
@@ -55,6 +57,10 @@ class Player(pygame.sprite.Sprite):
         # Limit falling speed
         if self.y_momentum < 3:
             self.y_momentum += 0.30
+
+        # See if target is reached
+        if self.get_collisions(target_rects):
+            self.won = True
 
     def move_left(self, collide_rects):
         self.rect.x -= self.speed

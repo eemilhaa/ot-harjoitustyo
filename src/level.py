@@ -1,5 +1,7 @@
 import pygame
-from sprites.ground import Ground, GroundTop
+from sprites.ground import Ground
+from sprites.ground_top import GroundTop
+from sprites.target import Target
 
 
 class Level:
@@ -12,6 +14,7 @@ class Level:
         self.background = background
 
         self.ground = pygame.sprite.Group()
+        self.target = pygame.sprite.Group()
         self.all_sprites = pygame.sprite.Group()
 
         self.won = False
@@ -40,6 +43,13 @@ class Level:
                             row_number*self.tilesize,
                         )
                     )
+                if tile == 3:
+                    self.target.add(
+                        Target(
+                            column_number*self.tilesize,
+                            row_number*self.tilesize,
+                        )
+                    )
                 column_number += 1
             row_number += 1
 
@@ -47,14 +57,16 @@ class Level:
         self.all_sprites.add(
             self.background,
             self.ground,
+            self.target,
             self.player,
         )
 
     def update(self):
         self.player.update_position(
-            self.ground
+            self.ground,
+            self.target
         )
         if self.player.rect.y > 180:
             self.lost = True
-        if self.player.rect.y < -20:
+        if self.player.won:
             self.won = True
