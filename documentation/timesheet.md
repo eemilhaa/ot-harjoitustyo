@@ -39,10 +39,17 @@
 | Date    | Hours    | What I did    |
 |---------------- | --------------- | :-------------- |
 | 23.4.    | 4    | Implement a way to transition from level to level, add 2 more levels   |
-| 24.4.    | 6    | Refactor buttons and menus from scaled sprites to native resolution rects and text   |
+| 24.4.    | 5    | Refactor buttons and menus from scaled sprites to native resolution rects and text   |
 | 25.4.    | 1    | Get rid of most hardcoded values, make everything scale to any display size   |
 | 25.4.    | 4    | Improve menus: support multiline text, make moving between menus possible   |
 | 25.4.    | 2    | Make game result decide what menu player gets sent to, make a dynamic endgame menu   |
+| 26.4.    | 2    | Code cleanup   |
+| 26.4.    | 3    | Freshen up on sqlite, make a DataBase class   |
+| 26.4.    | 2    | Integrate database to game and UI, create stat menu   |
+| 26.4.    | 1    | Update and write tests   |
+| 26.4.    | 2    | Write new documentation, update pre-existing documentation   |
 
-## Total hours: __
+**Weekly total: 26**
+
+## Total hours: 62
 
