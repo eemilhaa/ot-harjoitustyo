@@ -86,3 +86,21 @@ What's a **Sprite** and what's not
     - Scaling sprites with text easily leads to unwanted pixelation
     - Using native resolution rects and text instead looks nicer and is easier to scale to any display size
 
+## Sequence diagrams
+### Starting the program and starting a new game
+```mermaid
+sequenceDiagram
+  actor User
+  
+  User->>MenuLoop: invoke start
+  activate MenuLoop
+  MenuLoop->>menu: Get current menu (start menu)
+  menu->>buttons: Get the menu's buttons
+  buttons-->>menu: on_click functions
+  menu-->>MenuLoop: Display current menu content and provide on_click functions
+  
+  User->>MenuLoop: Click start
+  MenuLoop->>buttons: Execute start button's on_click function (start_game())
+  deactivate MenuLoop
+  buttons-->>User: Start the game loop for the user 
+```
