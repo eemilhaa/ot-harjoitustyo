@@ -6,7 +6,7 @@ from sprites.background import BackGround1
 
 
 MAP_1 = [
-    [0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 3],
     [0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0],
     [1, 1, 1, 0, 1, 1],
@@ -36,16 +36,25 @@ class TestPlayer(unittest.TestCase):
     def test_can_fall(self):
         pos1 = self.level.player.rect.y
         for _ in range(100):
-            self.level.player.update_position(self.level.ground)
+            self.level.player.update_position(
+                self.level.ground,
+                self.level.target,
+            )
         pos2 = self.level.player.rect.y
         self.assertTrue(pos1 < pos2)
 
     def test_can_jump(self):
         for _ in range(100):
-            self.level.player.update_position(self.level.ground)
+            self.level.player.update_position(
+                self.level.ground,
+                self.level.target,
+            )
         pos1 = self.level.player.rect.y
         self.level.player.jump()
-        self.level.player.update_position(self.level.ground)
+        self.level.player.update_position(
+            self.level.ground,
+            self.level.target,
+        )
         pos2 = self.level.player.rect.y
         self.assertTrue(pos1 > pos2)
 
@@ -53,7 +62,10 @@ class TestPlayer(unittest.TestCase):
         pos1 = self.level.player.rect.x
         event = pygame.event.Event(pygame.KEYDOWN, {'key': pygame.K_LEFT})
         self.level.player.controls(event)
-        self.level.player.update_position(self.level.ground)
+        self.level.player.update_position(
+            self.level.ground,
+            self.level.target,
+        )
         pos2 = self.level.player.rect.x
         self.assertTrue(pos1 > pos2)
 
@@ -61,7 +73,10 @@ class TestPlayer(unittest.TestCase):
         pos1 = self.level.player.rect.x
         event = pygame.event.Event(pygame.KEYDOWN, {'key': pygame.K_RIGHT})
         self.level.player.controls(event)
-        self.level.player.update_position(self.level.ground)
+        self.level.player.update_position(
+            self.level.ground,
+            self.level.target,
+        )
         pos2 = self.level.player.rect.x
         self.assertTrue(pos1 < pos2)
 
@@ -71,5 +86,8 @@ class TestPlayer(unittest.TestCase):
     def test_falling_to_ground_resets_jump(self):
         # fall to ground first
         for _ in range(100):
-            self.level.player.update_position(self.level.ground)
+            self.level.player.update_position(
+                self.level.ground,
+                self.level.target,
+            )
         self.assertEqual(self.level.player.can_jump, True)
