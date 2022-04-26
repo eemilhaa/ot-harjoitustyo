@@ -1,12 +1,10 @@
 # Architecture description
-*This represents the current state of the program and is most likely subject to constant changes*
+*This represents the current state of the program and is most likely subject to changes*
 
-## The most important classes in a class diagram
+## The most important classes and their relationships in a class diagram
+This diagram is not exhaustive - instead of depicting every single method and dependency, it focuses on providing an understandable overview
 ```mermaid
 classDiagram
-  class Sprite{
-    rect
-  }
   class Player{
     movement()
     controls()
@@ -15,65 +13,76 @@ classDiagram
     player
     other sprites
   }
-  class OtherSprites{
-    e.g. map tiles
-  }
   class Renderer{
     content
     scale()
   }
   class GameLoop{
-    level
+    levels
     renderer
     handle_events()
   }
   class Button{
-    sprite
     on_click()
   }
   class Menu{
     buttons
   }
   class MenuLoop{
-    menu
-    renderer
+    menus
     handle_events()
+    update_menus()
   }
-  Sprite <|-- Player
-  Sprite <|-- Button
-  Sprite <|-- OtherSprites
+  class DataBase{
+    store()
+    query()
+  }
+  
   
   
   Player "1"-- Level
-  Level --"*" OtherSprites
-  Renderer --"1" Level
-  GameLoop --"1" Level
+  Renderer ..> Level
+  GameLoop --"*" Level
   GameLoop --"1" Renderer
+  GameLoop -- DataBase
   Menu --"*" Button
-  Renderer --"1" Menu
-  MenuLoop --"1" Menu
-  MenuLoop --"1" Renderer
+  MenuLoop --"*" Menu
+  MenuLoop -- DataBase
+  
 ```
 ### Some notes on the classes
-- The loop classes (**GameLoop** , **MenuLoop** )
-  - A loop takes either a **level**  or a **menu** and a **renderer** 
-  - The loop checks for events and updates the menu / level
-- The **Level**  class
+The loop classes (**GameLoop** , **MenuLoop**)
+  - A GameLoop takes a list of levels, a renderer, a clock and a database
+    - The loop checks for events, updates the level and stores game result using the database
+  - A MenuLoop takes a dict of menus and a database
+    - The loop checks for clicks on buttons, handles navigation between menus, updates the menus and queries the database to display its contents
+
+The **DataBase** class
+- Every time a game loop ends, the level to which the player got to gets saved
+- The database can be queried for the total amount of tries and the highscore (highest level passed)
+
+The **Level**  class
   - A level has a player and other sprites such as map tiles
-- The **Menu**  class
+
+The **Menu**  class
   - The most important functionality of a menu is to host **buttons** 
-- The **Button** class 
-  - A button consists of a sprite, text and a reference to a function
+
+The **Button** class 
+  - A button consists of text, a rect and a reference to a function
   - When the user clicks the button the function gets executed
-  - This function can be anything, for example a new loop or an exit call
-- The **Renderer** class
-  - A renderer takes either a level or a menu as content to render
+  - Any function can be assigned: for example starting a new game, giving an exit call or providing a dict key to navigate to a new menu window are all implemented as on_click functions
+
+The **Renderer** class
+  - A renderer takes a level as content to render
   - A renderer renders the content to the display and scales it from a small drawing surface to the full-sized display
     - This makes the pixelated look of the game happen
-    - Currently the scaling happens in menus too
-      - text is pixelated in a less aesthetic way
+    - Menus do not have a separate renderer as native resolution is used in the UI
 
-- The **Sprite** class
-  - Currently everything visual in the game inherits from the pygame.sprite.Sprite class
-  - Makes especially the rendering easier
+What's a **Sprite** and what's not
+  - All in-game stuff is sprites
+    - Makes especially the drawing to the screen part easier
+  - UI does not utilize sprites
+    - Writing text on sprites gets unecessarily complex fast
+    - Scaling sprites with text easily leads to unwanted pixelation
+    - Using native resolution rects and text instead looks nicer and is easier to scale to any display size
 
