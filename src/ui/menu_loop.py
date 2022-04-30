@@ -15,7 +15,7 @@ class MenuLoop:
 
         self.display = display
         self.menus = menus
-        self.menu = menus["start"]
+        self.menu = menus["start_menu"]
         self.clock = clock
         self.fontsize = int(display.get_width() * 0.05)
         self.database = database
@@ -57,7 +57,7 @@ class MenuLoop:
         # the game loop returns the number of the level to which the player got
         # to (int)
         elif type(click_result) == int:
-            target_menu = "game_over"
+            target_menu = "game_over_menu"
 
         # Update menus on click
         self.update_menus(click_result, target_menu)
@@ -66,12 +66,12 @@ class MenuLoop:
         """Updates all menus with dynamic content"""
 
         if type(click_result) == int:
-            self.menus["game_over"].text = [
+            self.menus["game_over_menu"].text = [
                 "GAME OVER",
                 "",
                 f"You got to level {click_result + 1}",
             ]
-        self.menus["stats"].text = [
+        self.menus["stats_menu"].text = [
             "STATS",
             "",
             f"Levels completed: {self.database.query_highscore()}",
@@ -91,6 +91,7 @@ class MenuLoop:
             write(
                 surface=self.display,
                 string=button.text,
+                # position=menu.button_locations[button.location]
                 position=(button.x_location, button.y_location),
                 color=(255, 255, 255),
                 font="bold.ttf",
@@ -111,3 +112,4 @@ class MenuLoop:
                 fontsize=self.fontsize
             )
             y_location += self.fontsize * 1.2
+

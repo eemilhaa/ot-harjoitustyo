@@ -11,18 +11,24 @@ class Button:
 
     def __init__(
         self,
-        x_location,
-        y_location,
+        # x_location,     #
+        # y_location,     #
+        location,
         color,
         on_click,
-        width,
+        width,          #
         text=None,
     ):
         """The constructor"""
 
-        self.x_location = x_location
-        self.y_location = y_location
-        self.rect = pygame.Rect(x_location, y_location, width, width/2)
+        self.x_location = location[0]
+        self.y_location = location[1]
+        self.rect = pygame.Rect(
+            self.x_location,
+            self.y_location,
+            width,
+            width/2
+        )
         self.on_click = on_click
         self.text = text
         self.color = color
