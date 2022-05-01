@@ -51,5 +51,13 @@
 
 **Weekly total: 26**
 
-## Total hours: 62
+## Week 6
+| Date    | Hours    | What I did    |
+|---------------- | --------------- | :-------------- |
+| 30.4.    | 3    | Experiment with ways to refactor the very messy main.py file   |
+| 30.4.    | 3    | Try to solve &#8593; by moving all the UI constructing to a new UI class   |
+
+**Weekly total: __**
+
+## Total hours as of week 5: 62
 
