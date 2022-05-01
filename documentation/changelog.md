@@ -67,3 +67,13 @@
 
 ### Gameplay
 - Progress to the next level by reaching the flag on each level
+
+## Week 6
+### Technicalities
+- Refactor main.py and make an UI class
+  - The main.py file used to have all the code responsible for constructing the UI
+    - i.e. making the buttons, making the menus, making the menu loop
+    - As the UI grew so did the amount of code in main.py
+  - Added an UI class to address this
+    - The purpose of the UI class is to construct a menu loop from the ui components (buttons, menus)
+    - Now main.py can simply use the UI class to construct the UI
