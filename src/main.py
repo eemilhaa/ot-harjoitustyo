@@ -1,4 +1,3 @@
-# TODO split and refactor this file
 import pygame
 from game_loop import GameLoop
 from level import Level
@@ -6,34 +5,33 @@ from sprites.player import Player
 from sprites.background import BackGround1
 from maps import map_1, map_2, map_3
 from renderer import Renderer
-
 from database import DataBase
-
 from ui.ui import UI
-
 import config
 
 
-DISPLAY_HEIGHT = config.DISPLAY_HEIGHT    # This can change
-DISPLAY_WIDTH = DISPLAY_HEIGHT / 0.75   # keep 4:3 aspect ratio
-DISPLAY_SIZE = (DISPLAY_WIDTH, DISPLAY_HEIGHT)
-DISPLAY = pygame.display.set_mode(DISPLAY_SIZE)
+# Always keep 4:3 aspect ratio
+DISPLAY = pygame.display.set_mode(
+    (config.DISPLAY_HEIGHT / 0.75, config.DISPLAY_HEIGHT)
+)
 CLOCK = pygame.time.Clock()
 DATABASE = DataBase()
+RENDERER = Renderer(
+    display=DISPLAY
+)
 
 
-# Define on_click functions for menu buttons
 def start_game():
     """A function for constructing the levels and starting the game
 
-    Returns whatever the game loop returns. This makes it possible for a
-    client using a button with this function to know how the game loop
-    ended (i.e. did the player win or lose)
-    """
+    This function is the only link between the UI and the game loop. In the UI
+    it is assigned as an on_click function to all buttons that should start the
+    game.
 
-    game_renderer = Renderer(
-        display=DISPLAY
-    )
+    The function Returns whatever the game loop returns. This makes it possible
+    for a client (the menu loop) using a button with this function to know how
+    the game loop ended (i.e. to what level the player got)
+    """
 
     level_1 = Level(
         player=Player(5, 160),
@@ -57,7 +55,7 @@ def start_game():
             level_3,
         ],
         clock=CLOCK,
-        renderer=game_renderer,
+        renderer=RENDERER,
         database=DATABASE,
     )
     return game_loop.run()
@@ -67,7 +65,7 @@ UI = UI(
     display=DISPLAY,
     clock=CLOCK,
     database=DATABASE,
-    start_function=start_game
+    game_start_function=start_game
 )
 
 

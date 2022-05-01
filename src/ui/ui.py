@@ -5,11 +5,11 @@ from ui.menu_loop import MenuLoop
 
 
 class UI:
-    def __init__(self, display, clock, database, start_function):
+    def __init__(self, display, clock, database, game_start_function):
         self.display = display
         self.clock = clock
         self.database = database
-        self.start_function = start_function
+        self.game_start_function = game_start_function
         self.create_buttons()
         self.create_menus()
         self.create_menu_loop()
@@ -18,19 +18,18 @@ class UI:
         self.calculate_button_locations()
         self.buttons = {
             "start_game": Button(
-                # TODO location setting could be cleaner
                 location=self.button_locations["bottom_right"],
                 color=(100, 200, 100),
                 text="START",
                 width=self.button_width,
-                on_click=self.start_function,
+                on_click=self.game_start_function,
             ),
             "retry": Button(
                 location=self.button_locations["bottom_right"],
                 color=(100, 200, 100),
                 text="RETRY",
                 width=self.button_width,
-                on_click=self.start_function,
+                on_click=self.game_start_function,
             ),
             "quit": Button(
                 location=self.button_locations["bottom_left"],
@@ -64,7 +63,7 @@ class UI:
 
     def calculate_button_locations(self):
         display_width, display_height = self.display.get_size()
-        self.button_width = display_width / 4        # dynamic button size
+        self.button_width = display_width / 4
         self.button_locations = {
             "top_left": (
                 self.button_width*0.5,

@@ -2,6 +2,8 @@
 *This represents the current state of the program and is most likely subject to changes*
 
 ## The most important classes and their relationships in a class diagram
+*slightly deprecated, UI class not yet added*
+
 This diagram is not exhaustive - instead of depicting every single method and dependency, it focuses on providing an understandable overview
 ```mermaid
 classDiagram
