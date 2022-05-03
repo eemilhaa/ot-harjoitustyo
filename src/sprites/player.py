@@ -3,7 +3,7 @@ from image_loader import load_image
 
 
 class Player(pygame.sprite.Sprite):
-    """A class for representing the player
+    """A class for representing the player.
 
     This class hosts everything related to the player. Most importantly the
     logic related to player movement and controls.
@@ -25,7 +25,7 @@ class Player(pygame.sprite.Sprite):
     """
 
     def __init__(self, x_location, y_location):
-        """Inits the player class
+        """Inits the player class.
 
         Args:
             x_location: The players starting position on the x axis
@@ -51,7 +51,7 @@ class Player(pygame.sprite.Sprite):
         self.won = False
 
     def controls(self, event):
-        """Decides how and where the player should move based on events
+        """Decides how and where the player should move based on events.
 
         Args:
             event: A pygame event
@@ -72,9 +72,9 @@ class Player(pygame.sprite.Sprite):
                 self.right = False
 
     def update_position(self, collide_rects, target_rects):
-        """Updates player position and checks for winning
+        """Updates player position and checks for winning.
 
-        Moving is done based on the attributes controlled by events (lef,
+        Moving is done based on the attributes controlled by events (left,
         right) and on the map of the level.
 
         Args:
@@ -105,7 +105,7 @@ class Player(pygame.sprite.Sprite):
             self.won = True
 
     def move_left(self, collide_rects):
-        """Moves the player left
+        """Moves the player left.
 
         After moving checks for collisions and restricts movement by resetting
         players position if collisions happen
@@ -119,7 +119,7 @@ class Player(pygame.sprite.Sprite):
             self.rect.left = tile.rect.right
 
     def move_right(self, collide_rects):
-        """Moves the player right
+        """Moves the player right.
 
         After moving checks for collisions and restricts movement by resetting
         players position if collisions happen
@@ -133,7 +133,7 @@ class Player(pygame.sprite.Sprite):
             self.rect.right = tile.rect.left
 
     def check_down_collisions(self, collide_rects):
-        """Checks for collisons while falling down
+        """Checks for collisons while falling down.
 
         Also restricts movement by resetting players position if collisions
         happen. y_momentum is also reset on collision down
@@ -148,7 +148,7 @@ class Player(pygame.sprite.Sprite):
             self.can_jump = True
 
     def check_up_collisions(self, collide_rects):
-        """Checks for collisons while jumping up
+        """Checks for collisons while jumping up.
 
         Also restricts movement by resetting players position if collisions
         happen. y_momentum is set to positive to achieve a bouncing effect if
@@ -163,7 +163,7 @@ class Player(pygame.sprite.Sprite):
             self.y_momentum = 0.25
 
     def jump(self):
-        """Sets the player's y_momentum to the jump_speed value
+        """Sets the player's y_momentum to the jump_speed value.
 
         This makes the player jump as the value is negative
         """
@@ -172,7 +172,7 @@ class Player(pygame.sprite.Sprite):
         self.can_jump = False
 
     def get_collisions(self, tiles):
-        """A function for getting all the tiles the player collides with
+        """A function for getting all the tiles the player collides with.
 
         Args:
             tiles: The tiles to check collisons for

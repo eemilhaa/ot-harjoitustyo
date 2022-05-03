@@ -3,8 +3,8 @@ import pygame
 
 
 def load_font(filename: str, fontsize: int):
-    """A function for loading a font
-    
+    """A function for loading a font.
+
     Args:
         filename: The name of the font file to load (normal or bold)
         fontsize: The desired fontsize

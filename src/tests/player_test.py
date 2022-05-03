@@ -2,7 +2,7 @@ import unittest
 import pygame
 from sprites.player import Player
 from level import Level
-from sprites.background import BackGround1
+from sprites.background import BackGround
 
 
 MAP_1 = [
@@ -18,7 +18,7 @@ class TestPlayer(unittest.TestCase):
         self.level = Level(
             player=Player(20, 10),
             game_map=MAP_1,
-            background=BackGround1()
+            background=BackGround()
         )
 
     def test_can_move_left(self):

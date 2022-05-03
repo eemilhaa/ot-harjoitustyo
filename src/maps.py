@@ -1,3 +1,9 @@
+"""A file that contains the game maps
+
+Each map is a 2-dimensional array. Every number corresponds to a type of tile
+in the game
+"""
+
 map_1 = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],

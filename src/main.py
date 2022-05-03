@@ -2,7 +2,7 @@ import pygame
 from game_loop import GameLoop
 from level import Level
 from sprites.player import Player
-from sprites.background import BackGround1
+from sprites.background import BackGround
 from maps import map_1, map_2, map_3
 from renderer import Renderer
 from clock import Clock
@@ -24,31 +24,33 @@ RENDERER = Renderer(display=DISPLAY)
 
 
 def start_game():
-    """A function for constructing the levels and starting the game
+    """A function for constructing the levels and starting the game.
 
     This function is the only link between the UI and the game loop. In the UI
     it is assigned as an on_click function to all buttons that should start the
     game.
 
-    The function Returns whatever the game loop returns. This makes it possible
-    for a client (the menu loop) using a button with this function to know how
-    the game loop ended (i.e. to what level the player got)
+    Returns:
+        The function Returns whatever the game_loop.run() returns. This makes
+        it possible for a client (the menu loop) using a button with this
+        function to know how the game loop ended (i.e. to what level the player
+        got)
     """
 
     level_1 = Level(
         player=Player(5, 160),
         game_map=map_1,
-        background=BackGround1()
+        background=BackGround()
     )
     level_2 = Level(
         player=Player(230, 160),
         game_map=map_2,
-        background=BackGround1()
+        background=BackGround()
     )
     level_3 = Level(
         player=Player(2, 160),
         game_map=map_3,
-        background=BackGround1()
+        background=BackGround()
     )
     game_loop = GameLoop(
         levels=[
@@ -73,6 +75,8 @@ UI = UI(
 
 
 def main():
+    """Inits pygame and starts the menu loop"""
+
     pygame.init()
     UI.menu_loop.run()
 

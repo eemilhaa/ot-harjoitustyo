@@ -2,24 +2,29 @@ import pygame
 
 
 class Renderer:
-    """A class for rendering content to the screen."""
+    """A class for rendering content to the screen.
+
+    The renderer takes content which it then scales up to the correct display
+    size and renders to the display. This makes the pixelated look of the game
+    happen.
+
+    Attributes:
+        display: the display to which the content should be rendered on
+        content: The content to render to the screen. For example a level.
+    """
 
     def __init__(
         self,
         display,
-        # Default to None so renderer can be called in a loop with dynamic
-        # content
         content=None,
     ):
-        # TODO
-        """The constructor.
+        """Inits the Renderer.
 
         Args:
-            content:
-            display:
-            display_size:
-            scaled_surface:
+            display: the display to which the content should be rendered on.
+            content: The content to render to the screen. For example a level.
         """
+
         self.content = content
         self.display = display
         self.display_size = display.get_size()
@@ -27,7 +32,13 @@ class Renderer:
         self.scaled_surface = pygame.Surface(self.display_size)
 
     def render(self):
-        """Renders everything in the game."""
+        """Renders everything in the game.
+
+        Everything is first drawn onto the small drawing surface that is always
+        sized 240x180 pixels. This small surface with everything drawn onto it
+        is then scaled up to whatever displaysize and drawn to the full-sized
+        display.
+        """
 
         self.content.all_sprites.draw(self.drawing_surface)
 
@@ -37,7 +48,7 @@ class Renderer:
         pygame.display.update()
 
     def _scale(self):
-        """scales drawing_surface to the size of display"""
+        """scales drawing_surface to the size of the display."""
 
         pygame.transform.scale(
             self.drawing_surface,

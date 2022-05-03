@@ -4,7 +4,7 @@ import pygame
 from sprites.player import Player
 from level import Level
 from game_loop import GameLoop
-from sprites.background import BackGround1
+from sprites.background import BackGround
 
 
 MAP_1 = [
@@ -64,17 +64,17 @@ class TestGameLoop(unittest.TestCase):
         self.level_1 = Level(
             player=Player(20, 20),
             game_map=MAP_1,
-            background=BackGround1()
+            background=BackGround()
         )
         self.level_2 = Level(
             player=Player(10, 30),
             game_map=MAP_2,
-            background=BackGround1()
+            background=BackGround()
         )
         self.level_3 = Level(
             player=Player(10, 30),
             game_map=MAP_3,
-            background=BackGround1()
+            background=BackGround()
         )
 
     def test_level_completion(self):
