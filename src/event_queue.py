@@ -6,4 +6,5 @@ class EventQueue:
 
     def get(self):
         """A method for getting the events"""
+
         return pygame.event.get()

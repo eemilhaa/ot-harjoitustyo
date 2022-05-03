@@ -5,6 +5,10 @@ from sprites.target import Target
 
 
 class Level:
+    """A class for representing a level in the game
+    
+
+    """
     def __init__(self, player, game_map, background):
         self.player = player
 

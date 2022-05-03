@@ -33,6 +33,7 @@ class DataBase:
         Returns:
             The connection to the database
         """
+
         if not self.custom_filepath:
             connection = sqlite3.connect(DATABASE_FILE_PATH)
         else:
@@ -41,7 +42,8 @@ class DataBase:
         return connection
 
     def create_table(self):
-        """Creates a table for storing gameplay data"""
+        """Creates a table for storing data about game runs"""
+
         self.connection.execute(
             """
             CREATE TABLE GameRuns (
@@ -57,6 +59,7 @@ class DataBase:
         Args:
             result: the highest level the player beats during a single game run
         """
+
         self.connection.execute(
             """
             INSERT INTO GameRuns (level) VALUES (?)
@@ -70,6 +73,7 @@ class DataBase:
         Returns:
             The highest value in the level field of the GameRuns table
         """
+
         return self.connection.execute(
             """
             SELECT MAX(level)
@@ -83,6 +87,7 @@ class DataBase:
         Returns:
             The count of rows in the GameRuns table
         """
+
         return self.connection.execute(
             """
             SELECT COUNT(DISTINCT(id))
