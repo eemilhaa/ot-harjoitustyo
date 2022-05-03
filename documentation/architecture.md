@@ -2,7 +2,7 @@
 *This represents the current state of the program and is most likely subject to changes*
 
 ## The most important classes and their relationships in a class diagram
-This diagram is not exhaustive - instead of depicting every single method and dependency, it focuses on providing an understandable overview of the most important ones.
+This diagram is not exhaustive - instead of depicting every single class, method and dependency, it focuses on providing an understandable overview of the most important ones.
 ```mermaid
 classDiagram
   class Player{
@@ -60,48 +60,48 @@ classDiagram
 ## Class descriptions
 ### Game component classes
 #### Player
-This class hosts everything related to the player, most importantly the logic related to player movement and controls. In a nutshell the player class provides methods for controlling the player movement utilizing pygame events, updating the player position and checking for collisions with the game map.
+This class hosts everything directly related to the player, most importantly the logic related to player movement and controls. In a nutshell the player class provides methods for controlling the player movement utilizing pygame events, for updating the player position and for checking for collisions with the game map.
 
 #### Level
 The game levels are generated with the level class. The level class is most importantly responsible for providing a sprite group with all the sprites of the game and an update function to keep track of the level's state. A level has a player, and the player is just one of the sprites a level has, just like the map tiles.
 
 #### Renderer
-The renderer class renders content to the screen. A renderer takes a level as content to render, scales it from a small drawing surface to the full-sized display and draws it to the screen.
+The renderer class renders content to the screen. A renderer takes a level as content to render, scales it from a small drawing surface to the full-sized display and draws it onto the screen.
   - This scaling is what makes the pixelated look of the game happen
   - Menus do not have a separate renderer as native resolution is used there
 
 #### GameLoop
-A GameLoop takes a list of levels, a renderer, and a database. The loop checks for events, updates the level and stores game results using the database
+A GameLoop takes a list of levels, a renderer, and a database. The loop checks for events, updates the level and stores game results using the database.
 
 #### DataBase
-- Every time a game loop ends, the level to which the player got to gets saved
+The DataBase class provides the database funcionalities. Most importantly functions for storing and querying data.
+- Every time a game loop ends, the level to which the player got gets saved
 - The database can be queried for the total amount of tries and the highscore (highest level passed)
+- The UI queries the database to display stats
  
 ### UI classes
-- A MenuLoop takes a dict of menus and a database
-  - The loop checks for clicks on buttons, handles navigation between menus, updates the menus and queries the database to display its contents
+#### Button
+Buttons are what makes the UI usable.
+- A button consists of text, a rect and a reference to a on_click function
+- When the user clicks the button the function gets executed
+- Any function can be assigned: for example starting a new game, giving an exit call or providing a dict key to navigate to a new menu window are all implemented as on_click functions
 
+#### Menu
+The most important functionality of a menu is to host buttons. In addition to a list of buttons, the Menu class also takes text that gets displayed when the user views the menu
 
+#### MenuLoop
+A MenuLoop takes a dict of menus and a database. The loop checks for clicks on the buttons of the menus, handles navigation between menus, updates the menus and queries the database to display its contents when needed.
 
+#### UI
+The sole purpose of the UI class is to construct the UI. In practice this means that it first creates all the needed buttons, then creates the menus (and assigns the buttons for the menus) and, finally, creates the menu loop with the menus. So, MenuLoop and Buttons are where the actual functionality of the UI is, the UI class is simply a way to setup the UI more cleanly in the main.py file.
 
-
-The **Menu**  class
-  - The most important functionality of a menu is to host **buttons** 
-
-The **Button** class 
-  - A button consists of text, a rect and a reference to a function
-  - When the user clicks the button the function gets executed
-  - Any function can be assigned: for example starting a new game, giving an exit call or providing a dict key to navigate to a new menu window are all implemented as on_click functions
-
-
-
-What's a **Sprite** and what's not
-  - All in-game stuff is sprites
-    - Makes especially the drawing to the screen part easier
-  - UI does not utilize sprites
-    - Writing text on sprites gets unecessarily complex fast
-    - Scaling sprites with text easily leads to unwanted pixelation
-    - Using native resolution rects and text instead looks nicer and is easier to scale to any display size
+### A sidenote: What's a Sprite and what's not
+- All in-game stuff is sprites
+  - Makes especially the drawing to the screen part easier
+- UI does not utilize sprites
+  - Writing text on sprites gets unecessarily complex fast
+  - Scaling sprites with text easily leads to unwanted pixelation
+  - Using native resolution rects and text instead looks nicer and is easier to scale to any display size
 
 ## Sequence diagrams
 ### Starting the program and starting a new game
@@ -109,7 +109,12 @@ What's a **Sprite** and what's not
 sequenceDiagram
   actor User
   
-  User->>MenuLoop: invoke start
+  User->>UI: invoke start
+  activate UI
+  UI->>buttons: create_buttons()
+  UI->>menus: create_menus()
+  UI->>MenuLoop: create_menu_loop()
+  deactivate UI
   activate MenuLoop
   MenuLoop->>menu: Get current menu (start menu)
   menu->>buttons: Get the menu's buttons
