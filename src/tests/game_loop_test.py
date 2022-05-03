@@ -16,11 +16,19 @@ MAP_1 = [
 ]
 
 MAP_2 = [
-    [0, 0, 0, 0, 0, 3],
     [0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0],
-    [1, 1, 1, 0, 1, 1],
+    [0, 0, 0, 3, 0, 0],
+    [1, 1, 1, 1, 1, 1],
+]
+
+MAP_3 = [
+    [0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0],
+    [0, 0, 3, 0, 0, 0],
+    [1, 1, 1, 1, 1, 1],
 ]
 CLOCK = pygame.time.Clock
 
@@ -59,8 +67,13 @@ class TestGameLoop(unittest.TestCase):
             background=BackGround1()
         )
         self.level_2 = Level(
-            player=Player(20, 20),
-            game_map=MAP_1,
+            player=Player(10, 30),
+            game_map=MAP_2,
+            background=BackGround1()
+        )
+        self.level_3 = Level(
+            player=Player(10, 30),
+            game_map=MAP_3,
             background=BackGround1()
         )
 
@@ -69,7 +82,9 @@ class TestGameLoop(unittest.TestCase):
             pygame.event.Event(pygame.KEYDOWN, {'key': pygame.K_SPACE})
         ]
         game_loop = GameLoop(
-            levels=[self.level_1, self.level_2],
+            levels=[
+                self.level_1,
+            ],
             clock=StubClock(),
             renderer=StubRenderer(),
             event_queue=StubEventQueue(events),
@@ -78,3 +93,72 @@ class TestGameLoop(unittest.TestCase):
         game_loop.run()
 
         self.assertTrue(self.level_1.won)
+
+    def test_level_loss(self):
+        events = [
+            pygame.event.Event(pygame.KEYDOWN, {'key': pygame.K_LEFT})
+        ]
+        game_loop = GameLoop(
+            levels=[
+                self.level_1,
+            ],
+            clock=StubClock(),
+            renderer=StubRenderer(),
+            event_queue=StubEventQueue(events),
+            database=StubDataBase()
+        )
+        game_loop.run()
+
+        self.assertTrue(self.level_1.lost)
+
+    def test_loop_return_value_win(self):
+        events = [
+            pygame.event.Event(pygame.KEYDOWN, {'key': pygame.K_SPACE})
+        ]
+        game_loop = GameLoop(
+            levels=[
+                self.level_1,
+            ],
+            clock=StubClock(),
+            renderer=StubRenderer(),
+            event_queue=StubEventQueue(events),
+            database=StubDataBase()
+        )
+        value = game_loop.run()
+
+        self.assertEqual(value, "game_won_menu")
+
+    def test_loop_return_value_loss(self):
+        events = [
+            pygame.event.Event(pygame.KEYDOWN, {'key': pygame.K_LEFT})
+        ]
+        game_loop = GameLoop(
+            levels=[
+                self.level_1,
+            ],
+            clock=StubClock(),
+            renderer=StubRenderer(),
+            event_queue=StubEventQueue(events),
+            database=StubDataBase()
+        )
+        value = game_loop.run()
+
+        self.assertEqual(value, 0)
+
+    def test_level_transition(self):
+        events = [
+            pygame.event.Event(pygame.KEYDOWN, {'key': pygame.K_RIGHT})
+        ]
+        game_loop = GameLoop(
+            levels=[
+                self.level_2,
+                self.level_3,
+            ],
+            clock=StubClock(),
+            renderer=StubRenderer(),
+            event_queue=StubEventQueue(events),
+            database=StubDataBase()
+        )
+        game_loop.run()
+
+        self.assertTrue(self.level_2.won and self.level_3.won)
