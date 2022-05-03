@@ -2,14 +2,13 @@
 *This represents the current state of the program and is most likely subject to changes*
 
 ## The most important classes and their relationships in a class diagram
-*slightly deprecated, UI class not yet added*
-
-This diagram is not exhaustive - instead of depicting every single method and dependency, it focuses on providing an understandable overview
+This diagram is not exhaustive - instead of depicting every single method and dependency, it focuses on providing an understandable overview of the most important ones.
 ```mermaid
 classDiagram
   class Player{
-    movement()
     controls()
+    update_position()
+    get_collisions()
   }
   class Level{
     player
@@ -35,12 +34,15 @@ classDiagram
     handle_events()
     update_menus()
   }
+  class UI{
+    create_buttons()
+    create_menus()
+    create_menu_loop()
+  }
   class DataBase{
     store()
     query()
   }
-  
-  
   
   Player "1"-- Level
   Renderer ..> Level
@@ -50,21 +52,38 @@ classDiagram
   Menu --"*" Button
   MenuLoop --"*" Menu
   MenuLoop -- DataBase
+  UI ..> Button
+  UI ..> Menu
+  UI ..> MenuLoop
   
 ```
-### Some notes on the classes
-The loop classes (**GameLoop** , **MenuLoop**)
-  - A GameLoop takes a list of levels, a renderer, a clock and a database
-    - The loop checks for events, updates the level and stores game result using the database
-  - A MenuLoop takes a dict of menus and a database
-    - The loop checks for clicks on buttons, handles navigation between menus, updates the menus and queries the database to display its contents
+## Class descriptions
+### Game component classes
+#### Player
+This class hosts everything related to the player, most importantly the logic related to player movement and controls. In a nutshell the player class provides methods for controlling the player movement utilizing pygame events, updating the player position and checking for collisions with the game map.
 
-The **DataBase** class
+#### Level
+The game levels are generated with the level class. The level class is most importantly responsible for providing a sprite group with all the sprites of the game and an update function to keep track of the level's state. A level has a player, and the player is just one of the sprites a level has, just like the map tiles.
+
+#### Renderer
+The renderer class renders content to the screen. A renderer takes a level as content to render, scales it from a small drawing surface to the full-sized display and draws it to the screen.
+  - This scaling is what makes the pixelated look of the game happen
+  - Menus do not have a separate renderer as native resolution is used there
+
+#### GameLoop
+A GameLoop takes a list of levels, a renderer, and a database. The loop checks for events, updates the level and stores game results using the database
+
+#### DataBase
 - Every time a game loop ends, the level to which the player got to gets saved
 - The database can be queried for the total amount of tries and the highscore (highest level passed)
+ 
+### UI classes
+- A MenuLoop takes a dict of menus and a database
+  - The loop checks for clicks on buttons, handles navigation between menus, updates the menus and queries the database to display its contents
 
-The **Level**  class
-  - A level has a player and other sprites such as map tiles
+
+
+
 
 The **Menu**  class
   - The most important functionality of a menu is to host **buttons** 
@@ -74,11 +93,7 @@ The **Button** class
   - When the user clicks the button the function gets executed
   - Any function can be assigned: for example starting a new game, giving an exit call or providing a dict key to navigate to a new menu window are all implemented as on_click functions
 
-The **Renderer** class
-  - A renderer takes a level as content to render
-  - A renderer renders the content to the display and scales it from a small drawing surface to the full-sized display
-    - This makes the pixelated look of the game happen
-    - Menus do not have a separate renderer as native resolution is used in the UI
+
 
 What's a **Sprite** and what's not
   - All in-game stuff is sprites
