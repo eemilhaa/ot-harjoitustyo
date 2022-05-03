@@ -77,3 +77,9 @@
   - Added an UI class to address this
     - The purpose of the UI class is to construct a menu loop from the ui components (buttons, menus)
     - Now main.py can simply use the UI class to construct the UI
+- Added tests for the game loop class
+  - Added some abstraction classes to make this easier
+
+### Features visible to the user
+- Added a proper game won screen for when the player passes all levels
+  - To what screen the player gets sent after the game is decided based on game outcome

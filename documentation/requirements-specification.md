@@ -42,6 +42,7 @@ After either dying / finishing the game, the player sees the post-game window. T
 ### Storing data
 - [x] Game results are stored in a database
   - [x] The highscore is conserved even if the game is quit
+  - [x] Also the number of runs
 
 ## Additional ideas for features
 ### The UI
@@ -49,6 +50,10 @@ After either dying / finishing the game, the player sees the post-game window. T
   - For example to set the resolution
 - A level browser
   - If more levels are implemented, a window for choosing them would be nice
+- [x] A stats window
+  - To show database contents
+- [x] A controls window
+  - To show game controls
 
 ### The game
 - Game levels
