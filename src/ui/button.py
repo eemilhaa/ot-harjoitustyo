@@ -1,7 +1,7 @@
 import pygame
 
 
-# TODO add support for any type of on-click functions
+# TODO docstrings
 class Button:
     """A class for implementing buttons
 

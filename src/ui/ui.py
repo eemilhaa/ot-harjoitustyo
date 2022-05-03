@@ -5,17 +5,20 @@ from ui.menu_loop import MenuLoop
 
 
 class UI:
+    # TODO docstrings
+    """A class for constructing the UI."""
+
     def __init__(self, display, clock, database, game_start_function):
         self.display = display
         self.clock = clock
         self.database = database
         self.game_start_function = game_start_function
-        self.create_buttons()
-        self.create_menus()
-        self.create_menu_loop()
+        self._create_buttons()
+        self._create_menus()
+        self._create_menu_loop()
 
-    def create_buttons(self):
-        self.calculate_button_locations()
+    def _create_buttons(self):
+        self._calculate_button_locations()
         self.buttons = {
             "start_game": Button(
                 location=self.button_locations["bottom_right"],
@@ -61,7 +64,7 @@ class UI:
             )
         }
 
-    def calculate_button_locations(self):
+    def _calculate_button_locations(self):
         display_width, display_height = self.display.get_size()
         self.button_width = display_width / 4
         self.button_locations = {
@@ -83,7 +86,7 @@ class UI:
             )
         }
 
-    def create_menus(self):
+    def _create_menus(self):
         self.menus = {
             "start_menu": Menu(
                 background=(54, 54, 70),
@@ -141,7 +144,7 @@ class UI:
             )
         }
 
-    def create_menu_loop(self):
+    def _create_menu_loop(self):
         self.menu_loop = MenuLoop(
             menus=self.menus,
             clock=self.clock,

@@ -1,6 +1,6 @@
 import sys
 import pygame
-from writer import write
+from ui.writer import write
 
 
 class MenuLoop:
@@ -11,6 +11,7 @@ class MenuLoop:
         clock,
         database,
     ):
+        # TODO docstrings
         """Sets up the menu loop"""
 
         self.display = display

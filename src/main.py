@@ -26,7 +26,7 @@ RENDERER = Renderer(display=DISPLAY)
 def start_game():
     """A function for constructing the levels and starting the game.
 
-    This function is the only link between the UI and the game loop. In the UI
+    This function is how the game loop can be started from the UI. In the UI
     it is assigned as an on_click function to all buttons that should start the
     game.
 
