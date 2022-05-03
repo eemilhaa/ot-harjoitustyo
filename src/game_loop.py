@@ -37,10 +37,10 @@ class GameLoop:
                 self.clock.tick(60)
             if level.lost:
                 break
-
         self.database.store_result(result_level)
+        if result_level == len(self.levels):
+            return "game_won_menu"
         return count
-        # Continue to next level if won (no break)
 
     def _handle_events(self, level):
 

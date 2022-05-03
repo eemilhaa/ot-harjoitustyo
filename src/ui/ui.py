@@ -127,6 +127,17 @@ class UI:
                     self.buttons["start_menu"],
                 ],
                 text=[]
+            ),
+            "game_won_menu": Menu(
+                background=(50, 100, 50),
+                buttons=[
+                    self.buttons["start_menu"],
+                ],
+                text=[
+                    "GAME WON",
+                    "",
+                    "You beat all the levels!"
+                ]
             )
         }
 
