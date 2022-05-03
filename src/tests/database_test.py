@@ -44,10 +44,3 @@ class TestDataBase(unittest.TestCase):
         self.database.store_result(3)
         count = self.database.query_number_of_runs()
         self.assertEqual(count, 2)
-
-
-# db.store_result(4)
-# db.store_result(3)
-# db.store_result(1)
-# print(db.query_highscore())
-# print(db.query_number_of_runs())
