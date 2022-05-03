@@ -4,8 +4,6 @@ import pygame
 from sprites.player import Player
 from level import Level
 from game_loop import GameLoop
-# from database import DataBase
-# from renderer import Renderer
 from sprites.background import BackGround1
 
 
@@ -26,9 +24,31 @@ MAP_2 = [
 ]
 CLOCK = pygame.time.Clock
 
-# RENDERER = Renderer()
-# DATABASE = DataBase()
 
+class StubEventQueue:
+    def __init__(self, events):
+        self._events = events
+
+    def get(self):
+        return self._events
+
+
+class StubRenderer:
+    def __init__(self):
+        self.content = None
+
+    def render(self):
+        pass
+
+
+class StubDataBase:
+    def store_result(self, result):
+        pass
+
+
+class StubClock:
+    def tick(self):
+        pass
 
 
 class TestGameLoop(unittest.TestCase):
