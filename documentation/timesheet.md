@@ -56,8 +56,13 @@
 |---------------- | --------------- | :-------------- |
 | 30.4.    | 3    | Experiment with ways to refactor the very messy main.py file   |
 | 30.4.    | 3    | Try to solve &#8593; by moving all the UI constructing to a new UI class   |
+| 3.5.    | 1    | Add a game won menu    |
+| 3.5.    | 1    | Add abstraction classes to make testing the game loop easier    |
+| 3.5.    | 2    | Add tests for the game loop    |
+| 3.5.    | 3    | Add docstrings and cleanup code    |
+| 3.5.    | 2    | Add and update documentation    |
 
-**Weekly total: __**
+**Weekly total: 15**
 
-## Total hours as of week 5: 62
+## Total hours as of week 5: 77
 
