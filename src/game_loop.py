@@ -8,11 +8,13 @@ class GameLoop:
         levels,
         clock,
         renderer,
+        event_queue,
         database,
     ):
         self.levels = levels
         self.clock = clock
         self.renderer = renderer
+        self.event_queue = event_queue
         self.database = database
 
     def run(self):
@@ -44,7 +46,7 @@ class GameLoop:
 
     def _handle_events(self, level):
 
-        for event in pygame.event.get():
+        for event in self.event_queue.get():
             if event.type == pygame.QUIT:
                 sys.exit()
             level.player.controls(event)

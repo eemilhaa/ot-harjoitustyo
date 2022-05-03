@@ -5,6 +5,8 @@ from sprites.player import Player
 from sprites.background import BackGround1
 from maps import map_1, map_2, map_3
 from renderer import Renderer
+from clock import Clock
+from event_queue import EventQueue
 from database import DataBase
 from ui.ui import UI
 import config
@@ -15,7 +17,8 @@ DISPLAY = pygame.display.set_mode((
     config.DISPLAY_HEIGHT / 0.75,
     config.DISPLAY_HEIGHT
 ))
-CLOCK = pygame.time.Clock()
+CLOCK = Clock()
+EVENT_QUEUE = EventQueue()
 DATABASE = DataBase()
 RENDERER = Renderer(display=DISPLAY)
 
@@ -55,6 +58,7 @@ def start_game():
         ],
         clock=CLOCK,
         renderer=RENDERER,
+        event_queue=EVENT_QUEUE,
         database=DATABASE,
     )
     return game_loop.run()
