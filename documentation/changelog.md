@@ -79,6 +79,9 @@
     - Now main.py can simply use the UI class to construct the UI
 - Added tests for the game loop class
   - Added some abstraction classes to make this easier
+- A lot of improvements to the documentation
+  - Docstrings added
+  - Pre-existing documentation updated
 
 ### Features visible to the user
 - Added a proper game won screen for when the player passes all levels
