@@ -1,6 +1,9 @@
 # ot-harjoitustyo
 This repository hosts my project for the software technology course - a simple platformer game written in python with pygame.
 
+## Releases
+[Week 5](https://github.com/eemilhaa/ot-harjoitustyo/releases/tag/Week5)
+
 ## Documentation
 - [Requirements specification](./documentation/requirements-specification.md)
 - [Timesheet](./documentation/timesheet.md)
