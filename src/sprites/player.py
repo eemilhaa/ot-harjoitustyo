@@ -3,7 +3,35 @@ from image_loader import load_image
 
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self, x_location=50, y_location=40):
+    """A class for representing the player
+
+    This class hosts everything related to the player. Most importantly the
+    logic related to player movement and controls.
+
+    Attributes:
+        image: A image to visually represent the player in the game
+        rect: A pygame Rect object to logically represent the player in the
+        game
+        rect.x: The players position on the x axis
+        rect.y: The players position on the y axis
+        speed: The speed at which the player moves horizontally
+        jump_speed: The speed at which a jump starts upwards
+        y_momentum: A constantly increasing momentum downwards to represent
+        gravity
+        left: Is the player moving left
+        right: Is the player moving right
+        can_jump: Is the player allowed to jump
+        won: has the player won a level
+    """
+
+    def __init__(self, x_location, y_location):
+        """Inits the player class
+
+        Args:
+            x_location: The players starting position on the x axis
+            y_location: The players starting position on the y axis
+        """
+
         super().__init__()
 
         self.image = load_image("player.png")
@@ -22,7 +50,13 @@ class Player(pygame.sprite.Sprite):
 
         self.won = False
 
-    def controls(self, event: pygame.event):
+    def controls(self, event):
+        """Decides how and where the player should move based on events
+
+        Args:
+            event: A pygame event
+        """
+
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
                 self.left = True
@@ -38,6 +72,17 @@ class Player(pygame.sprite.Sprite):
                 self.right = False
 
     def update_position(self, collide_rects, target_rects):
+        """Updates player position and checks for winning
+
+        Moving is done based on the attributes controlled by events (lef,
+        right) and on the map of the level.
+
+        Args:
+            collide_rects: All the rects the player can collide with
+            target_rects: The rect(s) that the player has to reach in order to
+            win
+        """
+
         # Update x axis
         if self.left:
             self.move_left(collide_rects)
@@ -47,9 +92,9 @@ class Player(pygame.sprite.Sprite):
         # Update y axis
         self.rect.y += self.y_momentum
         if self.y_momentum > 0:
-            self.move_down(collide_rects)
+            self.check_down_collisions(collide_rects)
         if self.y_momentum < 0:
-            self.move_up(collide_rects)
+            self.check_up_collisions(collide_rects)
 
         # Limit falling speed
         if self.y_momentum < 3:
@@ -60,32 +105,81 @@ class Player(pygame.sprite.Sprite):
             self.won = True
 
     def move_left(self, collide_rects):
+        """Moves the player left
+
+        After moving checks for collisions and restricts movement by resetting
+        players position if collisions happen
+
+        Args:
+            collide_rects: the group of rects that the player can collide with
+        """
+
         self.rect.x -= self.speed
         for tile in self.get_collisions(collide_rects):
             self.rect.left = tile.rect.right
 
     def move_right(self, collide_rects):
+        """Moves the player right
+
+        After moving checks for collisions and restricts movement by resetting
+        players position if collisions happen
+
+        Args:
+            collide_rects: the group of rects that the player can collide with
+        """
+
         self.rect.x += self.speed
         for tile in self.get_collisions(collide_rects):
             self.rect.right = tile.rect.left
 
-    def move_down(self, collide_rects):
+    def check_down_collisions(self, collide_rects):
+        """Checks for collisons while falling down
+
+        Also restricts movement by resetting players position if collisions
+        happen. y_momentum is also reset on collision down
+
+        Args:
+            collide_rects: the group of rects that the player can collide with
+        """
+
         for tile in self.get_collisions(collide_rects):
             self.rect.bottom = tile.rect.top
             self.y_momentum = 0
             self.can_jump = True
 
-    def move_up(self, collide_rects):
+    def check_up_collisions(self, collide_rects):
+        """Checks for collisons while jumping up
+
+        Also restricts movement by resetting players position if collisions
+        happen. y_momentum is set to positive to achieve a bouncing effect if
+        the player hits a tile while moving up
+
+        Args:
+            collide_rects: the group of rects that the player can collide with
+        """
+
         for tile in self.get_collisions(collide_rects):
             self.rect.top = tile.rect.bottom
             self.y_momentum = 0.25
 
     def jump(self):
+        """Sets the player's y_momentum to the jump_speed value
+
+        This makes the player jump as the value is negative
+        """
+
         self.y_momentum = self.jump_speed
         self.can_jump = False
 
-    # TODO make into global function and check for level wins in level.update
     def get_collisions(self, tiles):
+        """A function for getting all the tiles the player collides with
+
+        Args:
+            tiles: The tiles to check collisons for
+
+        Returns:
+            collision_list: A list of tiles the player collides with
+        """
         collision_list = []
         for tile in tiles:
             if self.rect.colliderect(tile):
