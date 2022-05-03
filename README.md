@@ -9,6 +9,7 @@ This repository hosts my project for the software technology course - a simple p
 - [Timesheet](./documentation/timesheet.md)
 - [Changelog](./documentation/changelog.md)
 - [Architecture description](./documentation/architecture.md)
+- [User manual](./documentation/user-manual.md)
 
 ## Setup
 This project uses poetry for managing dependencies.
