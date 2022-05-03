@@ -47,22 +47,34 @@ class StubDataBase:
 
 
 class StubClock:
-    def tick(self):
+    def tick(self, fps):
         pass
 
 
 class TestGameLoop(unittest.TestCase):
     def setUp(self):
         self.level_1 = Level(
-            player=Player(20, 10),
+            player=Player(20, 20),
             game_map=MAP_1,
             background=BackGround1()
         )
         self.level_2 = Level(
-            player=Player(20, 10),
+            player=Player(20, 20),
             game_map=MAP_1,
             background=BackGround1()
         )
-        self.game_loop = GameLoop(
 
+    def test_level_completion(self):
+        events = [
+            pygame.event.Event(pygame.KEYDOWN, {'key': pygame.K_SPACE})
+        ]
+        game_loop = GameLoop(
+            levels=[self.level_1, self.level_2],
+            clock=StubClock(),
+            renderer=StubRenderer(),
+            event_queue=StubEventQueue(events),
+            database=StubDataBase()
         )
+        game_loop.run()
+
+        self.assertTrue(self.level_1.won)
