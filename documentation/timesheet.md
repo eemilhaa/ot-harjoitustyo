@@ -64,5 +64,5 @@
 
 **Weekly total: 15**
 
-## Total hours as of week 5: 77
+## Total hours as of week 6: 77
 
