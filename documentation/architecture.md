@@ -55,6 +55,7 @@ classDiagram
   UI ..> Button
   UI ..> Menu
   UI ..> MenuLoop
+  UI ..> GameLoop
   
 ```
 ## Class descriptions
@@ -93,7 +94,7 @@ The most important functionality of a menu is to host buttons. In addition to a 
 A MenuLoop takes a dict of menus and a database. The loop checks for clicks on the buttons of the menus, handles navigation between menus, updates the menus and queries the database to display its contents when needed.
 
 #### UI
-The sole purpose of the UI class is to construct the UI. In practice this means that it first creates all the needed buttons, then creates the menus (and assigns the buttons for the menus) and, finally, creates the menu loop with the menus. So, MenuLoop and Buttons are where the actual functionality of the UI is, the UI class is simply a way to setup the UI more cleanly in the main.py file.
+The sole purpose of the UI class is to construct the UI (MenuLoop and the buttons are where the actual functionality of the UI is). In practice this means that it first creates all the needed buttons, then creates the menus (and assigns the buttons for the menus) and, finally, creates the menu loop with the menus. The UI class also takes a reference to the GameLoop to provide an on_click function to start the game. 
 
 ### A sidenote: What's a Sprite and what's not
 - All in-game stuff is sprites
@@ -116,12 +117,13 @@ sequenceDiagram
   UI->>MenuLoop: create_menu_loop()
   deactivate UI
   activate MenuLoop
-  MenuLoop->>menu: Get current menu (start menu)
-  menu->>buttons: Get the menu's buttons
-  buttons-->>menu: on_click functions
-  menu-->>MenuLoop: Display current menu content and provide on_click functions
+  MenuLoop->>menus: Get current menu (start menu)
+  menus->>buttons: Get the menu's buttons
+  buttons-->>menus: on_click functions
+  menus-->>MenuLoop: Current menu content (buttons, text, background)
+  MenuLoop-->>User: Display the current menu for user
   
-  User->>MenuLoop: Click start
+  User->>MenuLoop: Click the start button
   MenuLoop->>buttons: Execute start button's on_click function (start_game())
   deactivate MenuLoop
   buttons-->>User: Start the game loop for the user 
