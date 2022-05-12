@@ -134,6 +134,7 @@ class UI:
             "game_won_menu": Menu(
                 background=(50, 100, 50),
                 buttons=[
+                    self.buttons["quit"],
                     self.buttons["start_menu"],
                 ],
                 text=[
