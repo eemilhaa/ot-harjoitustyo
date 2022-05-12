@@ -64,5 +64,11 @@
 
 **Weekly total: 15**
 
+## Week 7
+| Date    | Hours    | What I did    |
+|---------------- | --------------- | :-------------- |
+| 12.5.    | 1    | Update documentation   |
+| 12.5.    | 2    | Cleanup code and refactor the filestructure   |
+
 ## Total hours as of week 6: 77
 
