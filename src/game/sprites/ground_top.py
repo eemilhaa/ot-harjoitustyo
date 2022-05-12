@@ -1,9 +1,9 @@
 import pygame
-from image_loader import load_image
+from loaders.image_loader import load_image
 
 
-class Ground(pygame.sprite.Sprite):
-    """A sprite class to represent ground tiles in the game.
+class GroundTop(pygame.sprite.Sprite):
+    """A sprite class to represent ground tiles with grass in the game.
 
     Attributes:
         image: A image to visually represent the sprite in the game
@@ -22,7 +22,7 @@ class Ground(pygame.sprite.Sprite):
             drawn
         """
         super().__init__()
-        self.image = load_image("ground.png")
+        self.image = load_image("ground_top.png")
 
         self.rect = self.image.get_rect()
         self.rect.x = x_location

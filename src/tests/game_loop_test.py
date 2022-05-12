@@ -1,10 +1,10 @@
 # TODO
 import unittest
 import pygame
-from sprites.player import Player
-from level import Level
-from game_loop import GameLoop
-from sprites.background import BackGround
+from game.sprites.player import Player
+from game.level import Level
+from game.game_loop import GameLoop
+from game.sprites.background import BackGround
 
 
 MAP_1 = [

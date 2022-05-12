@@ -1,12 +1,12 @@
 import pygame
-from game_loop import GameLoop
-from level import Level
-from sprites.player import Player
-from sprites.background import BackGround
-from maps import map_1, map_2, map_3
-from renderer import Renderer
-from clock import Clock
-from event_queue import EventQueue
+from game.game_loop import GameLoop
+from game.level import Level
+from game.sprites.player import Player
+from game.sprites.background import BackGround
+from game.maps import map_1, map_2, map_3
+from game.renderer import Renderer
+from game.clock import Clock
+from game.event_queue import EventQueue
 from database import DataBase
 from ui.ui import UI
 import config

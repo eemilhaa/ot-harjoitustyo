@@ -1,9 +1,9 @@
 import pygame
-from image_loader import load_image
+from loaders.image_loader import load_image
 
 
-class GroundTop(pygame.sprite.Sprite):
-    """A sprite class to represent ground tiles with grass in the game.
+class BackGround(pygame.sprite.Sprite):
+    """A sprite class to implement a backround for the game.
 
     Attributes:
         image: A image to visually represent the sprite in the game
@@ -12,17 +12,17 @@ class GroundTop(pygame.sprite.Sprite):
         y_location: the location on the y axis to which the sprite gets drawn
     """
 
-    def __init__(self, x_location, y_location):
+    def __init__(self, x_location=0, y_location=0):
         """Inits the class.
 
         Args:
             x_location: the location on the x axis to which the sprite gets
-            drawn
+            drawn (use the default as a background completely fills the screen)
             y_location: the location on the y axis to which the sprite gets
-            drawn
+            drawn (use the default as a background completely fills the screen)
         """
         super().__init__()
-        self.image = load_image("ground_top.png")
+        self.image = load_image("background_1.png")
 
         self.rect = self.image.get_rect()
         self.rect.x = x_location

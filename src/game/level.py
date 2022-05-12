@@ -1,7 +1,7 @@
 import pygame
-from sprites.ground import Ground
-from sprites.ground_top import GroundTop
-from sprites.target import Target
+from game.sprites.ground import Ground
+from game.sprites.ground_top import GroundTop
+from game.sprites.target import Target
 
 
 class Level:

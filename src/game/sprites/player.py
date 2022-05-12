@@ -1,5 +1,5 @@
 import pygame
-from image_loader import load_image
+from loaders.image_loader import load_image
 
 
 class Player(pygame.sprite.Sprite):

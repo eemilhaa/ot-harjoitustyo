@@ -1,6 +1,5 @@
 import unittest
 import os
-import sqlite3
 from database import DataBase
 
 

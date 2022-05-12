@@ -1,8 +1,8 @@
 import unittest
 import pygame
-from sprites.player import Player
-from level import Level
-from sprites.background import BackGround
+from game.sprites.player import Player
+from game.level import Level
+from game.sprites.background import BackGround
 
 
 MAP_1 = [

@@ -1,4 +1,4 @@
-from font_loader import load_font
+from loaders.font_loader import load_font
 
 
 def write(
