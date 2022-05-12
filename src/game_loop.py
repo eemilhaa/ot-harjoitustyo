@@ -87,7 +87,7 @@ class GameLoop:
 
     def _handle_events(self, level):
         """Handles all user-induced events
-        
+
         In practice this means whatching for quitting and then passing other
         events to player controls to move the player sprite.
 

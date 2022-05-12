@@ -6,7 +6,7 @@ from sprites.target import Target
 
 class Level:
     """A class for representing a level in the game
-    
+
     The level class is most importantly responsible for providing a sprite
     group with all the sprites of the game and an update function to keep
     track of the level's state

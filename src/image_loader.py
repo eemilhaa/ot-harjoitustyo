@@ -4,7 +4,7 @@ import pygame
 
 def load_image(filename):
     """A function for loading images
-    
+
     Args:
         filename: The name of the image file to load
 
