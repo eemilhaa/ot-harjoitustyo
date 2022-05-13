@@ -1,26 +1,19 @@
 import unittest
 import os
 from database import DataBase
-
-
-DIRNAME = os.path.dirname(__file__)
-TEST_DATABASE_FILE_PATH = os.path.join(
-    DIRNAME,
-    '..',
-    '..',
-    "data",
-    "test_database.db"
-)
+from config import DATABASE_FILEPATH
 
 
 class TestDataBase(unittest.TestCase):
     def setUp(self):
         # Start with a clean database
         try:
-            os.remove(TEST_DATABASE_FILE_PATH)
+            os.remove(DATABASE_FILEPATH)
         except Exception:
             pass
-        self.database = DataBase(custom_filepath=TEST_DATABASE_FILE_PATH)
+        self.database = DataBase(
+        #    custom_filepath=TEST_DATABASE_FILE_PATH
+        )
 
     def test_store_result(self):
         self.database.store_result(1)
