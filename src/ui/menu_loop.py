@@ -113,4 +113,3 @@ class MenuLoop:
                 fontsize=self.fontsize
             )
             y_location += self.fontsize * 1.2
-

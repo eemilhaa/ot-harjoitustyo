@@ -11,9 +11,7 @@ class TestDataBase(unittest.TestCase):
             os.remove(DATABASE_FILEPATH)
         except Exception:
             pass
-        self.database = DataBase(
-        #    custom_filepath=TEST_DATABASE_FILE_PATH
-        )
+        self.database = DataBase()
 
     def test_store_result(self):
         self.database.store_result(1)
