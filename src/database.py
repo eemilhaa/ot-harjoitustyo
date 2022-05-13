@@ -15,9 +15,9 @@ class DataBase:
         SQL on the database.
     """
 
-    def __init__(self, custom_filepath=None):
-        """Inits DataBase, optionally with a custom filepath"""
-        self.custom_filepath = custom_filepath
+    def __init__(self):
+        """Inits DataBase"""
+
         self.connection = self.create_database()
         try:
             self.create_table()
@@ -25,19 +25,13 @@ class DataBase:
             pass
 
     def create_database(self):
-        """Creates the database
-
-        The database is created to the default or custom location. Once
-        the database is created, a connection to the database is setup
+        """Creates the database and sets up a connection to it.
 
         Returns:
             The connection to the database
         """
 
-        if not self.custom_filepath:
-            connection = sqlite3.connect(DATABASE_FILEPATH)
-        else:
-            connection = sqlite3.connect(self.custom_filepath)
+        connection = sqlite3.connect(DATABASE_FILEPATH)
         connection.isolation_level = None
         return connection
 
