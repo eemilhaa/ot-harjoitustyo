@@ -18,6 +18,7 @@ try:
 except FileNotFoundError:
     print("no .env file found, using defaults")
 
+
 DISPLAY_SIZE = get_display_size(
     display_height=int(os.getenv("DISPLAY_HEIGHT")) or 900
 )
