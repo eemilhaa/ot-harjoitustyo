@@ -29,3 +29,9 @@ class TestDataBase(unittest.TestCase):
         self.database.store_result(3)
         count = self.database.query_number_of_runs()
         self.assertEqual(count, 2)
+
+    def test_reset_database(self):
+        self.database.store_result(1)
+        self.database.reset_database()
+        count = self.database.query_number_of_runs()
+        self.assertEqual(count, 0)
