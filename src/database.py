@@ -1,3 +1,4 @@
+import os
 import sqlite3
 from config import DATABASE_FILEPATH
 
@@ -6,11 +7,6 @@ class DataBase:
     """A class for providing database functionalities to the game and ui
 
     Attributes:
-        custom_filepath: an optional attribute that allows for creating and
-        using a data base in a different location than the default one. This
-        allows for testing the DataBase class without the tests interfering
-        with the user's actual gameplay data.
-
         connection: The connection to the database. This allows executing
         SQL on the database.
     """
@@ -18,13 +14,13 @@ class DataBase:
     def __init__(self):
         """Inits DataBase"""
 
-        self.connection = self.create_database()
+        self.connection = self._create_connection()
         try:
-            self.create_table()
+            self._create_table()
         except sqlite3.OperationalError:
             pass
 
-    def create_database(self):
+    def _create_connection(self):
         """Creates the database and sets up a connection to it.
 
         Returns:
@@ -35,7 +31,7 @@ class DataBase:
         connection.isolation_level = None
         return connection
 
-    def create_table(self):
+    def _create_table(self):
         """Creates a table for storing data about game runs"""
 
         self.connection.execute(
@@ -88,3 +84,11 @@ class DataBase:
             FROM GameRuns
             """
         ).fetchone()[0]
+
+    def reset_database(self):
+        self.connection.execute(
+            """
+            DROP TABLE IF EXISTS GameRuns
+            """
+        )
+        self._create_table()

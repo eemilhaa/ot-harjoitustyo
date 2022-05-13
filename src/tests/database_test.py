@@ -1,17 +1,12 @@
 import unittest
-import os
 from database import DataBase
-from config import DATABASE_FILEPATH
 
 
 class TestDataBase(unittest.TestCase):
     def setUp(self):
         # Start with a clean database
-        try:
-            os.remove(DATABASE_FILEPATH)
-        except Exception:
-            pass
         self.database = DataBase()
+        self.database.reset_database()
 
     def test_store_result(self):
         self.database.store_result(1)
