@@ -16,6 +16,7 @@ class GameLoop:
         event_queue: An EventQueue object to catch pygame events
         database: A DataBase object to store data about game runs into
     """
+
     def __init__(
         self,
         levels,
@@ -53,7 +54,6 @@ class GameLoop:
         Returns:
             count: the index of the level the loop exited on. This gets
             returned if the player loses the game
-
             "game_won_menu": The dictionary key that the UI uses to navigate to
             the game won -menu. This gets returned if the player beats all
             levels.

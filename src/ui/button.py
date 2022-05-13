@@ -11,8 +11,6 @@ class Button:
 
     def __init__(
         self,
-        # x_location,     #
-        # y_location,     #
         location,
         color,
         on_click,
