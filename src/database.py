@@ -1,5 +1,5 @@
 import sqlite3
-from config import DATABASE_FILE_PATH
+from config import DATABASE_FILEPATH
 
 
 class DataBase:
@@ -35,7 +35,7 @@ class DataBase:
         """
 
         if not self.custom_filepath:
-            connection = sqlite3.connect(DATABASE_FILE_PATH)
+            connection = sqlite3.connect(DATABASE_FILEPATH)
         else:
             connection = sqlite3.connect(self.custom_filepath)
         connection.isolation_level = None

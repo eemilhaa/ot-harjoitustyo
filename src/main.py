@@ -14,8 +14,7 @@ import config
 
 # Always keep 4:3 aspect ratio
 DISPLAY = pygame.display.set_mode((
-    config.DISPLAY_HEIGHT / 0.75,
-    config.DISPLAY_HEIGHT
+    config.DISPLAY_SIZE
 ))
 CLOCK = Clock()
 EVENT_QUEUE = EventQueue()
