@@ -70,6 +70,7 @@
 | 12.5.    | 1    | Update documentation   |
 | 12.5.    | 2    | Cleanup code and refactor the filestructure   |
 | 13.5.    | 2    | Add dotenv and pytest-dotenv, refactor code and tests to utilize dotenv  |
+| 13.5.    | 4    | Add architechture documentation  |
 
 ## Total hours as of week 6: 77
 
