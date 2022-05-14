@@ -220,3 +220,4 @@ loop Loop
   Renderer-->>User: Display the game, player cannot move and stays next to the tile it collided with
 end
 ```
+The user's key press gets passed through the event queue to the game loop. The game loop sends the keypress event to the player controls, and the player's attribute right gets set to true. Now, when the game loop updates the level and the level updates the players position, the player moves right. But, after testing for collisions we see there's a tile in the way. Now, instead of keeping the players location, we adjust the player right next to the tile. After updating the level the game loop sends a caal for the renderer to render everything to the user. The renderer draws and scales the content (all sprites of the level) and updates the display.
