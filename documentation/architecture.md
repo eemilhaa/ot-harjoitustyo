@@ -15,7 +15,7 @@ Here's a closer look at how the project's files are structured:
 
 The goal here is to follow the single repository principle. All classes are in their own files, and the files should have a clear purpose. On a package-level all the files that go into a package should make sense as components of said package.
 
-Another goal of the project is to be as extensible as possible. This means that rather than being locked to represent a single thing, many of the classes are implemeted with the intention that many instances will be generated using them. For example, instead of every level in the game being its own class, there is just one Level class. Using that class with different parameters any number of levels can be generated with minimal amount of new code.  
+Another goal of the project is to be as extensible as possible. This means that rather than being locked to represent a single thing, many of the classes are implemeted with the intention that many instances will be generated using them. For example, instead of every level in the game being its own class, there is just one Level class. By using that class with different parameters any number of levels can be generated with minimal amount of new code.  
 
 See below for a more in-depth look at the classes and their relationships.
 
@@ -138,20 +138,25 @@ Buttons are what makes the UI usable.
 - When the user clicks the button the function gets executed
 - Any function can be assigned: for example starting a new game, giving an exit call or providing a dict key to navigate to a new menu window are all implemented as on_click functions
 
-Much like the Level class, the Button class is a way to generate buttons, not represent a single button. This is done again with the goal  
+Much like the Level class, the Button class is a way to generate all the buttons in the game, not represent a single button.
 
 #### Menu
 The most important functionality of a menu is to host buttons. In addition to a list of buttons, the Menu class also takes text that gets displayed when the user views the menu.
 
-In theory a menu can host any number of buttons. Of course, this wouldn't be practical with limited screen space
+Any number of menus can be generated with the Menu class.
 
 #### MenuLoop
 A MenuLoop takes a dict of menus and a database. The loop checks for clicks on the buttons of the menus, handles navigation between menus, updates the menus and queries the database to display its contents when needed.
 
+The MenuLoop can hold any number of menus in a dictionary. The menus are stored in a dictionary instead of a list to make navigating between menus easier. In practice adding new menu-to-menu navigation can be done as easily as: 1. creating a button with an on_click function that returns the dict key of the menu you want the button to send the user to, and 2. assigining said button to another menu that you want to have access to the first menu.    
+
 #### UI
-The sole purpose of the UI class is to construct the UI (MenuLoop and the buttons are where the actual functionality of the UI is). In practice this means that it first creates all the needed buttons, then creates the menus (and assigns the buttons for the menus) and, finally, creates the menu loop with the menus. The UI class also takes a reference to the GameLoop to provide an on_click function to start the game. 
+The sole purpose of the UI class is to construct the UI (MenuLoop and the buttons are where the actual functionality of the UI is). In practice this means that it first creates all the needed buttons, then creates the menus (and assigns the buttons for the menus) and, finally, creates the menu loop with the menus. The UI class also takes a reference to the GameLoop to provide an on_click function to start the game.
+
+The UI creation is in its own class for two reasons: To keep the code clean, and, most importantly, to make extending the UI easy. All the UI components are generated in this file, so, if you for example want to make a new menu with new buttons, this is often the only place you need to make changes in.
 
 ### A sidenote: What's a Sprite and what's not
+I had much trouble deciding what should and shouldn't be implemented with sprites. Heres my approach:
 - All in-game stuff is sprites
   - Makes especially the drawing to the screen part easier
 - UI does not utilize sprites
