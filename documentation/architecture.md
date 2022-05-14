@@ -193,6 +193,7 @@ sequenceDiagram
 Starting the game starts the UI construction process. Once the buttons, menus and the menu loop are constructed, the menu loop starts and the user sees the start menu view. Starting the game sends the user to the game loop.
 
 ### Playing the game
+The game loop has been started with the start button (which resulted in a game_loop.run() call). The next diagram shows a scenario where the player tries to move right in the game but collides with a map tile and cannot move:
 ```mermaid
 sequenceDiagram
 actor User
@@ -209,8 +210,11 @@ loop Loop
   GameLoop->>Level: update()
   Level->>Player: update_position()
   Player->>Player: move_right()
+  Player->>Level: check_collisions(map_tiles)
+  Level-->>Player: a collision!
+  Player->>Player: set player.rect.right = tile.left 
   GameLoop->>Renderer: render()
-  GameLoop->>Clock: tick()
+  Renderer-->>User: display the game, player cannot move and stays next to the tile it collided with
 end
 User->>EventQueue: press space
 
