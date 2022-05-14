@@ -105,6 +105,8 @@ classDiagram
   
 ```
 ## Class descriptions
+The classes that are most important to the logic and architecture of the game are described in more detail here.
+
 ### Game component classes
 #### Player
 This class hosts everything directly related to the player, most importantly the logic related to player movement and controls. The player class provides methods for controlling the player movement utilizing pygame events, for updating the player position and for checking for collisions with the game map.
@@ -129,7 +131,7 @@ The DataBase class provides the database funcionalities to the game and UI. This
 - Every time a game loop ends, the level to which the player got gets saved
 - The UI queries the database to display stats
   - The database can be queried for the total amount of tries and the highscore (highest level passed)
-  - The UI also provides a button for resetting the database
+- The UI also provides a button for resetting the database
  
 ### UI classes
 #### Button
@@ -146,7 +148,7 @@ The most important functionality of a menu is to host buttons. In addition to a 
 Any number of menus can be generated with the Menu class.
 
 #### MenuLoop
-A MenuLoop takes a dict of menus and a database. The loop checks for clicks on the buttons of the menus, handles navigation between menus, updates the menus and queries the database to display its contents when needed.
+A MenuLoop takes a dict of menus and a database. The loop checks for clicks on the buttons of the menus, handles navigation between menus and updates the menus. It also and queries the database to display its contents / resets it when needed.
 
 The MenuLoop can hold any number of menus in a dictionary. The menus are stored in a dictionary instead of a list to make navigating between menus easier. In practice adding new menu-to-menu navigation can be done as easily as: 1. creating a button with an on_click function that returns the dict key of the menu you want the button to send the user to, and 2. assigining said button to another menu that you want to have access to the first menu.    
 
@@ -188,3 +190,4 @@ sequenceDiagram
   deactivate MenuLoop
   buttons-->>User: Start the game loop for the user 
 ```
+Starting the game starts the UI construction process. Once the buttons, menus and the menu loop are constructed, the menu loop starts and the user sees the start menu view. Starting the game sends the user to the game loop.
