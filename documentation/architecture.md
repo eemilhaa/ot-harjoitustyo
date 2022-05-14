@@ -216,6 +216,4 @@ loop Loop
   GameLoop->>Renderer: render()
   Renderer-->>User: display the game, player cannot move and stays next to the tile it collided with
 end
-User->>EventQueue: press space
-
 ```
