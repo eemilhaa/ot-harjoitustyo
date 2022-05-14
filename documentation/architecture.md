@@ -201,7 +201,7 @@ actor User
 User->>GameLoop: game_loop.run()
 activate GameLoop
 loop Loop
-  User->>EventQueue: press arrow right
+  User->>EventQueue: Press arrow right
   GameLoop->>EventQueue: get_events()
   EventQueue-->>GameLoop: arrow right
   GameLoop->>Player: controls(arrow right)
@@ -211,9 +211,12 @@ loop Loop
   Level->>Player: update_position()
   Player->>Player: move_right()
   Player->>Level: check_collisions(map_tiles)
-  Level-->>Player: a collision!
-  Player->>Player: set player.rect.right = tile.left 
+  Level-->>Player: A collision!
+  Player->>Player: Set player.rect.right = tile.left 
   GameLoop->>Renderer: render()
-  Renderer-->>User: display the game, player cannot move and stays next to the tile it collided with
+  Renderer->>Level: Get content to render
+  Level-->>Renderer: All sprites in the level
+  Renderer->>Renderer: Draw and scale everything to correct display size
+  Renderer-->>User: Display the game, player cannot move and stays next to the tile it collided with
 end
 ```
