@@ -9,15 +9,21 @@ This diagram is here to provide a rough overview of the project structure:
 The most important packages here are the game package and the ui package. The **ui** package hosts the code related to the graphical user interface while the **game** package hosts all the code that makes the game itself happen. Both these packages use the **DataBase** class - the game uses it to store information, and the ui queries and displays its contents. Both the game and ui also depend on the **loaders** package. This package provides means to access files in the assets folder. For the ui this means loading fonts to display text, and the game itself of course needs a way to load images to implement the visuals.
 
 ### File structure
-See below for a more in-depth look at the file structure of the project
+Here's a closer look at how the project's files are structured:
 
-###
 ![file-structure](./images/file-structure.png)
 
+This structure is my attempt to follow the single repository principle. All classes are in their own files, and the files should have a clear purpose. On a package-level all the files that go into a package should make sense as components of said package.
+
+Another goal of the project is to be as extensible as possible. This means that rather than being locked to represent a single thing, many of the classes are implemeted with the intention that many instances will be generated using them. For example, instead of every level in the game being its own class, there is just one Level class. Using that class with different parameters any number of levels can be generated with minimal amount of new code.  
+
+See below for a more in-depth look at the classes and their relationships.
+
 ## The most important classes and their relationships in a class diagram
-This diagram is not exhaustive - instead of depicting every single class, method and dependency, it focuses on providing an understandable overview of the most important ones.
+This diagram is not exhaustive - instead of depicting every nuance, it focuses on providing an understandable overview.
 ```mermaid
 classDiagram
+  
   class Player{
     controls()
     update_position()
@@ -26,6 +32,13 @@ classDiagram
   class Level{
     player
     other sprites
+    update()
+  }
+  class Clock{
+    tick()
+  }
+  class EventQueue{
+    get()
   }
   class Renderer{
     content
@@ -33,9 +46,10 @@ classDiagram
   }
   class GameLoop{
     levels
-    renderer
     handle_events()
   }
+  class map{ }
+  
   class Button{
     on_click()
   }
@@ -47,24 +61,43 @@ classDiagram
     handle_events()
     update_menus()
   }
+  class writer{
+    write()
+  }
   class UI{
     create_buttons()
     create_menus()
     create_menu_loop()
   }
+  
+  class image_loader{
+    load_image()
+  }
+  class font_loader{
+    load_font()
+  }
+  
   class DataBase{
     store()
     query()
+    reset()
   }
   
-  Player "1"-- Level
+  Level --"1" Player
+  Level --"1" map
+  Player ..> image_loader
   Renderer ..> Level
   GameLoop --"*" Level
   GameLoop --"1" Renderer
+  GameLoop --"1" Clock
+  GameLoop --"1" EventQueue
   GameLoop -- DataBase
+  
   Menu --"*" Button
   MenuLoop --"*" Menu
-  MenuLoop -- DataBase
+  MenuLoop --"1" DataBase
+  MenuLoop ..> writer
+  writer ..> font_loader
   UI ..> Button
   UI ..> Menu
   UI ..> MenuLoop
@@ -74,24 +107,29 @@ classDiagram
 ## Class descriptions
 ### Game component classes
 #### Player
-This class hosts everything directly related to the player, most importantly the logic related to player movement and controls. In a nutshell the player class provides methods for controlling the player movement utilizing pygame events, for updating the player position and for checking for collisions with the game map.
+This class hosts everything directly related to the player, most importantly the logic related to player movement and controls. The player class provides methods for controlling the player movement utilizing pygame events, for updating the player position and for checking for collisions with the game map.
 
 #### Level
-The game levels are generated with the level class. The level class is most importantly responsible for providing a sprite group with all the sprites of the game and an update function to keep track of the level's state. A level has a player, and the player is just one of the sprites a level has, just like the map tiles.
+The game levels are generated with the level class. The level class is most importantly responsible for providing a sprite group with all the sprites of the current level and an update function to keep track of the level's state. A level has a player, and the player is just one of the sprites a level has, just like the map tiles.
+
+A key point is that the level class does not represent any single level. Rather it is implemented with the goal that creating any number of levels using the class is effortless.
 
 #### Renderer
-The renderer class renders content to the screen. A renderer takes a level as content to render, scales it from a small drawing surface to the full-sized display and draws it onto the screen.
+The renderer class renders content to the screen. A renderer takes a level as content to render, scales it from a small drawing surface to the full-sized display and draws the scaled surface onto the screen.
   - This scaling is what makes the pixelated look of the game happen
   - Menus do not have a separate renderer as native resolution is used there
 
 #### GameLoop
 A GameLoop takes a list of levels, a renderer, and a database. The loop checks for events, updates the level and stores game results using the database.
 
+Note that the GameLoop class is implemented to support any number of levels. Thus, extending the game with more levels requires minimal effort.
+
 #### DataBase
-The DataBase class provides the database funcionalities. Most importantly functions for storing and querying data.
+The DataBase class provides the database funcionalities to the game and UI. This means functions for storing and querying data.
 - Every time a game loop ends, the level to which the player got gets saved
-- The database can be queried for the total amount of tries and the highscore (highest level passed)
 - The UI queries the database to display stats
+  - The database can be queried for the total amount of tries and the highscore (highest level passed)
+  - The UI also provides a button for resetting the database
  
 ### UI classes
 #### Button
@@ -100,8 +138,12 @@ Buttons are what makes the UI usable.
 - When the user clicks the button the function gets executed
 - Any function can be assigned: for example starting a new game, giving an exit call or providing a dict key to navigate to a new menu window are all implemented as on_click functions
 
+Much like the Level class, the Button class is a way to generate buttons, not represent a single button. This is done again with the goal  
+
 #### Menu
-The most important functionality of a menu is to host buttons. In addition to a list of buttons, the Menu class also takes text that gets displayed when the user views the menu
+The most important functionality of a menu is to host buttons. In addition to a list of buttons, the Menu class also takes text that gets displayed when the user views the menu.
+
+In theory a menu can host any number of buttons. Of course, this wouldn't be practical with limited screen space
 
 #### MenuLoop
 A MenuLoop takes a dict of menus and a database. The loop checks for clicks on the buttons of the menus, handles navigation between menus, updates the menus and queries the database to display its contents when needed.
