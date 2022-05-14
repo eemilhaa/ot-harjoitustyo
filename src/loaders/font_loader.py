@@ -14,6 +14,7 @@ def load_font(filename: str, fontsize: int):
     """
 
     dirname = os.path.dirname(__file__)
+
     return pygame.font.Font(
         os.path.join(
             dirname,

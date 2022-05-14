@@ -48,14 +48,14 @@ class GameLoop:
         self.levels and provides a while loop for a level to run in. The while
         loop handles player-induced events, updates and renders the level and
         breaks the loop based on the state of the level being played. After the
-        loop exits, the highest level the player completed gets saved to the
+        loop exits, the last level the player completed gets saved to the
         database.
 
         Returns:
             count: the index of the level the loop exited on. This gets
             returned if the player loses the game
             "game_won_menu": The dictionary key that the UI uses to navigate to
-            the game won -menu. This gets returned if the player beats all
+            the game won menu. This gets returned if the player beats all
             levels.
         """
 
@@ -70,16 +70,16 @@ class GameLoop:
                 if level.lost:
                     result_level = count
                     break
-
                 if level.won:
                     result_level = count + 1
                     break
 
                 self.renderer.render()
-
                 self.clock.tick(60)
+
             if level.lost:
                 break
+
         self.database.store_result(result_level)
         if result_level == len(self.levels):
             return "game_won_menu"
