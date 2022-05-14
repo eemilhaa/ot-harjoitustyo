@@ -51,6 +51,7 @@ class MenuLoop:
     def use_button(self, button):
         """Decides the next menu based what the clicked button returns"""
 
+        target_menu = None
         click_result = button.on_click()
         # Navigation buttons return the key of the target menu (str)
         if type(click_result) == str:
@@ -64,7 +65,7 @@ class MenuLoop:
         self.update_menus(click_result, target_menu)
 
     def update_menus(self, click_result, target_menu):
-        """Updates all menus with dynamic content"""
+        """Updates the menu view and all menus with dynamic content"""
 
         if type(click_result) == int:
             self.menus["game_over_menu"].text = [
@@ -78,7 +79,8 @@ class MenuLoop:
             f"Levels completed: {self.database.query_highscore()}",
             f"Total tries: {self.database.query_number_of_runs()}",
         ]
-        self.menu = self.menus[target_menu]
+        if target_menu:
+            self.menu = self.menus[target_menu]
 
     def draw_buttons(self):
         """Draws a menu's buttons"""

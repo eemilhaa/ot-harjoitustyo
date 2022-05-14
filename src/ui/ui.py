@@ -61,6 +61,13 @@ class UI:
                 text="STATS",
                 width=self.button_width,
                 on_click=self.to_stats_menu,
+            ),
+            "reset_stats": Button(
+                location=self.button_locations["top_right"],
+                color=(255, 100, 100),
+                text="RESET",
+                width=self.button_width,
+                on_click=self.database.reset_database,
             )
         }
 
@@ -128,6 +135,7 @@ class UI:
                 background=(70, 70, 70),
                 buttons=[
                     self.buttons["start_menu"],
+                    self.buttons["reset_stats"],
                 ],
                 text=[]
             ),

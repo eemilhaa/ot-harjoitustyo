@@ -85,6 +85,8 @@ class DataBase:
         ).fetchone()[0]
 
     def reset_database(self):
+        """Resets the database to a empty state"""
+
         self.connection.execute(
             """
             DROP TABLE IF EXISTS GameRuns
