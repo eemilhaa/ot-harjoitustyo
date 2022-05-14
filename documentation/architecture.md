@@ -191,3 +191,13 @@ sequenceDiagram
   buttons-->>User: Start the game loop for the user 
 ```
 Starting the game starts the UI construction process. Once the buttons, menus and the menu loop are constructed, the menu loop starts and the user sees the start menu view. Starting the game sends the user to the game loop.
+
+### Playing the game
+```mermaid
+sequenceDiagram
+actor User
+
+GameLoop->>GameLoop:
+User->>EventQueue:
+
+```
