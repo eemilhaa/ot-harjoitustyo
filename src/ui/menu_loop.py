@@ -94,7 +94,6 @@ class MenuLoop:
             write(
                 surface=self.display,
                 string=button.text,
-                # position=menu.button_locations[button.location]
                 position=(button.x_location, button.y_location),
                 color=(255, 255, 255),
                 font="bold.ttf",

@@ -96,7 +96,6 @@ class UI:
     def _create_menus(self):
         self.menus = {
             "start_menu": Menu(
-                background=(54, 54, 70),
                 buttons=[
                     self.buttons["start_game"],
                     self.buttons["quit"],
@@ -108,6 +107,7 @@ class UI:
                     "",
                     "click the buttons to advance"
                 ],
+                background=(54, 54, 70),
             ),
             "controls_menu": Menu(
                 background=(70, 70, 70),
@@ -123,24 +123,23 @@ class UI:
                 ]
             ),
             "game_over_menu": Menu(
-                background=(100, 50, 50),
                 buttons=[
                     self.buttons["retry"],
                     self.buttons["quit"],
                     self.buttons["start_menu"],
                 ],
-                text=[]  # This is set in the menu loop based on game outcome
+                text=[],  # This is set in the menu loop based on game outcome
+                background=(100, 50, 50),
             ),
             "stats_menu": Menu(
-                background=(70, 70, 70),
                 buttons=[
                     self.buttons["start_menu"],
                     self.buttons["reset_stats"],
                 ],
-                text=[]
+                text=[],
+                background=(70, 70, 70),
             ),
             "game_won_menu": Menu(
-                background=(50, 100, 50),
                 buttons=[
                     self.buttons["quit"],
                     self.buttons["start_menu"],
@@ -149,7 +148,8 @@ class UI:
                     "GAME WON",
                     "",
                     "You beat all the levels!"
-                ]
+                ],
+                background=(50, 100, 50),
             )
         }
 
