@@ -197,7 +197,21 @@ Starting the game starts the UI construction process. Once the buttons, menus an
 sequenceDiagram
 actor User
 
-GameLoop->>GameLoop:
-User->>EventQueue:
+User->>GameLoop: game_loop.run()
+activate GameLoop
+loop Loop
+  User->>EventQueue: press arrow right
+  GameLoop->>EventQueue: get_events()
+  EventQueue-->>GameLoop: arrow right
+  GameLoop->>Player: controls(arrow right)
+  Player->>Player: self.right = True
+  
+  GameLoop->>Level: update()
+  Level->>Player: update_position()
+  Player->>Player: move_right()
+  GameLoop->>Renderer: render()
+  GameLoop->>Clock: tick()
+end
+User->>EventQueue: press space
 
 ```
