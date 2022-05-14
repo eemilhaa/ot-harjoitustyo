@@ -13,7 +13,7 @@ Here's a closer look at how the project's files are structured:
 
 ![file-structure](./images/file-structure.png)
 
-This structure is my attempt to follow the single repository principle. All classes are in their own files, and the files should have a clear purpose. On a package-level all the files that go into a package should make sense as components of said package.
+The goal here is to follow the single repository principle. All classes are in their own files, and the files should have a clear purpose. On a package-level all the files that go into a package should make sense as components of said package.
 
 Another goal of the project is to be as extensible as possible. This means that rather than being locked to represent a single thing, many of the classes are implemeted with the intention that many instances will be generated using them. For example, instead of every level in the game being its own class, there is just one Level class. Using that class with different parameters any number of levels can be generated with minimal amount of new code.  
 
