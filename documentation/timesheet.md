@@ -71,6 +71,10 @@
 | 12.5.    | 2    | Cleanup code and refactor the filestructure   |
 | 13.5.    | 2    | Add dotenv and pytest-dotenv, refactor code and tests to utilize dotenv  |
 | 13.5.    | 4    | Add architechture documentation  |
+| 14.5.    | 1    | Docstrings and code cleanup  |
+| 14.5.    | 1    | Make a database reset method + make a button for it in UI  |
+| 14.5.    | 3    | Add even more architechture documentation (mostly diagrams)  |
+| 14.5.    | 1    | Add improve and update other documentation   |
 
 ## Total hours as of week 6: 77
 
