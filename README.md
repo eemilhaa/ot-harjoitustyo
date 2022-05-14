@@ -6,11 +6,12 @@ This repository hosts my project for the software technology course - a simple p
 - [Week 6](https://github.com/eemilhaa/ot-harjoitustyo/releases/tag/Week6)
 
 ## Documentation
+- [User manual](./documentation/user-manual.md)
 - [Requirements specification](./documentation/requirements-specification.md)
+- [Architecture description](./documentation/architecture.md)
+- [Testing the code](TODO)
 - [Timesheet](./documentation/timesheet.md)
 - [Changelog](./documentation/changelog.md)
-- [Architecture description](./documentation/architecture.md)
-- [User manual](./documentation/user-manual.md)
 
 ## Setup
 This project uses poetry for managing dependencies.
