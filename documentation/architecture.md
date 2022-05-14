@@ -193,7 +193,7 @@ sequenceDiagram
 Starting the game starts the UI construction process. Once the buttons, menus and the menu loop are constructed, the menu loop starts and the user sees the start menu view. Starting the game sends the user to the game loop.
 
 ### Playing the game - the game loop and player movement
-The game loop has been started with the start button (which resulted in a game_loop.run() call). The next diagram shows a scenario where the player tries to move right in the game but collides with a map tile and cannot move:
+The game loop has been started with the start_game() function call (which resulted in a game_loop.run() call). The next diagram shows a scenario where the player tries to move right in the game but collides with a map tile and cannot move:
 ```mermaid
 sequenceDiagram
 actor User
@@ -230,8 +230,11 @@ This diagram depicts starting the game, winning a level, advancing to the next, 
 sequenceDiagram
 actor User
 User->>MenuLoop: Click start button
+activate MenuLoop
 MenuLoop->>GameLoop: game_loop.run()
+deactivate MenuLoop
 
+activate GameLoop
 Note over CurrentLevel: current level = 1
 GameLoop->>Renderer: Use level 1 as content
 Renderer-->>User: Display level 1
@@ -251,9 +254,12 @@ GameLoop->>GameLoop: Break the current level's loop
 GameLoop->>GameLoop: Break the whole game loop
 GameLoop->>DataBase: store highest won level (1)
 GameLoop-->>MenuLoop: return the count of the level that the loop exited on (2)
+deactivate GameLoop
 
+activate MenuLoop
 MenuLoop->>MenuLoop: Update menus
 MenuLoop->>MenuLoop: target_menu = game_over_menu
 MenuLoop-->>User: Display game over menu
+deactivate MenuLoop
 ```
-First the user clicks the start game button and the button's on_click function (game_loop.run()) gets called. This starts the game loop from level 1. The user wins this level, and the game loop breaks out of the level's loop, moving on to the next level and starting its loop. This time the player dies. As a result we break from the whole game loop to end the game. As the game loop exits, the highest won level gets stored to the database, and the game_loop.run() functions returns a value. Like with any on_click function, the return value of game_loop.run() decides if the MenuLoop should switch to a new menu, and what that new menu might be. In our example the function returns an integer, which means the game was lost (winning would directly return a dict key to game_won_menu). With this info, the menu_loop sends the user to the game over menu.
+First the user clicks the start game button and the button's on_click function (start_game() returning game_loop.run()) gets called. This starts the game loop from level 1. The user wins this level, and the game loop breaks out of the level's loop, moving on to the next level and starting its loop. This time the player dies. As a result we break from the whole game loop to end the game. As the game loop exits, the highest won level gets stored to the database, and the game_loop.run() function returns a value. Like with any on_click function, the return value of game_loop.run() decides if the MenuLoop should switch to a new menu, and what that new menu might be. In our example the function returns an integer, which means the game was lost (winning would directly return a dict key to game_won_menu). With this info, the menu_loop sends the user to the game over menu.
