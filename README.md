@@ -9,7 +9,7 @@ This repository hosts my project for the software technology course - a simple p
 - [User manual](./documentation/user-manual.md)
 - [Requirements specification](./documentation/requirements-specification.md)
 - [Architecture description](./documentation/architecture.md)
-- [Testing the code](TODO)
+- [Test documentation](./documentation/test-documentation.md)
 - [Timesheet](./documentation/timesheet.md)
 - [Changelog](./documentation/changelog.md)
 
