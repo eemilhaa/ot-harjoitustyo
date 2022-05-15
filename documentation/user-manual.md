@@ -28,10 +28,10 @@ poetry run invoke start
 For more a listing of all the available CLI commands refer to the [readme](https://github.com/eemilhaa/ot-harjoitustyo/blob/main/README.md#available-cli-commands)
 
 ## Navigating the menus
-The program starts from a start menu. You can navigate between menus by clicking the buttons. Click the CONTROLS button to see the controls for playing the game. For an in-depth look at the menu structure see the [UI section](https://github.com/eemilhaa/ot-harjoitustyo/blob/main/documentation/requirements-specification.md#ui) of the requirements specification document.
+The program starts from a start menu. You can navigate between menus by clicking the buttons. Click the **CONTROLS** button to see the controls for playing the game. For an in-depth look at the menu structure see the [UI section](https://github.com/eemilhaa/ot-harjoitustyo/blob/main/documentation/requirements-specification.md#ui) of the requirements specification document.
 
 ## Starting a new game
-Starting a new game is as simple as pressing the START button.
+Starting a new game is as simple as pressing the **START** button.
 
 ## Gameplay
 The idea of the game is to jump through the level without falling down. You can progress in the game by reaching the flag on each level. Control your character with the left and right arrow keys and space.
