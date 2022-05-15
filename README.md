@@ -4,6 +4,7 @@ This repository hosts my project for the software technology course - a simple p
 ## Releases
 - [Week 5](https://github.com/eemilhaa/ot-harjoitustyo/releases/tag/Week5)
 - [Week 6](https://github.com/eemilhaa/ot-harjoitustyo/releases/tag/Week6)
+- [Week 7 (final deadline)](https://github.com/eemilhaa/ot-harjoitustyo/releases/tag/loppupalautus)
 
 ## Documentation
 - [User manual](./documentation/user-manual.md)
