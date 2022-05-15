@@ -14,7 +14,11 @@ The [**DataBase**](../src/database.py) class is responsible for all data storing
 The loaders package is responsible for loading all the files the game needs (images, fonts). The package is tested with the [**TestLoaders**](../src/tests/loader_test.py) test class.
 
 ## Test coverage
-TODO
+The branch coverage of the automated tests is 84% excluding the UI.
+
+![coverage](./images/coverage.png)
+
+All the classes with the most important application logic have good test coverage. The **Clock**, **EventQueue** and **Renderer** classes have no coverage, as these have been implemented as stub classes in the tests. The **maps** file has no coverage because the tests implement different maps designed for testing, not gameplay.
 
 ## System testing
 The complete program "as the user would use it" has been tested manually and should comply with the requirements specifications.
