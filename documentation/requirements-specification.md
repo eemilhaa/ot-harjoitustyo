@@ -6,7 +6,7 @@ The game is composed of small levels that the player has to pass in order to pro
 
 
 ## UI
-Here's what the UI of the ganme looks like:
+Here are the program's UI features. Below is also a visual overview of what the different windows look like.
 
 ![ui-draft](./images/ui.png)
 
