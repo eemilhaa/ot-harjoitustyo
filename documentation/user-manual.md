@@ -10,7 +10,7 @@ Download the dependencies with:
 ```console
 poetry install
 ```
-(Make sure to run this in the root of the repository)
+(Make sure to run this and all CLI commands in the root of the repository)
 
 ## Configuration
 Configuration is done in the [.env](../.env) file found in the root of the repository. In this file you can input your desired display height and the filename for the database file that stores your game data. The format of the file is the following:
@@ -25,7 +25,7 @@ After you have the dependencies (and possibly customized the configuration file)
 ```console
 poetry run invoke start
 ```
-For more a listing of all the available CLI commands refer to the [readme](https://github.com/eemilhaa/ot-harjoitustyo/blob/main/README.md#available-cli-commands)
+For a listing of all the available CLI commands refer to the [readme](https://github.com/eemilhaa/ot-harjoitustyo/blob/main/README.md#available-cli-commands)
 
 ## Navigating the menus
 The program starts from a start menu. You can navigate between menus by clicking the buttons. Click the **CONTROLS** button to see the controls for playing the game. For an in-depth look at the menu structure see the [UI section](https://github.com/eemilhaa/ot-harjoitustyo/blob/main/documentation/requirements-specification.md#ui) of the requirements specification document.
