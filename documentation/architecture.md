@@ -15,12 +15,12 @@ Here's a closer look at how the project's files are structured:
 
 The goal here is to follow the single repository principle. All classes are in their own files, and the files should have a clear purpose. On a package-level all the files that go into a package should make sense as components of said package.
 
-Another goal of the project is to be as extensible as possible. This means that rather than being locked to represent a single thing, many of the classes are implemeted with the intention that many instances will be generated using them. For example, instead of every level in the game being its own class, there is just one Level class. By using that class with different parameters any number of levels can be generated with minimal amount of new code.  
+Another goal of the project is to be as extensible as possible. This means that rather than being locked to represent a single version of a thing, many of the classes are implemeted with the intention that many different instances will be generated using them. For example, instead of every level in the game being its own class, there is just one Level class. By using that class with different parameters any number of levels can be generated with minimal amount of new code. Same goes for the menus and buttons in the UI.
 
 See below for a more in-depth look at the classes and their relationships.
 
-## The most important classes and their relationships in a class diagram
-This diagram is not exhaustive - instead of depicting every nuance, it focuses on providing an understandable overview.
+## The most important classes and their relationships
+See the below diagram for a visual overview. Note that it is not completely exhaustive - instead of depicting every single nuance, it focuses on providing an understandable summary.
 ```mermaid
 classDiagram
   
@@ -105,8 +105,6 @@ classDiagram
   
 ```
 ## Class descriptions
-The classes that are most important to the logic and architecture of the game are described in more detail here.
-
 ### Game component classes
 #### Player
 This class hosts everything directly related to the player, most importantly the logic related to player movement and controls. The player class provides methods for controlling the player movement utilizing pygame events, for updating the player position and for checking for collisions with the game map.
@@ -114,7 +112,7 @@ This class hosts everything directly related to the player, most importantly the
 #### Level
 The game levels are generated with the level class. The level class is most importantly responsible for providing a sprite group with all the sprites of the current level and an update function to keep track of the level's state. A level has a player, and the player is just one of the sprites a level has, just like the map tiles.
 
-A key point is that the level class does not represent any single level. Rather it is implemented with the goal that creating any number of levels using the class is effortless.
+A key point is that the level class does not represent any single level. Rather it is implemented with the goal that creating any number of different levels using the class is effortless.
 
 #### Renderer
 The renderer class renders content to the screen. A renderer takes a level as content to render, scales it from a small drawing surface to the full-sized display and draws the scaled surface onto the screen.
