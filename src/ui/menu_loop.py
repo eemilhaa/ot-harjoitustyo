@@ -4,33 +4,53 @@ from ui.writer import write
 
 
 class MenuLoop:
+    """A class for running the menus.
+
+    Running in this context means checking for clicks on the buttons, handling
+    navigation between menus, updating menus and displaying the menus to the
+    user.
+
+    Attributes:
+        display: A pygame Surface object to draw on
+        menus: A dict of menu objects
+        database: A DataBase object
+    """
+
     def __init__(
         self,
         display,
         menus,
-        clock,
         database,
     ):
-        # TODO docstrings
-        """Sets up the menu loop"""
+        """Inits the MenuLoop
+
+        Args:
+            display: A pygame Surface object to draw on
+            menus: A dict of menu objects
+            database: A DataBase object
+        """
 
         self.display = display
         self.menus = menus
         self.menu = menus["start_menu"]
-        self.clock = clock
+        self.clock = pygame.time.Clock()
         self.fontsize = int(display.get_width() * 0.05)
         self.database = database
 
     def run(self):
-        """Checks events, draws everything in the current menu"""
+        """The main menu loop.
+
+        The run loop checks for events, draws everything in the current menu
+        and handles navigation between menus.
+        """
 
         while True:
             self._handle_events()
 
             self.display.fill(self.menu.background)
 
-            self.draw_buttons()
-            self.draw_text()
+            self._draw_buttons()
+            self._draw_text()
 
             self.display.blit(self.display, (0, 0))
             pygame.display.update()
@@ -46,26 +66,38 @@ class MenuLoop:
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 for button in self.menu.buttons:
                     if button.rect.collidepoint(event.pos):
-                        self.use_button(button=button)
+                        self._use_button(button=button)
 
-    def use_button(self, button):
-        """Decides the next menu based what the clicked button returns"""
+    def _use_button(self, button):
+        """A method for using buttons.
+
+        In practice this means executing the buttons on_click function, and
+        Deciding the next menu based on what the function returns. on_click
+        functions return the key of the target menu (str), the exception being
+        the game_loop.run() call.
+
+        Args:
+            button: A button to click
+        """
 
         target_menu = None
         click_result = button.on_click()
-        # Navigation buttons return the key of the target menu (str)
         if type(click_result) == str:
             target_menu = click_result
-        # the game loop returns the number of the level to which the player got
-        # to (int)
+        # A lost game_loop returns the count of the level
         elif type(click_result) == int:
             target_menu = "game_over_menu"
 
         # Update menus on click
-        self.update_menus(click_result, target_menu)
+        self._update_menus(click_result, target_menu)
 
-    def update_menus(self, click_result, target_menu):
-        """Updates the menu view and all menus with dynamic content"""
+    def _update_menus(self, click_result, target_menu):
+        """Updates the menu view and all menus with dynamic content
+
+        Args:
+            click_result: Result of the button click that caused the update
+            target_menu: The menu to display next
+        """
 
         if type(click_result) == int:
             self.menus["game_over_menu"].text = [
@@ -82,7 +114,7 @@ class MenuLoop:
         if target_menu:
             self.menu = self.menus[target_menu]
 
-    def draw_buttons(self):
+    def _draw_buttons(self):
         """Draws a menu's buttons"""
 
         for button in self.menu.buttons:
@@ -100,7 +132,7 @@ class MenuLoop:
                 fontsize=self.fontsize,
             )
 
-    def draw_text(self):
+    def _draw_text(self):
         """Draws a menu's text"""
 
         y_location = 0

@@ -1,7 +1,6 @@
 import pygame
 
 
-# TODO docstrings
 class Button:
     """A class for implementing buttons
 
@@ -10,6 +9,7 @@ class Button:
 
     Attributes:
         location: The location on the screen to draw the button in
+        rect: A rect to represent the button and to check for clicks
         color: The color of the button
         on_click: The function that gets executed when the button is clicked
         width: The width of the button in pixels

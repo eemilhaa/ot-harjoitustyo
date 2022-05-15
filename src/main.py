@@ -67,7 +67,6 @@ def start_game():
 
 UI = UI(
     display=DISPLAY,
-    clock=CLOCK,
     database=DATABASE,
     game_start_function=start_game
 )

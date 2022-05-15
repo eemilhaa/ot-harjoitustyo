@@ -10,7 +10,7 @@ def load_font(filename: str, fontsize: int):
         fontsize: The desired fontsize
 
     Returns:
-        A pygame font object that is used to render text to the screen
+        A pygame Font object that is used to render text to the screen
     """
 
     dirname = os.path.dirname(__file__)

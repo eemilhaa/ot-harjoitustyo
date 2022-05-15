@@ -3,7 +3,14 @@ from dotenv import load_dotenv
 
 
 def get_display_size(display_height):
-    """Calculates the display dimensions."""
+    """Calculates the display dimensions.
+
+    Args:
+        display_height: The desired window height in pixels
+
+    Returns:
+        A tuple with the display dimension. The aspect ratio is always 4:3.
+    """
 
     return (
         display_height / 0.75,

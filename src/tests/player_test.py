@@ -23,13 +23,13 @@ class TestPlayer(unittest.TestCase):
 
     def test_can_move_left(self):
         pos1 = self.level.player.rect.x
-        self.level.player.move_left(self.level.ground)
+        self.level.player._move_left(self.level.ground)
         pos2 = self.level.player.rect.x
         self.assertTrue(pos1 > pos2)
 
     def test_can_move_right(self):
         pos1 = self.level.player.rect.x
-        self.level.player.move_right(self.level.ground)
+        self.level.player._move_right(self.level.ground)
         pos2 = self.level.player.rect.x
         self.assertTrue(pos1 < pos2)
 
@@ -50,7 +50,7 @@ class TestPlayer(unittest.TestCase):
                 self.level.target,
             )
         pos1 = self.level.player.rect.y
-        self.level.player.jump()
+        self.level.player._jump()
         self.level.player.update_position(
             self.level.ground,
             self.level.target,

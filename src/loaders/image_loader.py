@@ -9,7 +9,7 @@ def load_image(filename):
         filename: The name of the image file to load
 
     Returns:
-        A pygame image.load() function call with the desired image
+        A pygame Surface object that can be drawn to the screen
     """
 
     dirname = os.path.dirname(__file__)

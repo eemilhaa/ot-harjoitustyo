@@ -5,12 +5,30 @@ from ui.menu_loop import MenuLoop
 
 
 class UI:
-    # TODO docstrings
-    """A class for constructing the UI."""
+    """A class for constructing the UI.
 
-    def __init__(self, display, clock, database, game_start_function):
+    The purpose here is to have all code related to generating the UI
+    components in one place. It exists only to produce a functional MenuLoop
+    with the desired menus and buttons.
+
+    Attributes (only for eventually passing them to the MenuLoop):
+        display: A pygame Surface object
+        database: A DataBase object
+        game_start_function: A special on click function for entering the game
+        loop
+    """
+
+    def __init__(self, display, database, game_start_function):
+        """Inits the UI constructing process
+
+        Args:
+            display: A pygame Surface object
+            database: A DataBase object
+            game_start_function: A special on click function for entering the
+            game loop
+        """
+
         self.display = display
-        self.clock = clock
         self.database = database
         self.game_start_function = game_start_function
         self._create_buttons()
@@ -18,6 +36,8 @@ class UI:
         self._create_menu_loop()
 
     def _create_buttons(self):
+        """All buttons are created here"""
+
         self._calculate_button_locations()
         self.buttons = {
             "start_game": Button(
@@ -72,6 +92,8 @@ class UI:
         }
 
     def _calculate_button_locations(self):
+        """A function to calculate button locations more cleanly"""
+
         display_width, display_height = self.display.get_size()
         self.button_width = display_width / 4
         self.button_locations = {
@@ -94,6 +116,8 @@ class UI:
         }
 
     def _create_menus(self):
+        """All menus are created here"""
+
         self.menus = {
             "start_menu": Menu(
                 buttons=[
@@ -110,7 +134,6 @@ class UI:
                 background=(54, 54, 70),
             ),
             "controls_menu": Menu(
-                background=(70, 70, 70),
                 buttons=[
                     self.buttons["start_menu"],
                 ],
@@ -120,7 +143,8 @@ class UI:
                     "LEFT ARROW --- LEFT",
                     "RIGHT ARROW -- RIGHT",
                     "SPACE -------- JUMP",
-                ]
+                ],
+                background=(70, 70, 70),
             ),
             "game_over_menu": Menu(
                 buttons=[
@@ -154,13 +178,15 @@ class UI:
         }
 
     def _create_menu_loop(self):
+        """The menu loop is created here"""
+
         self.menu_loop = MenuLoop(
             menus=self.menus,
-            clock=self.clock,
             display=self.display,
             database=self.database,
         )
 
+    # on_click functions for simple menu-to-menu navigation
     def to_start_menu(self):
         """Returns the dict key of the start menu"""
 
