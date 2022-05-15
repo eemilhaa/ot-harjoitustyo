@@ -86,3 +86,18 @@
 ### Features visible to the user
 - Added a proper game won screen for when the player passes all levels
   - To what screen the player gets sent after the game is decided based on game outcome
+
+## Week 7
+### Technicalities
+- Complete refactor of project structure
+  - Divided code into sensible packages
+- Add dotenv and pytest-dotenv
+  - Support for configuration with .env added
+  - Refactored the code to utilize dotenv
+  - Refactored the tests to utilize pytest-dotenv
+- Heaps of work on documentation
+  - All existing documentation updated
+  - New documentation added
+
+### Features visible to the user
+- Added a button for resetting the database from the UI

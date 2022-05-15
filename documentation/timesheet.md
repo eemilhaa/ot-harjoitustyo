@@ -75,6 +75,11 @@
 | 14.5.    | 1    | Make a database reset method + make a button for it in UI  |
 | 14.5.    | 3    | Add even more architechture documentation (mostly diagrams)  |
 | 14.5.    | 1    | Add improve and update other documentation   |
+| 15.5.    | 2    | Update and add documentation   |
+| 15.5.    | 2    | Cleanup code and add docstrings   |
+| 15.5.    | 1    | misc tweaks and final tests on cubbli   |
 
-## Total hours as of week 6: 77
+**Weekly total: 20** 
+
+## Total hours: 97
 
